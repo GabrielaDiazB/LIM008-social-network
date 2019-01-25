@@ -15,4 +15,18 @@ export const signUpFunction = () => {
       console.log(errorMessage);
     });
   });
+
+  const signIn = document.getElementById('sign-in');
+  signIn.addEventListener('click', () =>{
+    const emailSignIn = document.getElementById('email-si').value;
+    const passwordSignIn = document.getElementById('password-si').value;
+    firebase.auth().signInWithEmailAndPassword(emailSignIn, passwordSignIn).catch(function(error) {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ...
+      console.log(errorCode);
+      console.log(errorMessage);
+    });
+  });
 }
