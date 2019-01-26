@@ -22,16 +22,27 @@
 
 </head>
 <body>
-  <input id="email" type="email" placeholder="Ingresar Correo">
-  <input id="password" type="password" placeholder="Ingresar Contraseña">
-  <button id="sign-up">Enviar</button>
-
-  <div class="sign-in-box">
+  
+  <div id="sign-in-box" class="container-login">
     <form>
       <input id="email-si" type="email" placeholder="Ingresar Correo">
       <input id="password-si" type="password" placeholder="Ingresar Contraseña">
       <button id="sign-in">Enviar</button>
     </form>
+  </div>
+
+  <div class="container-sign-up">
+    <form>
+      <input id="email" type="email" placeholder="Ingresar Correo">
+      <input id="password" type="password" placeholder="Ingresar Contraseña">
+      <button id="sign-up">Enviar</button>
+    </form>
+  </div>
+
+  <div id="log-out-box">
+    <h1>Bienvenido</h1>
+    <p id="user-para">Ejemplo de inicio de sesión</p>
+    <button id="log-out">Cerrar Sesión</button>
   </div>
   <script type="module" src="main.js"></script>
 </body>
