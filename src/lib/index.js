@@ -1,3 +1,5 @@
+// Función para guardar los datos de usuario en Firebase
+
 export const signUpFunctions = () => {
   
   // Función para poder Registrarse
@@ -14,15 +16,30 @@ export const signUpFunctions = () => {
     event.preventDefault()
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      
-      console.log(errorCode);
-      console.log(errorMessage);
-    });
+
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .catch(function(error) {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    
+    console.log(errorCode);
+    console.log(errorMessage);
   });
+      
+    const database = firebase.database();
+    let emailRef = email;
+    let passwordRef = password;
+    let ref = database.ref('user');
+    let data = {
+      password: passwordRef,
+      email: emailRef,
+    };
+    let userNew = ref.push(data);
+    let keyUser = userNew.getKey();
+    console.log(keyUser); // este es el identificador de la base de datos con lo que se guarda
+
+  });  
 
   // Función para saber si el usuario está loggeado o no
 
