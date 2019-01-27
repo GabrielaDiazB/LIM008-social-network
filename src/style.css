@@ -53,6 +53,7 @@ display: flex;
       
 }
 }
+
 @media screen and (min-width: 300px) { 
     body{
         display: flex;
@@ -80,7 +81,7 @@ display: flex;
         border-bottom:1px solid red;
     }
 
-    .sign-up-btn, .login-btn, .log-out-btn{
+    .sign-up-btn, .login-btn{
         border-radius: 5px;
         width: 100%;
         padding: 10px 20px;
@@ -95,18 +96,18 @@ display: flex;
     .sign-up-btn{
         background: rgb(38, 63, 83);
     }
-    .login-btn, .log-out-btn{
+    .login-btn{
         background: rgb(153, 200, 238);
     }
     .sign-up-btn:hover{
         background: rgb(179, 215, 245);
         color:black;
     }
-    .login-btn:hover, .log-out-btn:hover{
+    .login-btn:hover{
         background: beige;
         color: black;
     }
-    .sign-up-btn:active, .login-btn:active, .log-out-btn:active{
+    .sign-up-btn:active, .login-btn:active{
         transform: translateY(3px);
     }
 

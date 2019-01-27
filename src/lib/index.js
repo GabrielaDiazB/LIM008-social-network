@@ -26,9 +26,11 @@ export const signUpFunctions = () => {
       document.getElementById('log-out-box').style.display = 'block';
       document.getElementById('sign-in-box').style.display = 'none';
       document.getElementById('sign-up-box').style.display = 'none';
+      document.getElementById('log-out').style.display = 'block';
+      document.getElementById('footer-container').style.display = 'block';
 
+      
       // const displayName = user.displayName;
-      // const email = user.email;
       // const emailVerified = user.emailVerified;
       // const photoURL = user.photoURL;
       // const isAnonymous = user.isAnonymous;
@@ -37,8 +39,8 @@ export const signUpFunctions = () => {
 
       const user = firebase.auth().currentUser; 
       if(user !== null){
-        const email_id = user.email;
-        document.getElementById('user-para').innerHTML = 'Welcome User : ' + email_id
+        const emailUser = user.email;
+        document.getElementById('user-para').innerHTML = 'Welcome User : ' + emailUser;
       } 
 
     } else {
@@ -46,6 +48,8 @@ export const signUpFunctions = () => {
       document.getElementById('log-out-box').style.display = 'none';
       document.getElementById('sign-in-box').style.display = 'block';
       document.getElementById('sign-up-box').style.display = 'block ';
+      document.getElementById('log-out').style.display = 'none';
+      document.getElementById('footer-container').style.display = 'none';
     }
   });
 
