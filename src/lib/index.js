@@ -14,12 +14,22 @@ export const signUpFunctions = () => {
 
   signUp.addEventListener('click', (event) => {
     event.preventDefault()
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .catch(function(error) {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
     
+    console.log(errorCode);
+    console.log(errorMessage);
+  });
+      
     const database = firebase.database();
-    let emailRef = email.value;
-    let passwordRef = password.value;
+    let emailRef = email;
+    let passwordRef = password;
     let ref = database.ref('user');
     let data = {
       password: passwordRef,
@@ -27,22 +37,8 @@ export const signUpFunctions = () => {
     };
     let userNew = ref.push(data);
     let keyUser = userNew.getKey();
-  console.log(keyUser); // este es el identificador de la base de datos con lo que se guarda
+    console.log(keyUser); // este es el identificador de la base de datos con lo que se guarda
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(function() {
-      check();
-      alert('Te enviamos un correo para que confirmes tu cuenta');
-      window.location.assign('../views/index.html');
-    })
-    .catch(function(error) {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      
-      console.log(errorCode);
-      console.log(errorMessage);
-    });
   });  
 
   // Función para saber si el usuario está loggeado o no
