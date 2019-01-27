@@ -10,7 +10,13 @@ export const writeUserData=  (userId, name, email, imageUrl) =>{
 export const signUpFunctions = () => {
   
   // Función para poder Registrarse
-
+  document.getElementById('sign-up-box').style.display = 'none';
+  const signUpQuestion = document.getElementById('signup-question');
+  signUpQuestion.addEventListener('click', () => {
+    document.getElementById('sign-up-box').style.display = 'block';
+    document.getElementById('sign-in-box').style.display = 'none';
+    document.getElementById('signup-question').style.display = 'none';
+  });
   const signUp = document.getElementById('sign-up');
 
   signUp.addEventListener('click', (event) => {
@@ -34,9 +40,9 @@ export const signUpFunctions = () => {
       // Usuario está loggeado
       document.getElementById('log-out-box').style.display = 'block';
       document.getElementById('sign-in-box').style.display = 'none';
-      document.getElementById('sign-up-box').style.display = 'none';
       document.getElementById('log-out').style.display = 'block';
       document.getElementById('footer-container').style.display = 'block';
+      document.getElementById('signup-question').style.display = 'none';
 
       
       // const displayName = user.displayName;
@@ -56,8 +62,8 @@ export const signUpFunctions = () => {
       // Usuario ha cerrado sesión
       document.getElementById('log-out-box').style.display = 'none';
       document.getElementById('sign-in-box').style.display = 'block';
-      document.getElementById('sign-up-box').style.display = 'block ';
       document.getElementById('log-out').style.display = 'none';
+      document.getElementById('signup-question').style.display = 'block';
       document.getElementById('footer-container').style.display = 'none';
     }
   });
@@ -72,8 +78,8 @@ export const signUpFunctions = () => {
 
     firebase.auth().signInWithEmailAndPassword(userEmail,userPassword ).catch(function(error) {
       // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
+      const errorCode = error.code;
+      const errorMessage = error.message;
       window.alert('Error : ' + errorCode);
       window.alert('Error : ' + errorMessage);
     });
@@ -92,7 +98,7 @@ export const signUpFunctions = () => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
         // The signed-in user info.
-        var user = result.user;
+        const user = result.user;
 
 
         console.log(user);
@@ -100,7 +106,7 @@ export const signUpFunctions = () => {
       })
       .catch(function(error) {
         // Handle Errors here.
-        var errorCode = error.code;
+        const errorCode = error.code;
         var errorMessage = error.message;
         // The email of the user's account used.
         var email = error.email;
@@ -128,14 +134,14 @@ export const signUpFunctions = () => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
         // The signed-in user info.
-        var user = result.user;
+        const user = result.user;
         
         console.log(user);
 
       })
       .catch(function(error) {
         // Handle Errors here.
-        var errorCode = error.code;
+        const errorCode = error.code;
         var errorMessage = error.message;
         // The email of the user's account used.
         var email = error.email;
