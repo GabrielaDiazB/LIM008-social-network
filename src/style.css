@@ -1,4 +1,4 @@
-@media screen and (min-width: 320px) and (max-width: 1500px) { 
+@media screen and (min-width: 320px) { 
     .one-container, .two-container{
         width: 100%;
         height: 100%;
@@ -6,8 +6,10 @@
         margin-top: 125px
     }
     .two-container{
+        display: none;
     }
     .one-container{
+        display: none;
     }
     .email,.password,.sign-up,.login,.register{
      margin-left: auto;
@@ -48,6 +50,44 @@
         background: rgb(179, 215, 245);
         border: 1px solid rgb(101, 179, 243);
         color:black;
+    }
+
+    header{
+        background:black;
+        width: 100%;
+        padding: 10px;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background:rgb(209, 203, 203);
+        display: flex;
+    }
+    header label nav td{
+        display: none;
+    }
+    
+    header nav a li a:hover{ 
+    }
+
+   
+
+    footer{
+    width: 100%;
+    padding: 10px;
+    background:black;
+    line-height: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1000;
+    display: flex;
+    }
+    .icon{
+        padding: 5px 35px 5px 15px;
     }
 
     
