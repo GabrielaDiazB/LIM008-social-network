@@ -1,5 +1,59 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-@media screen and (min-width: 320px) and (max-width: 1500px) { 
+
+header{
+    background:black;
+    width: 100%;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background:rgb(231, 235, 240);
+}  
+label{
+    float: left;
+} 
+.icon-header{
+    margin-right: 25px;
+    float: right;
+    width: 30px;
+    height: 30px;;
+}
+
+footer{
+text-align: center;
+padding: 10px;
+line-height: 10px;
+position: fixed;
+top: 0;
+z-index: 1000;
+display: flex;
+}
+.icon{
+    width: 30px;
+    height: 30px;;
+    padding: 0px 0px 0px 50px;
+}
+
+@media screen and (max-width: 500px) { 
+.footer{
+    width: 100%;
+    background: #dfe2e7;
+    padding: 10px;
+    line-height: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1000;
+}
+.icon{
+  padding: 0px 20px 0px 20px;
+      
+}
+}
+@media screen and (min-width: 300px) { 
     body{
         display: flex;
         text-align: center;
@@ -10,6 +64,8 @@
         background-color: #F2F2F2;
         padding: 10px;
         border-radius: 5px;
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
     
     .email, .password{
@@ -72,6 +128,6 @@
         background: #dd4b39;
         color: white;
     }
-
-    
+  
 }
+
