@@ -1,0 +1,54 @@
+@media screen and (min-width: 320px) and (max-width: 1500px) { 
+    .one-container, .two-container{
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        margin-top: 125px
+    }
+    .two-container{
+    }
+    .one-container{
+    }
+    .email,.password,.sign-up,.login,.register{
+     margin-left: auto;
+     margin-right: auto;
+    }
+    
+    p, h1{
+        text-align: center;
+    }
+    .email, .password{
+        display: block;
+        border: 1px solid rgb(180, 207, 231);
+        border-radius: 7px;
+        padding: 15px 30px;
+        margin-top: 5px;
+    }
+    .sign-up, .login, .register{
+        background: rgb(153, 200, 238);
+        border-radius: 15px;
+        padding: 15px 30px;
+        margin-top: 10px;
+        color:beige;
+    }
+    .sign-up:hover{
+        background: beige;
+        color: black;
+        border: 1px solid rgb(101, 179, 243);
+    }
+    .login:hover{
+        background: beige;
+        color: black;
+        border: 1px solid rgb(101, 179, 243);
+    }
+    .register{
+        background: rgb(38, 63, 83);
+    }
+    .register:hover{
+        background: rgb(179, 215, 245);
+        border: 1px solid rgb(101, 179, 243);
+        color:black;
+    }
+
+    
+}

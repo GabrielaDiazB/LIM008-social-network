@@ -4,11 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Red Social Recomedaciones</title>
-  
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyD4hC2dSxbuFkLy3bux0-zw3XzMEqTO91Y",
+      authDomain: "redsocial-npng.firebaseapp.com",
+      databaseURL: "https://redsocial-npng.firebaseio.com",
+      projectId: "redsocial-npng",
+      storageBucket: "redsocial-npng.appspot.com",
+      messagingSenderId: "731862420435"
+    };
+    firebase.initializeApp(config);
   </script>
 </head>
 <body>
+  <section> 
+    <div class="one-container">
+      <img src="ddd" alt="logo">
+      <p>logotypo</p>
+      <div id="sign-in-box"> 
+        <form>
+          <input id="email-si" class="email" type="email" placeholder="Usuario">
+          <input id="password-si" class="password" type="password" placeholder="Contraseña">
+          <button id="sign-in" class="login">Iniciar Sesión</button>
+        </form>
+      </div>
+        <h1>ó</h1>
+        <button id="register" class="register">Registrarme</button>
+    </div>
+    <div class="two-container"> 
+      <form>
+        <input id="email" class="email" type="email" placeholder="Ingresar Correo">
+        <input id="password" class="password" type="password" placeholder="Ingresar Contraseña">
+        <button id="sign-up" class="sign-up">Enviar</button>
+      </form>
+      <h2>ó</h2>
+      <label>Registrarme con:</label>
+      <div class="links">
+      <a href="#facebok"></a>
+      <a href="#gmail"></a>
+      <a href="#twiiter"></a>
+      </div>
+    </div>
+  </section>
 
   <script type="module" src="main.js"></script>
 </body>
