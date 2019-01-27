@@ -1,0 +1,42 @@
+[debug] [2019-01-25T16:53:03.095Z] ----------------------------------------------------------------------
+[debug] [2019-01-25T16:53:03.098Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Laboratoria\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2019-01-25T16:53:03.098Z] CLI Version:   6.3.0
+[debug] [2019-01-25T16:53:03.098Z] Platform:      win32
+[debug] [2019-01-25T16:53:03.098Z] Node Version:  v8.11.2
+[debug] [2019-01-25T16:53:03.100Z] Time:          Fri Jan 25 2019 11:53:03 GMT-0500 (Hora est. Pacífico, Sudamérica)
+[debug] [2019-01-25T16:53:03.100Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-01-25T16:53:03.110Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-01-25T16:53:03.111Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Laboratoria\Documents\Gabrieladiazbravo\Proyectos\LIM008-social-network
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2019-01-25T16:54:18.759Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-01-25T16:54:18.760Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-01-25T16:54:19.550Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-25T16:54:19.567Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects?page_size=100  
+ 
+[debug] [2019-01-25T16:54:21.223Z] <<< HTTP RESPONSE 200
+[info] i  Using project redsocial-npng (RedSocial-NPNG)
+[info] 
+=== Database Setup
+[info] 
+[info] Firebase Realtime Database Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
