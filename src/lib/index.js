@@ -1,5 +1,3 @@
-// aqui exportaras las funciones que necesites
-
 export const signUpFunction = () => {
 
   // Función para poder Registrarse
@@ -53,7 +51,7 @@ export const signUpFunction = () => {
 
   const signIn = document.getElementById('sign-in');
   signIn.addEventListener('click', (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const userEmail = document.getElementById('email-si').value;
     const userPassword = document.getElementById('password-si').value;
 
@@ -71,5 +69,53 @@ export const signUpFunction = () => {
   const logOut = document.getElementById('log-out');
   logOut.addEventListener('click', () => {
     firebase.auth().signOut();
-    });
+  });
+
+  // Función para Iniciar Sesión con Google
+  const googleLogIn = document.getElementById('google-login');
+  googleLogIn.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (!firebase.auth().currentUser){
+      var provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+      firebase.auth().signInWithPopup(provider)
+      .then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+        console.log(user);
+
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+        if(errorCode === 'auth/account-exists-with-different-credential') {
+          alert ('Es el mismo usuario');
+        }
+      });
+    } else{
+      firebase.auth().signOut();
+    }
+  });
+
+  
+  // Función para Iniciar Sesión con Facebook
+  const facebookLogIn = document.getElementById('facebook-login');
+  facebookLogIn.addEventListener('click', (event) => {
+    event.preventDefault();
+  });
+
+  
+
+
 }
+
+ 
