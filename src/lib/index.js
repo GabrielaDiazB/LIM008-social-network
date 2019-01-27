@@ -1,5 +1,5 @@
-export const signUpFunction = () => {
-
+export const signUpFunctions = () => {
+  
   // Función para poder Registrarse
 
   const signUp = document.getElementById('sign-up');
@@ -25,6 +25,7 @@ export const signUpFunction = () => {
       // Usuario está loggeado
       document.getElementById('log-out-box').style.display = 'block';
       document.getElementById('sign-in-box').style.display = 'none';
+      document.getElementById('sign-up-box').style.display = 'none';
 
       // const displayName = user.displayName;
       // const email = user.email;
@@ -44,10 +45,11 @@ export const signUpFunction = () => {
       // Usuario ha cerrado sesión
       document.getElementById('log-out-box').style.display = 'none';
       document.getElementById('sign-in-box').style.display = 'block';
+      document.getElementById('sign-up-box').style.display = 'block ';
     }
   });
 
-  // Función para Iniciar Sesión
+  // Función para Iniciar Sesión creando una cuenta con correo propio
 
   const signIn = document.getElementById('sign-in');
   signIn.addEventListener('click', (event) => {
@@ -65,12 +67,6 @@ export const signUpFunction = () => {
 
   });
 
-  // Función para Cerrar Sesión
-  const logOut = document.getElementById('log-out');
-  logOut.addEventListener('click', () => {
-    firebase.auth().signOut();
-  });
-
   // Función para Iniciar Sesión con Google
   const googleLogIn = document.getElementById('google-login');
   googleLogIn.addEventListener('click', (event) => {
@@ -84,7 +80,8 @@ export const signUpFunction = () => {
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
-        // ...
+
+
         console.log(user);
 
       })
@@ -106,11 +103,45 @@ export const signUpFunction = () => {
     }
   });
 
-  
   // Función para Iniciar Sesión con Facebook
   const facebookLogIn = document.getElementById('facebook-login');
   facebookLogIn.addEventListener('click', (event) => {
     event.preventDefault();
+    if (!firebase.auth().currentUser){
+      var provider = new firebase.auth.FacebookAuthProvider();
+      provider.addScope('public_profile');
+      firebase.auth().signInWithPopup(provider)
+      .then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        
+        console.log(user);
+
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+        if(errorCode === 'auth/account-exists-with-different-credential') {
+          alert ('Es el mismo usuario');
+        }
+      });
+    } else{
+      firebase.auth().signOut();
+    }
+  });
+
+  // Función para Cerrar Sesión
+  const logOut = document.getElementById('log-out');
+  logOut.addEventListener('click', () => {
+    firebase.auth().signOut();
   });
 
   

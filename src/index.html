@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Document</title>
+  
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
   <script>
@@ -20,35 +22,48 @@
     };
     firebase.initializeApp(config);
   </script>
-
 </head>
 
 <body>
-  
-  <div id="sign-in-box" class="container-login">
-    <form>
-      <input id="email-si" type="email" placeholder="Ingresar Correo">
-      <input id="password-si" type="password" placeholder="Ingresar Contraseña">
-      <button id="sign-in">Enviar</button>
-      <button id="facebook-login" class="fa fa-facebook"></button>
-      <button id="google-login" class="fa fa-google"></button>
+  <section class="log-container"> 
+    <div class="signin-container">
+      <img src="" alt="logo">
+      <p>logotipo</p>
 
-    </form>
-  </div>
+      <div id="sign-in-box" class="container-login">         
+        <form>
 
-  <div class="container-sign-up">
-    <form>
-      <input id="email" type="email" placeholder="Ingresar Correo">
-      <input id="password" type="password" placeholder="Ingresar Contraseña">
-      <button id="sign-up">Enviar</button>
-    </form>
-  </div>
+          <input id="email-si" class="email" type="email" placeholder="Usuario">
+          <input id="password-si" class="password" type="password" placeholder="Contraseña">
+          <button id="sign-in" class="login-btn">Iniciar Sesión</button>
+          <h2>o</h2>
+          <button id="facebook-login" class="fa fa-facebook"></button>
+          <button id="google-login" class="fa fa-google"></button>
 
-  <div id="log-out-box">
+        </form>      
+      </div>
+    </div>
+
+    <div class="signup-container" id="sign-up-box">       
+      <form>
+        <h2>Regístrate</h2>
+        <input id="email" class="email" type="email" placeholder="Ingresar Correo">
+        <input id="password" class="password" type="password" placeholder="Ingresar Contraseña">
+        <button id="sign-up" class="sign-up-btn">Enviar</button>
+      
+      </form>     
+
+    </div>
+  </section>
+
+  <div id="log-out-box" >
+
     <h1>Bienvenido</h1>
     <p id="user-para">Ejemplo de inicio de sesión</p>
-    <button id="log-out">Cerrar Sesión</button>
+    <button id="log-out" class="log-out-btn">Cerrar Sesión</button>
+
   </div>
+
   <script type="module" src="main.js"></script>
 </body>
 </html>
