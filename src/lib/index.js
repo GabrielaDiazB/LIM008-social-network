@@ -1,5 +1,5 @@
 export const signUpFunction = () => {
-
+  
   // Función para poder Registrarse
 
   const signUp = document.getElementById('sign-up');
