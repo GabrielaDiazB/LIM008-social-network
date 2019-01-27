@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
   <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+  
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
   <script>
     // Initialize Firebase
@@ -20,12 +22,14 @@
     firebase.initializeApp(config);
   </script>
 </head>
+
 <body>
+
   <section> 
     <div class="one-container">
       <img src="ddd" alt="logo">
       <p>logotypo</p>
-      <div id="sign-in-box"> 
+      <div id="sign-in-box" class="container-login"> 
         <form>
           <input id="email-si" class="email" type="email" placeholder="Usuario">
           <input id="password-si" class="password" type="password" placeholder="Contraseña">
@@ -44,8 +48,8 @@
       <h2>ó</h2>
       <label>Registrarme con:</label>
       <div class="links">
-      <a href="#facebok"></a>
-      <a href="#gmail"></a>
+      <a href="#facebok" id="facebook-login"></a>
+      <a href="#gmail" id="google-login"></a>
       <a href="#twiiter"></a>
       </div>
     </div>
