@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Document</title>
   
   <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -24,57 +25,60 @@
 </head>
 
 <body>
+  <section class="log-container"> 
+    <div class="signin-container">
+      <img src="" alt="logo">
+      <p>logotipo</p>
 
-  <section> 
-    <div class="one-container">
-      <img src="ddd" alt="logo">
-      <p>logotypo</p>
-      <div id="sign-in-box" class="container-login"> 
+      <div id="sign-in-box" class="container-login">         
         <form>
+
           <input id="email-si" class="email" type="email" placeholder="Usuario">
           <input id="password-si" class="password" type="password" placeholder="Contraseña">
-          <button id="sign-in" class="login">Iniciar Sesión</button>
-        </form>
+          <button id="sign-in" class="login-btn">Iniciar Sesión</button>
+          <h2>o</h2>
+          <button id="facebook-login" class="fa fa-facebook"></button>
+          <button id="google-login" class="fa fa-google"></button>
+
+        </form>      
       </div>
-        <h1>ó</h1>
-        <button id="register" class="register">Registrarme</button>
     </div>
-    <div class="two-container"> 
+
+    <div class="signup-container" id="sign-up-box">       
       <form>
+        <h2>Regístrate</h2>
         <input id="email" class="email" type="email" placeholder="Ingresar Correo">
         <input id="password" class="password" type="password" placeholder="Ingresar Contraseña">
-        <button id="sign-up" class="sign-up">Enviar</button>
-      </form>
-      <h2>ó</h2>
-      <label>Registrarme con:</label>
-      <div class="links">
-      <a href="#facebok" id="facebook-login"></a>
-      <a href="#gmail" id="google-login"></a>
-      <a href="#twiiter"></a>
-      </div>
+        <button id="sign-up" class="sign-up-btn">Enviar</button>
+      
+      </form>     
+
     </div>
   </section>
 
-<header>
-  <nav>
-    <label>logotypo</label>
-    <td><img class = "sing-" src="" alt="cerrar">
-      <a href="#">Cerrar Sesión</a>
-      </td>
-  
-  </nav> 
-</header>
+  <div id="log-out-box" >
 
-<footer>
-  <nav>
-    <a href="#home"><img class = "icon" src="" alt="home"></a>
-    <a href="#home"><img class = "icon" src="" alt="buscador"></a>
-    <a href="#home"><img class = "icon" src="" alt="postear"></a>
-    <a href="#home"><img class = "icon" src="" alt="perfil"></a>    
-  </nav>
-</footer>
+    <h1>Bienvenido</h1>
+    <p id="user-para">Ejemplo de inicio de sesión</p>
+    <button id="log-out" class="log-out-btn">Cerrar Sesión</button>
 
-
+  </div>
+  <header>
+    <nav>
+      <label>logotypo</label>
+      <a href="#home"><img src="iconos/exit-1.png" class ="icon-header" alt=""></a>
+    </nav> 
+  </header>
+  <footer>
+    <nav>
+      <div class="footer">
+      <a href="#home"><img src="iconos/house.png" class ="icon" alt=""></a>
+      <a href="#home"><img src="iconos/search.png" class ="icon" alt=""></a>
+      <a href="#home"><img src="iconos/add-3.png" class ="icon" alt=""></a>
+      <a href="#home"><img src="iconos/user-1.png" class ="icon" alt=""></a>
+    </div>
+    </nav>
+  </footer>
 
   <script type="module" src="main.js"></script>
 </body>
