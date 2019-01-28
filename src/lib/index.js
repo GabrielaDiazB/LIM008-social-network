@@ -4,13 +4,11 @@ export const signUpFunctions = () => {
   
   // Función para poder Registrarse
   document.getElementById('sign-up-box').style.display = 'none';
-  const signUpQuestion = document.getElementById('signup-question');
   signUpQuestion.addEventListener('click', () => {
     document.getElementById('sign-up-box').style.display = 'block';
     document.getElementById('sign-in-box').style.display = 'none';
     document.getElementById('signup-question').style.display = 'none';
   });
-  const signUp = document.getElementById('sign-up');
 
   signUp.addEventListener('click', (event) => {
     event.preventDefault()
@@ -23,10 +21,13 @@ export const signUpFunctions = () => {
     const errorCode = error.code;
     const errorMessage = error.message;
     
-    console.log(errorCode);
-    console.log(errorMessage);
+    alert(errorCode);
+    alert(errorMessage);
+   // console.log(errorCode);
+   // console.log(errorMessage);
   });
-      
+  
+  // Funcionalidad para guardar los datos de usuario en base de datos Firebase
     const database = firebase.database();
     let emailRef = email;
     let passwordRef = password;
@@ -37,12 +38,11 @@ export const signUpFunctions = () => {
     };
     let userNew = ref.push(data);
     let keyUser = userNew.getKey();
-    console.log(keyUser); // este es el identificador de la base de datos con lo que se guarda
+    console.log(keyUser); // este es el identificador de la base de datos con el que se guarda
 
   });  
 
   // Función para saber si el usuario está loggeado o no
-
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // Usuario está loggeado
@@ -51,7 +51,6 @@ export const signUpFunctions = () => {
       document.getElementById('log-out').style.display = 'block';
       document.getElementById('footer-container').style.display = 'block';
       document.getElementById('signup-question').style.display = 'none';
-
       
       // const displayName = user.displayName;
       // const emailVerified = user.emailVerified;
@@ -78,7 +77,6 @@ export const signUpFunctions = () => {
 
   // Función para Iniciar Sesión creando una cuenta con correo propio
 
-  const signIn = document.getElementById('sign-in');
   signIn.addEventListener('click', (event) => {
     event.preventDefault();
     const userEmail = document.getElementById('email-si').value;
@@ -95,7 +93,6 @@ export const signUpFunctions = () => {
   });
 
   // Función para Iniciar Sesión con Google
-  const googleLogIn = document.getElementById('google-login');
   googleLogIn.addEventListener('click', (event) => {
     event.preventDefault();
     if (!firebase.auth().currentUser){
@@ -131,7 +128,6 @@ export const signUpFunctions = () => {
   });
 
   // Función para Iniciar Sesión con Facebook
-  const facebookLogIn = document.getElementById('facebook-login');
   facebookLogIn.addEventListener('click', (event) => {
     event.preventDefault();
     if (!firebase.auth().currentUser){
@@ -166,14 +162,9 @@ export const signUpFunctions = () => {
   });
 
   // Función para Cerrar Sesión
-  const logOut = document.getElementById('log-out');
   logOut.addEventListener('click', () => {
     firebase.auth().signOut();
   });
-
-  
-
-
 }
 
  
