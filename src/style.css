@@ -25,6 +25,10 @@ header{
     height: 30px;;
 }
 
+body{
+    background-image: url("https://i.ibb.co/MGJqSV1/hobbies.jpg");
+}
+
 footer{
     text-align: center;
     padding: 10px;
@@ -52,8 +56,7 @@ footer{
         z-index: 1000;
     }
     .icon-footer{
-    padding: 0px 20px 0px 20px;
-        
+    padding: 0px 20px 0px 20px;   
     }
 }
 
@@ -64,8 +67,8 @@ footer{
         justify-content: center;
         font-family: 'Roboto', sans-serif;
     }
-    .log-container{
-        background-color: #F2F2F2;
+    .log-container {
+        background-color: rgba(242, 242, 242, 0.9);
         padding: 10px;
         border-radius: 5px;
         margin:80px auto;
@@ -80,16 +83,18 @@ footer{
 
     }
     
-    .email, .password{
+    .email, .password, .user-name{
         display: block;
         border: none;
         border-bottom: 1px solid black;
         padding: 10px 20px;
-        margin-top: 5px;
+        margin: 5px auto;
+        width: 80%;
         font-size: 15px;
         outline-color: #00A3A5;
+        
     }
-    .email:hover, .password:hover{
+    .email:hover, .password:hover, .user-name:hover{
         border-bottom:1px solid red;
     }
 
@@ -123,6 +128,7 @@ footer{
         outline: none;
         cursor: pointer;
     }
+
     .sign-up-btn{
         background-color: #009698;
     }

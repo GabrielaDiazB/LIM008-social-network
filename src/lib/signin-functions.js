@@ -1,3 +1,5 @@
+// Función para guardar los datos de usuario en Firebase
+
 export const signUpFunctions = () => {
   
   // Función para poder Registrarse
@@ -14,18 +16,33 @@ export const signUpFunctions = () => {
     event.preventDefault()
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .catch(function(error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
       
-      console.log(errorCode);
-      console.log(errorMessage);
-    });
+      alert(errorCode);
+      alert(errorMessage);
   });
+  
+  // Funcionalidad para guardar los datos de usuario en base de datos Firebase
+    const database = firebase.database();
+    let emailRef = email;
+    let passwordRef = password;
+    let ref = database.ref('user');
+    let data = {
+      password: passwordRef,
+      email: emailRef,
+    };
+    let userNew = ref.push(data);
+    let keyUser = userNew.getKey();
+    console.log(keyUser); // este es el identificador de la base de datos con el que se guarda
+
+  });  
 
   // Función para saber si el usuario está loggeado o no
-
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // Usuario está loggeado
@@ -34,7 +51,6 @@ export const signUpFunctions = () => {
       document.getElementById('log-out').style.display = 'block';
       document.getElementById('footer-container').style.display = 'block';
       document.getElementById('signup-question').style.display = 'none';
-
       
       // const displayName = user.displayName;
       // const emailVerified = user.emailVerified;
@@ -45,7 +61,7 @@ export const signUpFunctions = () => {
 
       const user = firebase.auth().currentUser; 
       if(user !== null){
-        const emailUser = user.email;
+        const emailUser = user.displayName;
         document.getElementById('user-para').innerHTML = 'Welcome User : ' + emailUser;
       } 
 
@@ -87,11 +103,9 @@ export const signUpFunctions = () => {
       firebase.auth().signInWithPopup(provider)
       .then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
+        const token = result.credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-
-
         console.log(user);
 
       })
@@ -153,10 +167,6 @@ export const signUpFunctions = () => {
   logOut.addEventListener('click', () => {
     firebase.auth().signOut();
   });
-
-  
-
-
 }
 
  
