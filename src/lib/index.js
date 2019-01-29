@@ -166,5 +166,3 @@ export const signUpFunctions = () => {
     firebase.auth().signOut();
   });
 }
-
- 
