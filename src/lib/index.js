@@ -1,5 +1,3 @@
-// Función para guardar los datos de usuario en Firebase
-
 export const signUpFunctions = () => {
   
   // Función para poder Registrarse
@@ -166,5 +164,3 @@ export const signUpFunctions = () => {
     firebase.auth().signOut();
   });
 }
-
- 

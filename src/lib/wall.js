@@ -1,22 +1,20 @@
+const DB = firebase.firestore();
+export const postFunctions = () => {
+	const postData = (uid, emailUser, tittle, content, imageLink) => {
+		const getDB = get(DB);
+		return DB.collection('posts').add({
+			uid: uid,
+			emailUser: emailUser,
+			tittle: tittle,
+			content: content,
+			imageLink: imageLink,
+			date: new Date()
+		})
+		.catch(error => console.log('Error', error))
+	}
 
-let postData = {
-  uid: null,
-  image: null,
-  content: null,
-  date: null,
-  category: null,
-  state: null,
-  likes: null,
-  comentary: null
+	const showAllPosts = () => {
+		const posts = document.getElementById('posts');
+		const db = getDB();
+	}
 };
-export const createPost = (postData) => {
-	// Generar un id para la publicación.
-	const newPostKey = firebase.database().ref().child('posts').push(postData.value).key;
-	// Registrar en el objeto posts y user-post la nueva publicación
-	const updates = {};
-	postData.id = newPostKey;
-	updates['/posts/' + newPostKey] = postData;
-	updates['/user-posts/' + postData.uid + '/' + newPostKey] = postData;
-	firebase.database().ref().update(updates);
-	return newPostKey;
-}
