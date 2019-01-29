@@ -12,13 +12,11 @@ header{
     background:#00A3A5;
 }  
 
-label{
+.logo-img{
     float: left;
-}
-
-.background {
-    position: absolute;
-}
+    width: 35px;
+    height: auto;
+} 
 
 .icon-header{
     margin-right: 25px;
@@ -27,10 +25,8 @@ label{
     height: 30px;;
 }
 
-#post-container {
-    position: absolute;
-    top:50%;
-    background-color: #F2F2F2;
+body{
+    background-image: url("https://i.ibb.co/MGJqSV1/hobbies.jpg");
 }
 
 footer{
@@ -48,13 +44,6 @@ footer{
 }
 
 @media screen and (max-width: 500px) { 
-    .background {
-        width:100%;
-        height: 100%;
-        z-index: inherit 0;
-        position: absolute;
-    }
-
     .footer{
         width: 100%;
         background: #dfe2e7;
@@ -67,14 +56,8 @@ footer{
         z-index: 1000;
     }
     .icon-footer{
-    padding: 0px 20px 0px 20px;
-        
+    padding: 0px 20px 0px 20px;   
     }
-}
-
-p {
-    font-family: Roboto;
-    font-size: 20px;
 }
 
 @media screen and (min-width: 300px) { 
@@ -85,52 +68,36 @@ p {
         font-family: 'Roboto', sans-serif;
     }
     .log-container {
-        width: 70%;
-        z-index: 100;
-        background-color: #F2F2F2;
+        background-color: rgba(242, 242, 242, 0.9);
         padding: 10px;
         border-radius: 5px;
         margin:80px auto;
     }
-   
-    #post-container {
-        width:75%;
-        border-radius: 6px;
+
+    .logoname-img{
+        width: 230px;
     }
 
-    .email, .password{
+    .logotipo{
+        color:#00A3A5;
+
+    }
+    
+    .email, .password, .user-name{
         display: block;
         border: none;
         border-bottom: 1px solid black;
         padding: 10px 20px;
-        margin-top: 5px;
+        margin: 5px auto;
+        width: 80%;
         font-size: 15px;
         outline-color: #00A3A5;
+        
     }
-    .email:hover, .password:hover{
+    .email:hover, .password:hover, .user-name:hover{
         border-bottom:1px solid red;
     }
 
-    .edit, .delete {
-        font-family: Roboto;
-        font-size: 17px;
-        color:white;
-        background-color:#00A3A5;
-        border: none;
-    }
-
-    .edit:hover, .delete:hover {
-        background-color: #007D7E;
-    }
-
-    .edit-icon, .error-icon {
-        width:17px;
-        height: 17px;
-    }
-
-    h2 {
-        font-size: 18px;
-    }
     .fa {
         padding: 5px;
         font-size: 30px;
@@ -149,8 +116,7 @@ p {
         color: white;
     }
 
-    .sign-up-btn, .login-btn, 
-    .go-back-btn, .submit {
+    .sign-up-btn, .login-btn{
         border-radius: 5px;
         width: 100%;
         padding: 10px 20px;
@@ -162,8 +128,8 @@ p {
         outline: none;
         cursor: pointer;
     }
-    .sign-up-btn, .go-back-btn,
-    .submit {
+
+    .sign-up-btn{
         background-color: #009698;
     }
     .login-btn{
