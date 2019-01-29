@@ -115,6 +115,10 @@ footer{
         background: #dd4b39;
         color: white;
     }
+    .fa-twitter{
+        background: rgb(110, 194, 250);
+        color:white;
+    }
 
     .sign-up-btn, .login-btn{
         border-radius: 5px;
