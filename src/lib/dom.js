@@ -5,3 +5,4 @@ const signIn = document.getElementById('sign-in');
 const googleLogIn = document.getElementById('google-login');
 const facebookLogIn = document.getElementById('facebook-login');
 const logOut = document.getElementById('log-out');
+const twitterLogin = document.getElementById('twitter-login');

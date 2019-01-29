@@ -161,10 +161,31 @@ export const signUpFunctions = () => {
     }
   });
 
-  // Función para Cerrar Sesión
-  logOut.addEventListener('click', () => {
-    firebase.auth().signOut();
+  // funcion para iniciar sesion con twitter
+  twitterLogin.addEventListener('click', (event) => {
+    event.preventDefault();
+    if(!firebase.auth().currentUser);
+    var provider = new firebase.auth.TwitterAuthProvider();
+    //provider.addScope('public_profile');//
+    firebase.auth().signInWithPopup(provider)
+    .then(function(result) {
+      var token = result.credential.accessToken;
+      var user = result.user;
+
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+    })
   });
+  
+      // Función para Cerrar Sesión
+      logOut.addEventListener('click', () => {
+        firebase.auth().signOut();
+      });
+    
 }
 
  
