@@ -1,6 +1,6 @@
 // Función para guardar los datos de usuario en Firebase
 
-export const signUpFunctions = () => {
+export const signInFunctions = () => {
   
   // Función para poder Registrarse
   document.getElementById('sign-up-box').style.display = 'none';
@@ -48,9 +48,11 @@ export const signUpFunctions = () => {
       // Usuario está loggeado
       document.getElementById('log-out-box').style.display = 'block';
       document.getElementById('sign-in-box').style.display = 'none';
+      document.getElementById('signup-question').style.display = 'none';
       document.getElementById('log-out').style.display = 'block';
       document.getElementById('footer-container').style.display = 'block';
-      document.getElementById('signup-question').style.display = 'none';
+      document.getElementById('sign-up-box').style.display = 'none';
+      
       
       // const displayName = user.displayName;
       // const emailVerified = user.emailVerified;
@@ -72,6 +74,7 @@ export const signUpFunctions = () => {
       document.getElementById('log-out').style.display = 'none';
       document.getElementById('signup-question').style.display = 'block';
       document.getElementById('footer-container').style.display = 'none';
+      document.getElementById('sign-up-box').style.display = 'none';
     }
   });
 
