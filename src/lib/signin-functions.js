@@ -4,27 +4,27 @@ export const signUpFunctions = () => {
   
   // Función para poder Registrarse
   document.getElementById('sign-up-box').style.display = 'none';
+  const signUpQuestion = document.getElementById('signup-question');
   signUpQuestion.addEventListener('click', () => {
     document.getElementById('sign-up-box').style.display = 'block';
     document.getElementById('sign-in-box').style.display = 'none';
     document.getElementById('signup-question').style.display = 'none';
   });
+  const signUp = document.getElementById('sign-up');
 
   signUp.addEventListener('click', (event) => {
     event.preventDefault()
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-  .catch(function(error) {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    
-    alert(errorCode);
-    alert(errorMessage);
-   // console.log(errorCode);
-   // console.log(errorMessage);
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .catch(function(error) {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      
+      alert(errorCode);
+      alert(errorMessage);
   });
   
   // Funcionalidad para guardar los datos de usuario en base de datos Firebase
@@ -61,7 +61,7 @@ export const signUpFunctions = () => {
 
       const user = firebase.auth().currentUser; 
       if(user !== null){
-        const emailUser = user.email;
+        const emailUser = user.displayName;
         document.getElementById('user-para').innerHTML = 'Welcome User : ' + emailUser;
       } 
 
@@ -77,6 +77,7 @@ export const signUpFunctions = () => {
 
   // Función para Iniciar Sesión creando una cuenta con correo propio
 
+  const signIn = document.getElementById('sign-in');
   signIn.addEventListener('click', (event) => {
     event.preventDefault();
     const userEmail = document.getElementById('email-si').value;
@@ -93,6 +94,7 @@ export const signUpFunctions = () => {
   });
 
   // Función para Iniciar Sesión con Google
+  const googleLogIn = document.getElementById('google-login');
   googleLogIn.addEventListener('click', (event) => {
     event.preventDefault();
     if (!firebase.auth().currentUser){
@@ -101,11 +103,9 @@ export const signUpFunctions = () => {
       firebase.auth().signInWithPopup(provider)
       .then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
+        const token = result.credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-
-
         console.log(user);
 
       })
@@ -128,6 +128,7 @@ export const signUpFunctions = () => {
   });
 
   // Función para Iniciar Sesión con Facebook
+  const facebookLogIn = document.getElementById('facebook-login');
   facebookLogIn.addEventListener('click', (event) => {
     event.preventDefault();
     if (!firebase.auth().currentUser){
@@ -162,6 +163,7 @@ export const signUpFunctions = () => {
   });
 
   // Función para Cerrar Sesión
+  const logOut = document.getElementById('log-out');
   logOut.addEventListener('click', () => {
     firebase.auth().signOut();
   });

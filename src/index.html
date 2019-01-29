@@ -21,18 +21,17 @@
          };
          firebase.initializeApp(config);
       </script>
-      <img src="https://i.ibb.co/MGJqSV1/hobbies.jpg" alt="background" class = "background">
    </head>
    <body>
       <header>
          <nav>
-            <label>logo</label>
+            <label>Logo</label>
             <a href="#home"><img src="iconos/exit-1.png" id="log-out" class ="icon-header" alt=""></a>
          </nav>
       </header>
       <section class="log-container">
          <div class="signin-container">
-            <img src="" alt="logo">
+            <img src="" alt="NombreDeRedSocial">
             <p>logotipo</p>
             <div id="sign-in-box" class="container-login">
                <form>
@@ -50,10 +49,11 @@
          </div>
          <div class="signup-container" id="sign-up-box">
             <form>
-               <h2>Regístrate</h2>
-               <input id="email" class="email" type="email" placeholder="Ingresar Correo">
-               <input id="password" class="password" type="password" placeholder="Ingresar Contraseña">
-               <button id="sign-up" class="sign-up-btn">Ingresar</button>
+               <h2>Regístrate</h2>  
+               <input id="user-name" class="user-name" type="text" placeholder="Nombre">
+               <input id="email" class="email" type="email" placeholder="E-mail">
+               <input id="password" class="password" type="password" placeholder="Contraseña">
+               <button id="sign-up" class="sign-up-btn">Crear Cuenta</button>
             </form>
          </div>
          <div id="log-out-box" >
@@ -61,14 +61,7 @@
             <p id="user-para">Ejemplo de inicio de sesión</p>
          </div>
       </section>
-      <section id="post-container">
-          <br>
-          <textarea name="post" id="post-area" cols="40" rows="5" placeholder="Postea alguna recomendación aquí :D"></textarea>
-          <br>
-          <button type="button" class="edit"><img src="./iconos/edit.png" alt="edit" class="edit-icon"> Editar</button>
-          <button type="button" class="delete"><img src="./iconos/error.png" alt="edit" class="error-icon"> Eliminar</button>
-          
-      </section>
+
       <footer id="footer-container">
          <nav>
             <div class="footer">
