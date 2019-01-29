@@ -12,8 +12,10 @@ header{
     background:#00A3A5;
 }  
 
-label{
+.logo-img{
     float: left;
+    width: 35px;
+    height: auto;
 } 
 
 .icon-header{
@@ -67,6 +69,15 @@ footer{
         padding: 10px;
         border-radius: 5px;
         margin:80px auto;
+    }
+
+    .logoname-img{
+        width: 230px;
+    }
+
+    .logotipo{
+        color:#00A3A5;
+
     }
     
     .email, .password{
