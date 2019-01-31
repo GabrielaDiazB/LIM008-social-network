@@ -1,7 +1,5 @@
-export { templateLibrary }
-
 const templateLibrary = {
-    signin: `
+  signin: `
         <div class="signin-container">
             <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
             <div id="sign-in-box" class="container-login">
@@ -15,11 +13,11 @@ const templateLibrary = {
                 </form>
             </div>
         </div>`,
-    registerquest: `
+  registerquest: `
         <a  id="signup-question" class="signup-question" href="#/signup">
             <h4>¿No tienes una cuenta?</h4>
         </a>`,
-    signup: `
+  signup: `
     <div class="signup-container" id="sign-up-box">
         <form>
             <h2>Regístrate</h2>  
@@ -29,15 +27,17 @@ const templateLibrary = {
             <button id="sign-up" class="sign-up-btn">Crear Cuenta</button>
         </form>
     </div>`,
-    welcome: `
+  welcome: `
         <div id="log-out-box" >
             <h1>Bienvenido</h1>
             <p id="user-para">Ejemplo de inicio de sesión</p>
         </div>`,
-    different:`
+  different: `
     <div id="message">
         <h2>404</h2>
         <h1>Página no encontrada</h1>
         <p>El archivo especificado no se encontró en este sitio web. Por favor, compruebe la URL para errores y vuelva a intentarlo.</p>
     </div>`
-}
+};
+
+export { templateLibrary };

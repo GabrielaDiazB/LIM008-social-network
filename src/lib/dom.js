@@ -11,8 +11,3 @@ const logOut = document.getElementById('log-out');
 const goBack = document.getElementById('go-back');
 
 
-goBack.addEventListener('click', () => {
-    signInArea.style.display = 'block';
-    signUpArea.style.display = 'none';
-    signUpQuestion.style.display = 'block';
-});
