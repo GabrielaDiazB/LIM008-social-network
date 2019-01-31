@@ -1,7 +1,17 @@
 // Función para guardar los datos de usuario en Firebase
 
 export const signInFunctions = () => {
-  
+  // Initialize Firebase
+  const config = {
+    apiKey: "AIzaSyD4hC2dSxbuFkLy3bux0-zw3XzMEqTO91Y",
+    authDomain: "redsocial-npng.firebaseapp.com",
+    databaseURL: "https://redsocial-npng.firebaseio.com",
+    projectId: "redsocial-npng",
+    storageBucket: "redsocial-npng.appspot.com",
+    messagingSenderId: "731862420435"
+  };
+  firebase.initializeApp(config);
+
   // Función para poder Registrarse
   document.getElementById('sign-up-box').style.display = 'none';
   const signUpQuestion = document.getElementById('signup-question');
