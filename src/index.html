@@ -10,53 +10,30 @@
       <title>Document</title>
       <script src="https://apis.google.com/js/platform.js" async defer></script>
       <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+      <script>
+         const config = {
+            apiKey: "AIzaSyD4hC2dSxbuFkLy3bux0-zw3XzMEqTO91Y",
+            authDomain: "redsocial-npng.firebaseapp.com",
+            databaseURL: "https://redsocial-npng.firebaseio.com",
+            projectId: "redsocial-npng",
+            storageBucket: "redsocial-npng.appspot.com",
+            messagingSenderId: "731862420435"
+         };
+         firebase.initializeApp(config);
+      </script>
    </head>
    
    <body>
-      <header>
+      <!--<header>
          <nav>
             <img src="./imagenes/Logo2.png" alt="logowhite" class="logo-img">
             <a href="#signin"><img src="iconos/exit-1.png" id="log-out" class ="icon-header" alt=""></a>
          </nav>
-      </header>
+      </header>-->
+      
+      <section id="log-container" class="log-container"></section>
 
-      <section id="container"></section>
-
-      <section class="log-container">
-        <img src="./imagenes/Nombre.png" alt="logo" class="logoname-img">
-        <div class="signin-container">
-          <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
-          <div id="sign-in-box" class="container-login">
-            <form>
-              <input id="email-si" class="email" type="email" placeholder="Usuario">
-              <input id="password-si" class="password" type="password" placeholder="Contraseña">
-              <button id="sign-in" class="login-btn">Iniciar Sesión</button>
-              <h2>Ingresa directamente con:</h2>
-              <button id="facebook-login" class="fa fa-facebook"></button>
-              <button id="google-login" class="fa fa-google"></button>
-              <button id="twitter-login" class="fa fa-twitter"></button>
-            </form>
-          </div>
-        </div>
-        <div>
-          <h4 id="signup-question" class="signup-question">¿No tienes una cuenta?</h4>
-        </div>
-        <div class="signup-container" id="sign-up-box">
-          <form>
-            <h2>Regístrate</h2>  
-            <input id="user-name" class="user-name" type="text" placeholder="Nombre">
-            <input id="email" class="email" type="email" placeholder="E-mail">
-            <input id="password" class="password" type="password" placeholder="Contraseña">
-            <button id="sign-up" class="sign-up-btn">Crear Cuenta</button>
-          </form>
-        </div>
-        <div id="log-out-box" >
-          <h1>Bienvenido</h1>
-          <p id="user-para">Ejemplo de inicio de sesión</p>
-        </div>
-      </section>
-
-      <footer id="footer-container">
+      <!--<footer id="footer-container">
         <nav>
           <div class="footer">
             <a href="#home"><img src="iconos/house.png" class ="icon-footer" alt=""></a>
@@ -65,8 +42,7 @@
             <a href="#home"><img src="iconos/user-1.png" class ="icon-footer" alt=""></a>
           </div>
         </nav>
-      </footer>
+      </footer>-->
       <script type="module" src="main.js"></script>
-      <script src="./lib/dom.js"></script>
    </body>
 </html>
