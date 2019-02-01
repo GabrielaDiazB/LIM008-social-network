@@ -17,15 +17,13 @@ const getCurrentUserData = () => {
         const contentOfPost = document.getElementById('user-content-post').value;
         if (contentOfPost !== '' && contentOfPost !== ' ') {
           if (user.photoURL !== null) {
-            userPhoto = ./src/iconos/user-3.png;
-          }
-          else {
+            userPhoto = './src/iconos/user-3.png';
+          } else {
             userPhoto = user.photoURL;
           }
           if (user.displayName !== null) {
             currentName = user.email;
-          }
-          else {
+          } else {
             currentName = user.displayName;
           }
           db.collection('post').add({
@@ -35,9 +33,22 @@ const getCurrentUserData = () => {
             time: timeOfPost,
             likes: [],
             content: contentOfPost
-          })
-        }      
+          }).then(result => {
+            swal({
+              confirmButtonText: 'Aceptar',
+              type: 'success',
+              title: 'Publicación exitosa'
+            });
+            document.getElementById('user-content-post').value = ''; 
+            drawPostByUser();
+          }).catch(error => {
+            console.error('Error adding document: ', error);
+          });
+        }
       });
+    } else { 
+      location.href = ('../index.html');
     }
   });
 };
+

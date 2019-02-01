@@ -47,27 +47,29 @@ export const singInFunction = () => {
 };
 
 // Función para saber si el usuario está loggeado o no
+export const userCheckIn = () => {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // Usuario está loggeado
+      // const displayName = user.displayName;
+      // const emailVerified = user.emailVerified;
+      // const photoURL = user.photoURL;
+      // const isAnonymous = user.isAnonymous;
+      // const uid = user.uid;
+      // const providerData = user.providerData;
+      console.log('holi');
+      window.location.hash = '#/welcome'; 
+      const user = firebase.auth().currentUser;
+      if (user !== null) {
+        const emailUser = user.email;
+        console.log('sesión iniciada');
+      }
+    } else {
+      console.log('sesión no iniciada');
+    }
+  });
+};
 
-// firebase.auth().onAuthStateChanged(function(user) {
-//   if (user) {
-//     // Usuario está loggeado
-//     // const displayName = user.displayName;
-//     // const emailVerified = user.emailVerified;
-//     // const photoURL = user.photoURL;
-//     // const isAnonymous = user.isAnonymous;
-//     // const uid = user.uid;
-//     // const providerData = user.providerData;
-
-//     const user = firebase.auth().currentUser;
-//     if (user !== null) {
-//       const emailUser = user.email;
-//       console.log(emailUser)
-//     }
-
-//   } else {
-//     // Usuario ha cerrado sesión
-//   }
-// });
 
 // Función para Iniciar Sesión con Facebook
 export const registerFacebookLogIn = () => {
@@ -75,14 +77,14 @@ export const registerFacebookLogIn = () => {
     const provider = new firebase.auth.FacebookAuthProvider();
     provider.addScope('public_profile');
     firebase.auth().signInWithPopup(provider)
-      .then(function (result) {
+      .then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const token = result.credential.accessToken;
         // The signed-in user info.
         const user = result.user;
         console.log(user);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -106,7 +108,7 @@ export const registerGoogleLogIn = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     firebase.auth().signInWithPopup(provider)
-      .then(function (result) {
+      .then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const token = result.credential.accessToken;
         // The signed-in user info.
@@ -114,7 +116,7 @@ export const registerGoogleLogIn = () => {
         console.log(user.displayName);
 
       })
-      .catch(function (error) {
+      .catch(function(error) {
         // Handle Errors here.
         const errorCode = error.code;
         const  errorMessage = error.message;
