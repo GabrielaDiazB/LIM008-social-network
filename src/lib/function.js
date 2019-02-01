@@ -22,7 +22,7 @@ export const registerLogIn = () => {
   };
   users.add(data)
     .then((result) => {
-      console.log(result)
+      console.log(result);
     })
     .catch((err) => {
       console.error(err);
