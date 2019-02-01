@@ -95,7 +95,7 @@ export const registerTwitterLogIn = (event) => {
 }
 
 export const registerLogIn = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
 
@@ -107,7 +107,7 @@ export const registerLogIn = (event) => {
 
       console.log(errorCode);
       console.log(errorMessage);
-    });
+    })
     const database = firebase.database();
     let emailRef = email;
     let passwordRef = password;
