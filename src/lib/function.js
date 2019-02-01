@@ -13,7 +13,7 @@ export const singInFunction = (event) => {
 };
 
 export const registerFacebookLogIn = (event) => {
-  event.preventDefault();
+  //event.preventDefault();
   if (!firebase.auth().currentUser){
     var provider = new firebase.auth.FacebookAuthProvider();
     provider.addScope('public_profile');
@@ -44,7 +44,7 @@ export const registerFacebookLogIn = (event) => {
 };
 
 export const registerGoogleLogIn = (event) => {
-  event.preventDefault();
+  //event.preventDefault();
     if (!firebase.auth().currentUser){
       var provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -76,7 +76,7 @@ export const registerGoogleLogIn = (event) => {
 }
 
 export const registerTwitterLogIn = (event) => {
-  event.preventDefault();
+  //event.preventDefault();
     if(!firebase.auth().currentUser);
     var provider = new firebase.auth.TwitterAuthProvider();
     //provider.addScope('public_profile');//

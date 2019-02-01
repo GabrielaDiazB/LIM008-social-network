@@ -33,25 +33,21 @@ const templatesLogin = {
     const btnSignIn = divElem.querySelector('#sign-in')
     btnSignIn.addEventListener('click', () => {
       singInFunction();
-      window.location.hash = '#/home';
     });
 
     const btnFacebook = divElem.querySelector('#facebook-login')
     btnFacebook.addEventListener('click', () => {
       registerFacebookLogIn();
-      window.location.hash = '#/home';
     });
 
     const btnGoogle = divElem.querySelector('#google-login')
     btnGoogle.addEventListener('click', () => {
       registerGoogleLogIn();
-      window.location.hash ='#/home';
     });
 
     const btnTwitter = divElem.querySelector('#twitter-login')
     btnTwitter.addEventListener('click', () => { 
       registerTwitterLogIn();
-      window.location.hash ='#/home';
     });
 
     const btnQuestion = divElem.querySelector('#signup-question')
