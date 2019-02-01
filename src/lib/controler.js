@@ -1,8 +1,22 @@
-import { objSignIn }  from './template.js';
+import templatesLogin from './template.js';
 
-export const renderUI = () => {
+const viewTmp = (routers) => {
+  let router;
+  if (routers) { 
+    router = routers.substr(2, routers.length - 2);
+  // } else if (router !== routers.substr(2, routers.length - 2)) {
+  //   return router = 'signIn';
+  } else {
+    router = 'welcome';
+    router = 'register';
+    router = 'signIn';
+  }
   const section = document.getElementById('log-container');
   section.innerHTML = '';
-  const div = objSignIn();
-  section.appendChild(div);
+  section.appendChild(templatesLogin[router]());
 };
+
+export const changeTmp = (hash) => {
+  return viewTmp(hash);
+};
+
