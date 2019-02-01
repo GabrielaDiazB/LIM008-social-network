@@ -4,55 +4,55 @@ import {
   registerGoogleLogIn, 
   registerTwitterLogIn, 
   registerLogIn,
-  logOut } from './function.js';
+  userCheckIn,
+  logOut } from './firebase-functions.js';
 
     
 const templatesLogin = {   
   signIn: () => { 
     const templateSignIn = `
-                <img src="./imagenes/Nombre.png" alt="logo" class="logoname-img">
-                <div id="signin-container" class="signin-container">
-                <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
-                <div id="sign-in-box" class="container-login">
-                <form>
-                <input id="email-si" class="email" type="email" placeholder="Usuario">
-                <input id="password-si" class="password" type="password" placeholder="Contraseña">
-                <button id="sign-in" class="login-btn" type="button">iniciar sesion</button>
-                </form>
-                <h2>Ingresa directamente con:</h2>
-                <button id="facebook-login" class="fa fa-facebook"></button>
-                <button id="google-login" class="fa fa-google"></button>
-                <button id="twitter-login" class="fa fa-twitter"></button>
-                </div>
-                <div>
-                <h4 id="signup-question" class="signup-question">¿No tienes una cuenta?</h4>
-                </div>
-                </div>`;
-
+      <img src="./imagenes/Nombre.png" alt="logo" class="logoname-img">
+      <div id="signin-container" class="signin-container">
+        <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
+        <div id="sign-in-box" class="container-login">
+          <form>
+            <input id="email-si" class="email" type="email" placeholder="Usuario">
+            <input id="password-si" class="password" type="password" placeholder="Contraseña">
+            <button id="sign-in" class="login-btn" type="button">iniciar sesion</button>
+          </form>
+          <h2>Ingresa directamente con:</h2>
+          <button id="facebook-login" class="fa fa-facebook"></button>
+          <button id="google-login" class="fa fa-google"></button>
+          <button id="twitter-login" class="fa fa-twitter"></button>
+        </div>
+        <div>
+          <h4 id="signup-question" class="signup-question">¿No tienes una cuenta?</h4>
+        </div>
+      </div>`;
     const divElem = document.createElement('div');
     divElem.innerHTML = templateSignIn;
     const btnSignIn = divElem.querySelector('#sign-in')
     btnSignIn.addEventListener('click', () => {
       singInFunction();
-      window.location.hash = '#/welcome';
+      userCheckIn();       
     });
 
     const btnFacebook = divElem.querySelector('#facebook-login')
     btnFacebook.addEventListener('click', () => {
       registerFacebookLogIn();
-      window.location.hash = '#/welcome';
+      userCheckIn();
     });
 
     const btnGoogle = divElem.querySelector('#google-login')
     btnGoogle.addEventListener('click', () => {
       registerGoogleLogIn();
-      window.location.hash = '#/welcome';
+      userCheckIn();
     });
 
     const btnTwitter = divElem.querySelector('#twitter-login')
     btnTwitter.addEventListener('click', () => { 
       registerTwitterLogIn();
-      window.location.hash = '#/welcome';
+      userCheckIn();
     });
 
     const btnQuestion = divElem.querySelector('#signup-question')
