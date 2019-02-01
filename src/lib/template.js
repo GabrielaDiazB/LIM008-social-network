@@ -3,7 +3,8 @@ import {
   registerFacebookLogIn, 
   registerGoogleLogIn, 
   registerTwitterLogIn, 
-  registerLogIn } from './function.js';
+  registerLogIn,
+  logOut } from './function.js';
 
     
 const templatesLogin = {   
@@ -33,25 +34,25 @@ const templatesLogin = {
     const btnSignIn = divElem.querySelector('#sign-in')
     btnSignIn.addEventListener('click', () => {
       singInFunction();
-      window.location.hash = '#/home';
+      window.location.hash = '#/welcome';
     });
 
     const btnFacebook = divElem.querySelector('#facebook-login')
     btnFacebook.addEventListener('click', () => {
       registerFacebookLogIn();
-      window.location.hash = '#/home';
+      window.location.hash = '#/welcome';
     });
 
     const btnGoogle = divElem.querySelector('#google-login')
     btnGoogle.addEventListener('click', () => {
       registerGoogleLogIn();
-      window.location.hash ='#/home';
+      window.location.hash = '#/welcome';
     });
 
     const btnTwitter = divElem.querySelector('#twitter-login')
     btnTwitter.addEventListener('click', () => { 
       registerTwitterLogIn();
-      window.location.hash ='#/home';
+      window.location.hash = '#/welcome';
     });
 
     const btnQuestion = divElem.querySelector('#signup-question')
@@ -83,18 +84,18 @@ const templatesLogin = {
     return divElem;
   },
 
-  /*welcome: () => { 
+  welcome: () => {
     const templateWelcome = `
     <header>
          <nav>
             <img src="./imagenes/Logo2.png" alt="logowhite" class="logo-img">
-            <a href="#signIn"><img src="iconos/exit-1.png" id="log-out" class ="icon-header" alt=""></a>
+            <a href="#/signIn"><img src="iconos/exit-1.png" id="log-out" class ="icon-header" alt=""></a>
          </nav>
       </header>
 
     <div id="log-out-box" >
     <h1>Bienvenido</h1>
-    <p id="user-para">Ejemplo de inicio de sesión</p>
+    <p id="user-para">Usuario:</p>
     </div>
 
     <footer id="footer-container">
@@ -110,12 +111,14 @@ const templatesLogin = {
     const divElem = document.createElement('div');
     divElem.innerHTML = templateWelcome;
 
+    const btnLogOut = divElem.querySelector('#log-out');
+    btnLogOut.addEventListener('click', () => { 
+      logOut();              
+      window.location.hash = '#/signIn';
+    });
 
     return divElem; 
-  },*/
-
-
-
+  },
 
 };
 

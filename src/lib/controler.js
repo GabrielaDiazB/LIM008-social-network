@@ -2,10 +2,13 @@ import templatesLogin from './template.js';
 
 const viewTmp = (routers) => {
   let router;
-  if ( routers) { 
+  if (routers) { 
     router = routers.substr(2, routers.length - 2);
+  // } else if (router !== routers.substr(2, routers.length - 2)) {
+  //   return router = 'signIn';
   } else {
     router = 'register';
+    router = 'welcome';
     router = 'signIn';
   }
   const section = document.getElementById('log-container');
