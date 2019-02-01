@@ -7,8 +7,8 @@ const viewTmp = (routers) => {
   // } else if (router !== routers.substr(2, routers.length - 2)) {
   //   return router = 'signIn';
   } else {
-    router = 'register';
     router = 'welcome';
+    router = 'register';
     router = 'signIn';
   }
   const section = document.getElementById('log-container');

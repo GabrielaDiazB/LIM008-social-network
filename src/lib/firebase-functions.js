@@ -4,7 +4,7 @@ export const registerLogIn = () => {
   const password = document.querySelector('#password').value;
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
-    .catch(function (error) {
+    .catch(function(error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -20,8 +20,14 @@ export const registerLogIn = () => {
     password: passwordRef,
     email: emailRef,
   };
-  let userNew = users.add(data);
-};
+  users.add(data)
+    .then((result) => {
+      console.log(result)
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};                   
 
 // Función para Iniciar Sesión
 export const singInFunction = () => {
@@ -29,7 +35,7 @@ export const singInFunction = () => {
   const userPassword = document.querySelector('#password-si').value;
 
   firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
-    .catch(function (error) {
+    .catch(function(error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -73,7 +79,7 @@ export const registerFacebookLogIn = () => {
     firebase.auth().signInWithPopup(provider)
       .then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
-        // var token = result.credential.accessToken;
+        const token = result.credential.accessToken;
         // The signed-in user info.
         const user = result.user;
         console.log(user);
@@ -81,11 +87,11 @@ export const registerFacebookLogIn = () => {
       .catch(function(error) {
         // Handle Errors here.
         const errorCode = error.code;
-        // var errorMessage = error.message;
+        const errorMessage = error.message;
         // The email of the user's account used.
-        // var email = error.email;
+        const email = error.email;
         // The firebase.auth.AuthCredential type that was used.
-        // var credential = error.credential;
+        const credential = error.credential;
 
         if (errorCode === 'auth/account-exists-with-different-credential') {
           alert('Es el mismo usuario');
@@ -112,12 +118,12 @@ export const registerGoogleLogIn = () => {
       })
       .catch(function(error) {
         // Handle Errors here.
-        // const errorCode = error.code;
-        // var errorMessage = error.message;
+        const errorCode = error.code;
+        const  errorMessage = error.message;
         // The email of the user's account used.
-        // var email = error.email;
+        const email = error.email;
         // The firebase.auth.AuthCredential type that was used.
-        // var credential = error.credential;
+        const credential = error.credential;
         // ...
         if (errorCode === 'auth/account-exists-with-different-credential') {
           alert('Es el mismo usuario');
@@ -131,19 +137,19 @@ export const registerGoogleLogIn = () => {
 // Función para Iniciar Sesión con Twitter
 export const registerTwitterLogIn = () => {
   if (!firebase.auth().currentUser);
-  const provider = new firebase.auth.TwitterAuthProvider();
+  const  provider = new firebase.auth.TwitterAuthProvider();
   // provider.addScope('public_profile');//
   firebase.auth().signInWithPopup(provider)
     .then(function(result) {
-      // var token = result.credential.accessToken;
-      // var user = result.user;
+      const  token = result.credential.accessToken;
+      const  user = result.user;
 
-    }).catch(function (error) {
-      // var errorCode = error.code;
-      // var errorMessage = error.message;
-      // var email = error.email;
+    }).catch(function(error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.email;
       // The firebase.auth.AuthCredential type that was used.
-      // var credential = error.credential;
+      const credential = error.credential;
     })
 };
 
