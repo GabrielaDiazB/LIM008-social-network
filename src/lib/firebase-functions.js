@@ -2,6 +2,7 @@
 export const registerLogIn = () => {
   const email = document.querySelector('#email').value;
   const password = document.querySelector('#password').value;
+  const displayName = document.querySelector('#user-name').value;
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .catch(function(error) {
@@ -15,10 +16,12 @@ export const registerLogIn = () => {
   const firestore = firebase.firestore();
   let emailRef = email;
   let passwordRef = password;
+  let userNameRef = displayName;
   let users = firestore.collection('users');
   let data = {
     password: passwordRef,
     email: emailRef,
+    userName: userNameRef,
   };
   users.add(data)
     .then((result) => {
@@ -56,12 +59,11 @@ export const userCheckIn = () => {
       // const photoURL = user.photoURL;
       // const isAnonymous = user.isAnonymous;
       // const uid = user.uid;
-      // const providerData = user.providerData;
-      console.log('holi');
-      window.location.hash = '#/welcome'; 
+      // const providerData = user.providerData;     
       const user = firebase.auth().currentUser;
       if (user !== null) {
         const emailUser = user.email;
+        window.location.hash = '#/welcome'; 
         console.log('sesión iniciada');
       }
     } else {

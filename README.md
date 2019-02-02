@@ -12,20 +12,20 @@ Llegando a una conclusión de todas las entrevistas,lo que más buscan son recom
 
 * Entrevistas personales
 
-![sin titulo](./imagenes/entrevista1.PNG)
-![sin titulo](./imagenes/entrevista2.jpg)
+![sin titulo](./src/imagenes/entrevista1.PNG)
+![sin titulo](./src/imagenes/entrevista2.jpg)
 
 * Recopilación de información 
 
-![sin titulo](./imagenes/img1.PNG)
-![sin titulo](./imagenes/img2.PNG)
+![sin titulo](./src/imagenes/img1.PNG)
+![sin titulo](./src/imagenes/img2.PNG)
 
 * Flujo para definir las historias de usuarios
 
 *** 
 creamos un flujo con todo lo requerido para realizar la red social y esto nos va a yudar a definir las historias de usuario.
 
-![sin titulo](./imagenes/flujo.jpg)
+![sin titulo](./src/imagenes/flujo.jpg)
 
 
 # Historias de usuario

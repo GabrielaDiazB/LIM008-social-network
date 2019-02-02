@@ -16,7 +16,7 @@ const templatesLogin = {
         <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
         <div id="sign-in-box" class="container-login">
           <form>
-            <input id="email-si" class="email" type="email" placeholder="Usuario">
+            <input id="email-si" class="email" type="email" placeholder="Correo">
             <input id="password-si" class="password" type="password" placeholder="Contraseña">
             <button id="sign-in" class="login-btn" type="button">iniciar sesion</button>
           </form>
@@ -65,14 +65,14 @@ const templatesLogin = {
   register: () => { 
     const templateRegister = `
       <div class="signup-container" id="sign-up-box">
-      <form>
-      <h2>Regístrate</h2>  
-      <input id="user-name" class="user-name" type="text" placeholder="Nombre">
-      <input id="email" class="email" type="email" placeholder="E-mail">
-      <input id="password" class="password" type="password" placeholder="Contraseña">
-      <button id="sign-up" class="sign-up-btn">Crear Cuenta</button>
-                </form>
-                </div>`;
+        <form>
+          <h2>Regístrate</h2>  
+          <input id="user-name" class="user-name" type="text" placeholder="Nombre">
+          <input id="email" class="email" type="email" placeholder="E-mail">
+          <input id="password" class="password" type="password" placeholder="Contraseña">
+          <button id="sign-up" class="sign-up-btn">Crear Cuenta</button>
+        </form>
+      </div>`;
     const divElem = document.createElement('div');
     divElem.innerHTML = templateRegister;
 
@@ -86,19 +86,19 @@ const templatesLogin = {
 
   welcome: () => {
     const templateWelcome = `
-    <header>
-         <nav>
-            <img src="./imagenes/Logo2.png" alt="logowhite" class="logo-img">
-            <a href="#/signIn"><img src="iconos/exit-1.png" id="log-out" class ="icon-header" alt=""></a>
-         </nav>
+      <header>
+        <nav>
+          <img src="./imagenes/Logo2.png" alt="logowhite" class="logo-img">
+          <a href="#/signIn"><img src="iconos/exit-1.png" id="log-out" class ="icon-header" alt=""></a>
+        </nav>
       </header>
 
-    <div id="log-out-box" >
-    <h1>Bienvenido</h1>
-    <p id="user-para">Usuario:</p>
-    </div>
+      <div id="log-out-box" >
+        <h1>Bienvenido</h1>
+        <p id="user-para">Usuario:</p>
+      </div>
 
-    <footer id="footer-container">
+      <footer id="footer-container">
         <nav>
           <div class="footer">
             <a href="#"><img src="iconos/house.png" class ="icon-footer" alt=""></a>
