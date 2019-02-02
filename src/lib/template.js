@@ -31,31 +31,31 @@ const templatesLogin = {
       </div>`;
     const divElem = document.createElement('div');
     divElem.innerHTML = templateSignIn;
-    const btnSignIn = divElem.querySelector('#sign-in')
+    const btnSignIn = divElem.querySelector('#sign-in');
     btnSignIn.addEventListener('click', () => {
       singInFunction();
       userCheckIn();       
     });
 
-    const btnFacebook = divElem.querySelector('#facebook-login')
+    const btnFacebook = divElem.querySelector('#facebook-login');
     btnFacebook.addEventListener('click', () => {
       registerFacebookLogIn();
       userCheckIn();
     });
 
-    const btnGoogle = divElem.querySelector('#google-login')
+    const btnGoogle = divElem.querySelector('#google-login');
     btnGoogle.addEventListener('click', () => {
       registerGoogleLogIn();
       userCheckIn();
     });
 
-    const btnTwitter = divElem.querySelector('#twitter-login')
+    const btnTwitter = divElem.querySelector('#twitter-login');
     btnTwitter.addEventListener('click', () => { 
       registerTwitterLogIn();
       userCheckIn();
     });
 
-    const btnQuestion = divElem.querySelector('#signup-question')
+    const btnQuestion = divElem.querySelector('#signup-question');
     btnQuestion.addEventListener('click', () => {               
       window.location.hash = '#/register';
     });
@@ -97,7 +97,6 @@ const templatesLogin = {
     <h1>Bienvenido</h1>
     <p id="user-para">Usuario:</p>
     </div>
-
     <footer id="footer-container">
         <nav>
           <div class="footer">
@@ -108,6 +107,7 @@ const templatesLogin = {
           </div>
         </nav>
       </footer>`;
+  
     const divElem = document.createElement('div');
     divElem.innerHTML = templateWelcome;
 
@@ -119,9 +119,6 @@ const templatesLogin = {
 
     return divElem; 
   },
-
 };
-
-
 export default templatesLogin;
 

@@ -11,7 +11,7 @@ export const registerLogIn = () => {
 
       console.log(errorCode);
       console.log(errorMessage);
-    })
+    });
   const firestore = firebase.firestore();
   let emailRef = email;
   let passwordRef = password;
@@ -22,28 +22,26 @@ export const registerLogIn = () => {
   };
   users.add(data)
     .then((result) => {
-      console.log(result)
+      console.log(result);
     })
     .catch((err) => {
-    console.error(err);
+      console.error(err);
     });
 };                   
 
 // Función para Iniciar Sesión
 export const singInFunction = () => {
-    const userEmail = document.querySelector('#email-si').value;
-    const userPassword = document.querySelector('#password-si').value;
+  const userEmail = document.querySelector('#email-si').value;
+  const userPassword = document.querySelector('#password-si').value;
 
   firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
-        .catch(function(error) {
+    .catch(function(error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
       window.alert('Error : ' + errorCode);
       window.alert('Error : ' + errorMessage);
     });
-
-
 };
 
 // Función para saber si el usuario está loggeado o no
@@ -114,12 +112,11 @@ export const registerGoogleLogIn = () => {
         // The signed-in user info.
         const user = result.user;
         console.log(user.displayName);
-
       })
       .catch(function(error) {
         // Handle Errors here.
         const errorCode = error.code;
-        const  errorMessage = error.message;
+        const errorMessage = error.message;
         // The email of the user's account used.
         const email = error.email;
         // The firebase.auth.AuthCredential type that was used.
@@ -137,20 +134,19 @@ export const registerGoogleLogIn = () => {
 // Función para Iniciar Sesión con Twitter
 export const registerTwitterLogIn = () => {
   if (!firebase.auth().currentUser);
-  const  provider = new firebase.auth.TwitterAuthProvider();
+  const provider = new firebase.auth.TwitterAuthProvider();
   // provider.addScope('public_profile');//
   firebase.auth().signInWithPopup(provider)
     .then(function(result) {
-      const  token = result.credential.accessToken;
-      const  user = result.user;
-
+      const token = result.credential.accessToken;
+      const user = result.user;
     }).catch(function(error) {
       const errorCode = error.code;
       const errorMessage = error.message;
       const email = error.email;
       // The firebase.auth.AuthCredential type that was used.
       const credential = error.credential;
-    })
+    });
 };
 
 // Función para Cerrar Sesión
