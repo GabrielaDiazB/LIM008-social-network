@@ -16,7 +16,7 @@ const templatesLogin = {
         <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
         <div id="sign-in-box" class="container-login">
           <form>
-            <input id="email-si" class="email" type="email" placeholder="Usuario">
+            <input id="email-si" class="email" type="email" placeholder="Correo">
             <input id="password-si" class="password" type="password" placeholder="Contraseña">
             <button id="sign-in" class="login-btn" type="button">iniciar sesion</button>
           </form>
