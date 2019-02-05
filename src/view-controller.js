@@ -2,7 +2,6 @@ import {checkInFunction, singInFunction, logOut} from './controller-function/fun
 
 export const checkInOnSubmit = () => { 
   const name = document.querySelector('#user-name').value;
-  const information = document.querySelector('#information').value;
   const email = document.querySelector('#email').value;
   const password = document.querySelector('#password').value;
   const firestore = firebase.firestore();
@@ -32,7 +31,6 @@ export const signInOnSubmit = () => {
   const userPassword = document.querySelector('#password-si').value;
   singInFunction(userEmail, userPassword)
     .then(() => {
-      window.location.hash = '#/perfil';
     })
     .catch((error) => {
       alert(error);
@@ -47,4 +45,5 @@ export const logOutOnSubmit = () => {
     })
     .catch(() => {});
 };
-  
+
+
