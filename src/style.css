@@ -45,19 +45,6 @@ footer{
     margin-right: 50px;
 }
 
-.form-textarea{
-    border: none;
-    margin-top: 140%;
-    margin-right: 30%;
-    width: 100%!important;
-    max-height: 150px;
-    min-height: 60px;
-  }
-  
-.form-control:focus{
-    box-shadow: none;
-}
-
 @media screen and (max-width: 500px) { 
     .footer{
         width: 100%;
@@ -82,11 +69,7 @@ footer{
         font-family: 'Roboto', sans-serif;
     }
     .log-container {
-<<<<<<< HEAD
-        background-color: rgba(250, 245, 245, 0.9);
-=======
         background-color: rgba(222, 246, 246, 0.6);
->>>>>>> 37b9419482c32fde4635ea4ebba5d2432cdebcca
         padding: 10px;
         border-radius: 5px;
         margin:80px auto;
@@ -175,45 +158,6 @@ footer{
     }
     .signup-question:hover{
         color: #00A3A5;
-<<<<<<< HEAD
-    }  
-.container{
-    width: 100%;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;  
-}
-.ft{
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
-    margin: 10px auto;
-    display: block;
-    background: #283f68;
-    border: solid rgba(240, 239, 237, 0.7) 5px;
-}
-.container-information, .information{
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    font-size: 15pt;
-}
-.info{
-display:block;
-margin-top: 20px;
-}
-.table{
-    margin-top: 30px;
-}
-.table td{
-    padding: 0px 15px 0px 15px;
-}
-hr{
-    width: 1000px;
-    padding: 1px;
-    background: #009698;
-}
-}
-=======
     }
 
     /* Sección de posts */
@@ -230,9 +174,9 @@ hr{
 
     .post-container{
         background-color: rgba(182, 239, 239, 0.3);
-        width: 800px;
-        height: 230px;
-        margin: 15px 0;
+        width: 100%;
+        height: 30%;
+        margin: 10% 0% 2%;
         border-radius: 8px;
         padding: 5px 0;
         font-family: 'Roboto', sans-serif;
@@ -251,13 +195,13 @@ hr{
     }
 
     .text-area{
-        width: 100%;
+        width: 96%;
         resize: none;
-        font-size: 20px;
+        font-size: 15px;
         border: none;
         text-align: justify;
         padding: 0;
-        margin: 0;
+        margin: 1% 2%;
         outline: 2px solid #007D7E;
     }
 
@@ -336,10 +280,15 @@ hr{
     .click-counter-likes{
         color: red;
     }
+    /* Sección de perfil */
+    .ft {
+        width: 70%;
+        height: 30%;
+        margin: 2% 15% ;
+    }
 }
 
 
 
 
 
->>>>>>> 37b9419482c32fde4635ea4ebba5d2432cdebcca

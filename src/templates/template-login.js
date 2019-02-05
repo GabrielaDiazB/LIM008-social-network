@@ -10,6 +10,9 @@ import {
   
 } from '../controller-function/function-firebase.js';
 
+import {
+  addPostOnSubmit,
+} from '../controller-function/wall.js';
 
 const templatesLogin = {   
   signIn: () => { 
@@ -115,49 +118,12 @@ const templatesLogin = {
 
     const btnLogOut = divElem.querySelector('#log-out');
     btnLogOut.addEventListener('click', () => { 
-      logOut();              
+      logOutOnSubmit();              
       window.location.hash = '#/signIn';
     });
     return divElem; 
   },
-
-  timeline: () => {
-    const templatePosting = `
-    <header>
-      <nav>
-        <img src="./imagenes/Logo2.png" alt="logowhite" class="logo-img">
-        <a href="#/signIn"><img src="iconos/exit-1.png" id="log-out" class ="icon-header" alt=""></a>
-      </nav>
-    </header>      
-    <div class="card-body">
-      <form class="form">
-        <textarea id="content" class="form-control form-textarea" placeholder="Escribe una publicación"></textarea>
-        <div class="ml-auto">
-          <button class="btn btn-warning" id="send-post" title="Publicar">Publicar</button>
-        </div>
-      </form>
-    </div> 
-    <footer id="footer-container">
-    <nav>
-      <div class="footer">
-        <a href="#"><img src="iconos/house.png" class ="icon-footer" alt=""></a>
-        <a href="#"><img src="iconos/search.png" class ="icon-footer" alt=""></a>
-        <a href="#"><img src="iconos/add-3.png" class ="icon-footer" alt=""></a>
-        <a href="#"><img src="iconos/user-1.png" class ="icon-footer" alt=""></a>
-      </div>
-    </nav>
-  </footer>`;
-
-    const divElem = document.createElement('div');
-    divElem.innerHTML = templatePosting;
-
-    const btnPost = divElem.querySelector('#send-post');
-    btnPost.addEventListener('click', () => {
-      getUserPostData();
-      window.location.hash = '#/timeline';
-    });
-    return divElem;
-  },
+  
   perfil: () => {
     const templatePerfil = `
     
@@ -181,8 +147,8 @@ const templatesLogin = {
                  </tr>
                  <tr>
                      <td>Posts</td>
-                     <td>Following</td>
-                     <td>Followers</td>
+                     <td>Siguiendo</td>
+                     <td>Seguidores</td>
                  </tr>
              </table>    
          </div>        
@@ -222,7 +188,8 @@ const templatesLogin = {
 
     const postingPost = post.querySelector('.post');
     postingPost.addEventListener('click', () => {
-      window.location.hash = '#/wallPost';
+      addPostOnSubmit();
+      window.location.hash = '#/writingPost';
     });
     return post;
   },
@@ -231,11 +198,11 @@ const templatesLogin = {
     const templatePost = `
       <div class="post-container">
         <div class="settings-box">
-          <img src="./aicon/edit.ico" alt="" class="img-icon-post">
-          <img src="./aicon/garbage-2.png" alt="" class="img-icon-post">
+          <img src="./Icons/edit.ico" alt="" class="img-icon-post">
+          <img src="./Icons/garbage-2.png" alt="" class="img-icon-post">
         </div>
         <div id="user-box" class="user-box">
-              <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
+              <img src="./Icons/user-2.png" alt="" id="user-pic-post" class="user-pic">
               <h2 id="user-name" class="user-name-post">Zoila Prima</h2>
               <h3></h3>
         </div> 
@@ -246,9 +213,9 @@ const templatesLogin = {
         </div>
         <div class="interact-box">
           <label for="" class="click-counter-likes">2</label>
-          <img src="./aicon/like-2.png" alt="" class="img-icon-post">
+          <img src="./Icons/like-2.png" alt="" class="img-icon-post">
           <label for="" class="click-counter-favorites"> 2</label>
-          <img  src="./aicon/star-1.png" alt="" class="img-icon-post">
+          <img  src="./Icons/star-1.png" alt="" class="img-icon-post">
         </div>       
       </div>`;
 

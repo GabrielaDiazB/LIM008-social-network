@@ -1,46 +1,42 @@
-// Funciones para las publicaciones
-const db = firebase.firestore();
-
-// Guarda contenido del post en firestore
-export const getUserPostData = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      const send = document.querySelector('#send-post');
-      send.addEventListener('click', event => {
-        const content = document.querySelector('#content').value;
-        db.collection('posts').add({
-          content: content,
-        })
-          .then(result => {
-            console.log(result);
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      });
-    };
-  }); 
-};
-
-const showUserPost = () => {
-  firebase.onAuthStateChanged(user => {
-    if (user) {
-      const currentUser = user.uid;
-      const postRef = db.collection('posts');
-    }
+// FUNCIONES DE POST
+// let userPhotoLink;
+// let currentName;
+let datePost = firebase.firestore.FieldValue.serverTimestamp();
+// Guardando el post en firestore
+const getUserPostData = (content) =>
+// Al usar una const db=firebase.firestore aparecía este error:
+// Firebase: No Firebase App [DEFAULT] has been created - call Firebase App.initializeApp() (app/no-app).
+  firebase.firestore().collection('posts').add({ 
+    // name: currentName,
+    // userPhoto: userPhotoLink,
+    date: datePost,
+    content: content,
+    // likes: [],
   });
+
+export const addPostOnSubmit = () => {
+  const contentPost = document.querySelector('#text-area');
+  getUserPostData(contentPost.value)
+    .then(result => {
+      swal('¡Genial!', 'Tu post se subió satisfactoriamente', 'success')
+        .catch(error => {
+          console.error('Error adding document: ', error);
+        });
+    });
 };
 
-/* Swal es una dependencia que instale: Sweet Alert es un alert con diseño incluido
-            // documentación aquí: https://sweetalert.js.org/guides/#getting-started
-            swal({
-              confirmButtonText: 'Aceptar',
-              type: 'success',
-              title: 'Publicación exitosa'
-            });
-            */
+export const getPost = (callback) =>
+  firebase.firestore().collection('posts')
+    .onSnapshot((querySnapshot) => {
+      const data = [];
+      querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() });
+      });
+      callback(data);
+    }); 
 
-const deletePost = (postID) => {
+// Eliminar el post
+const deletePost = (Id) => {
   swal({
     title: '¿Estas seguro de eliminar la publicación?',
     type: 'warning',
@@ -49,25 +45,15 @@ const deletePost = (postID) => {
     cancelButtonColor: '#d33',
     confirmButtonText: 'Aceptar'
   }).then(confirm => {
-    if (confirm.value) {
-      db.collection('post').doc(postID).delete() 
-        .then(element => { 
-          swal({
-            confirmButtonText: 'Aceptar',
-            type: 'success',
-            title: 'Publicación eliminada'
-          });
-          drawPostByUser();
-        }).catch(element => {
-          swal({
-            confirmButtonText: 'Aceptar',
-            type: 'error',
-            title: 'Error al eliminar la publicación',
-            text: 'Inténtalo de nuevo'
-          });
-        });
-    }
+    firebase.firestore().collection('posts').doc(Id).delete();
+  }).catch(element => {
+    swal({
+      confirmButtonText: 'Aceptar',
+      type: 'error',
+      title: 'Error al eliminar la publicación',
+      text: 'Inténtalo de nuevo'
+    });
   });
 };
-          
-          
+
+export const deletePostOnClick = (objPost) => deletePost();
