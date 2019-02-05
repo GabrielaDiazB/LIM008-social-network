@@ -3,15 +3,16 @@ import {checkInFunction, singInFunction, logOut, callDoc} from './controller-fun
 export const checkInOnSubmit = () => { 
   const name = document.querySelector('#user-name').value;
   const email = document.querySelector('#email').value;
+  const password = document.querySelector('#password').value;
   const firestore = firebase.firestore();
   let nameUser = name;
-  let informationUser = information;
   let emailRef = email;
+  let passwordRef = password;
   let users = firestore.collection('users');
   let data = {
     name: nameUser,
-    information: informationUser,
     email: emailRef,
+    password: passwordRef
   };
   checkInFunction(email, password);
   users.add(data)

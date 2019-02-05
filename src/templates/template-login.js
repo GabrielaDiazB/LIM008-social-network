@@ -82,6 +82,7 @@ const templatesLogin = {
     const btnRegister = divElem.querySelector('#sign-up');
     btnRegister.addEventListener('click', () => {
       checkInOnSubmit();
+      window.location.hash = '#/writingPost';
     });
     return divElem;
   },
