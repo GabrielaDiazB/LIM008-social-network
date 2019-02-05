@@ -1,19 +1,14 @@
 import { 
   checkInOnSubmit,
   signInOnSubmit,
-  logOutOnSubmit,
-callDocSubmit} from '../view-controller.js';
+  callDocSubmit } from '../view-controller.js';
 import {
   registerFacebookLogIn,
   registerGoogleLogIn,
-  registerTwitterLogIn,
-  
-} from '../controller-function/function-firebase.js';
+  registerTwitterLogIn } from '../controller-function/function-firebase.js';
 
-const gg = document.getElementById('header-container')
-gg.addEventListener('click', () => {
-logOutOnSubmit();
-})
+import { templateBarraNav } from './template-sections.js';
+
 
 const templatesLogin = {   
   signIn: () => { 
@@ -23,7 +18,7 @@ const templatesLogin = {
         <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
         <div id="sign-in-box" class="container-login">
           <form>
-            <input id="email-si" class="email" type="email" placeholder="Usuario">
+            <input id="email-si" class="email" type="email" placeholder="Correo">
             <input id="password-si" class="password" type="password" placeholder="Contraseña">
             <button id="sign-in" class="login-btn" type="button">iniciar sesion</button>
           </form>
@@ -41,7 +36,6 @@ const templatesLogin = {
     const btnSignIn = divElem.querySelector('#sign-in')
     btnSignIn.addEventListener('click', () => {
       signInOnSubmit();
-      callDocSubmit();
     });
 
     const btnFacebook = divElem.querySelector('#facebook-login')
@@ -88,9 +82,13 @@ const templatesLogin = {
     return divElem;
   },
 
-  perfil : () => {
+
+  perfil: () => {
+callDocSubmit()
+.then((userInfo) => {
+  console.log(userInfo)
     const templatePerfil = `
-    
+    ${templateBarraNav}
       <div class="container">
          <div class="container-perfil">
          <div class="ft-perfil">
@@ -99,20 +97,18 @@ const templatesLogin = {
          </div>
          <div class="container-information"> 
          <div class="information">
-         <span class="name">mali</span>
-         <span class="info">fronted-developer</span>
+         <span class="name">${userInfo.name}</span>
+         <span class="info"></span>
          </div>
          <div class = "table"> 
              <table>
                  <tr>
                      <th>#</th>
                      <th>#</th>
-                     <th>#</th>
                  </tr>
                  <tr>
-                     <td>Posts</td>
-                     <td>Following</td>
-                     <td>Followers</td>
+                     <td>Me encanta</td>
+                     <td>Favoritos</td>
                  </tr>
              </table>    
          </div>        
@@ -123,6 +119,71 @@ const templatesLogin = {
     divElem.setAttribute('class', 'perfil-container');
     divElem.innerHTML = templatePerfil;
     return divElem; 
-  }
+})
+  },
+
+  writingPost: () => {
+    const templateWritingPost = `
+    ${templateBarraNav}
+      <div class="post-container">
+        <i class="fa fa-arrow-left"></i>
+        <h1 class="text-align">¿Qué Recomiendas?</h1>
+        <form>
+          <div class="activity-filter">
+              <label for="">Interior</label>
+              <input type="checkbox" value="Inside">
+              <label for="">Exterior</label>
+              <input type="checkbox" value="Outside"> 
+          </div>
+          <textarea id="text-area" class="text-area" cols="25" rows="5" autofocus placeholder="Escribe aquí..." required></textarea>
+          <div class="privacy-filter">
+              <label for="">Público</label>
+              <input id="privacy-checkbox" type="checkbox" value="public">
+              <label for="">Privado</label>
+              <input id="privacy-checkbox" type="checkbox" value="private">
+          </div>
+          <button class="post">Publicar</button>
+        </form>      
+      </div>`;
+    const post = document.createElement('div');
+    post.innerHTML = templateWritingPost;
+
+    const postingPost = post.querySelector('.post');
+    postingPost.addEventListener('click', () => {
+      window.location.hash = '#/wallPost';
+    });
+    return post;
+  },
+
+  wallPost: () => {
+    const templatePost = `
+    ${templateBarraNav}
+      <div class="post-container">
+        <div class="settings-box">
+          <img src="./aicon/edit.ico" alt="" class="img-icon-post">
+          <img src="./aicon/garbage-2.png" alt="" class="img-icon-post">
+        </div>
+        <div id="user-box" class="user-box">
+              <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
+              <h2 id="user-name" class="user-name-post">Zoila Prima</h2>
+              <h3></h3>
+        </div> 
+        <textarea id="post-text" class="text-area" cols="25" rows="5" readonly></textarea>
+        <div class="privacy-box">
+          <i class="fa fa-unlock" class="img-icon-post"></i>
+          <i class="fa fa-lock" class="img-icon-post"></i>
+        </div>
+        <div class="interact-box">
+          <label for="" class="click-counter-likes">2</label>
+          <img src="./aicon/like-2.png" alt="" class="img-icon-post">
+          <label for="" class="click-counter-favorites"> 2</label>
+          <img  src="./aicon/star-1.png" alt="" class="img-icon-post">
+        </div>       
+      </div>`;
+
+    const wallPost = document.createElement('div');
+    wallPost.innerHTML = templatePost;
+    return wallPost;
+  },
 };
 export default templatesLogin;

@@ -1,13 +1,13 @@
 // Función para poder Registrar una Cuenta Nueva
 export const checkInFunction = (email, password) => 
-  firebase.auth().createUserWithEmailAndPassword(email, password);
-    /*.catch(function(error) {
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .catch(function(error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode);
-      console.log(errorMessage);*/
-                    
+      console.log(errorMessage);
+  });               
 
 // Función para Iniciar Sesión
 export const singInFunction = (userEmail, userPassword) => 
@@ -74,15 +74,32 @@ export const registerTwitterLogIn = () => {
 export const logOut = () => 
   firebase.auth().signOut();
 
-export const callDoc = () => 
-  firebase.auth().onAuthStateChanged(() =>  {
-   firebase.firestore().collection('users')
+export const callDoc = () => { 
+  /*firebase.auth().onAuthStateChanged(() => {
+      firebase.firestore().collection('users')
+      .get()
+        .then((doc) => { 
+        console.log(`${doc.id}`, `${doc.data().name}`)
+        })
+      .catch(() => {})
+      })*/
+    const user =  firebase.auth().currentUser;
+    //console.log(user);
+    return firebase.firestore().collection('users').where('userId', '==', user.uid)
     .get()
-      .then((users) => users.forEach(doc => {   
-      console.log(`${doc.data().name}`);
-    }))
-    .catch(() => {})
-  })
+    .then((querySnapshot) => {
+    let userInfo = {};
+      querySnapshot.forEach((doc) => {
+      //console.log(`${doc.id}`, `${doc.data().name}`)
+      userInfo = {
+        id: doc.id,
+        ...doc.data()
+      }
+    })
+    return userInfo;
+
+})
+}
 
 /*// funcion para eliminar post
 const firestore = firebase.firestore();
