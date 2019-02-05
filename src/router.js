@@ -6,6 +6,7 @@ const viewTmp = (routers) => {
   // } else if (router !== routers.substr(2, routers.length - 2)) {
   //   return router = 'signIn';
   } else {
+    router = 'writingPost';
     router = 'perfil';
     router = 'register';
     router = 'signIn';

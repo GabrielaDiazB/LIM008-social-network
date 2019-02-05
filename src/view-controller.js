@@ -20,7 +20,7 @@ export const checkInOnSubmit = () => {
   checkInFunction(email, password)
     .then(() => {
       data.userId = firebase.auth().currentUser.uid;
-      users.add(data)
+      users.add(data);
       window.location.hash = '#/signIn'
         .catch(() => {});
     });
@@ -36,12 +36,12 @@ export const signInOnSubmit = () => {
     .catch((error) => {
       alert(error);
     });
-  };
+};
 
 
 export const logOutOnSubmit = () => { 
-  document.getElementById('header-container').style.display='none';
-  document.getElementById('footer-container').style.display='none';
+  document.getElementById('header-container').style.display = 'none';
+  document.getElementById('footer-container').style.display = 'none';
   logOut()
     .then(() => { 
       window.location.hash = '#/signIn';
@@ -50,7 +50,7 @@ export const logOutOnSubmit = () => {
 };
 
 
-export const callDocSubmit= () => {
+export const callDocSubmit = () => {
   callDoc();
-} 
+}; 
 
