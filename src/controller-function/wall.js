@@ -7,13 +7,13 @@ const getUserPostData = (content) =>
 // Al usar una const db=firebase.firestore aparecía este error:
 // Firebase: No Firebase App [DEFAULT] has been created - call Firebase App.initializeApp() (app/no-app).
   firebase.firestore().collection('posts').add({ 
-    //name: currentName,
+    // name: currentName,
     // userPhoto: userPhotoLink,
-    userID: ,
     date: datePost,
     content: content,
     // likes: [],
   });
+
 
 export const addPostOnSubmit = () => {
   const contentPost = document.querySelector('#text-area');
@@ -29,7 +29,7 @@ export const addPostOnSubmit = () => {
 export const getPost = (callback) =>
   firebase.firestore().collection('posts')
     .onSnapshot((querySnapshot) => {
-      const data = [];
+      const data = {};
       querySnapshot.forEach((doc) => {
         data.push({ id: doc.id, ...doc.data() });
       });

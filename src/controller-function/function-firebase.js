@@ -74,6 +74,24 @@ export const registerTwitterLogIn = () => {
 export const logOut = () =>
   firebase.auth().signOut();
 
+
+// Función del usuario conectado, caputra sus datos y los manda al perfil
+export const callDoc = () => {
+  const user = firebase.auth().currentUser;
+  return firebase.firestore().collection('users').where('userId', '==', user.uId)
+    .get()
+    .then((querySnapshot) => {
+      let userInfo = {};
+      querySnapshot.forEach((doc) => {
+        userInfo = {
+          id: doc.id,
+          ...doc.data()
+        };
+      });
+      return userInfo;
+    });
+};
+
 // Función para saber si el usuario está loggeado
 export const userLogged = () => firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
