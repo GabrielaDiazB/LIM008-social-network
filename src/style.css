@@ -72,20 +72,18 @@ footer{
         padding: 10px;
         border-radius: 5px;
         margin:80px auto;
+        text-align: center;
     }
 
     .logoname-img{
         width: 230px;
-        text-align: center;
     }
 
     .logotipo{
         color:#00A3A5;
-        text-align: center;
-
     }
     
-    .email, .password, .user-name{
+    .email, .password, .user-name, .user-info{
         display: block;
         border: none;
         border-bottom: 1px solid black;
@@ -96,7 +94,7 @@ footer{
         outline-color: #00A3A5;
         
     }
-    .email:hover, .password:hover, .user-name:hover{
+    .email:hover, .password:hover, .user-name:hover, .user-info:hover{
         border-bottom:1px solid red;
     }
 

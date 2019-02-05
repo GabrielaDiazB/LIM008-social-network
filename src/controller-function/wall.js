@@ -1,11 +1,12 @@
 // FUNCIONES DE POST
 // let userPhotoLink;
 // let currentName;
-let datePost = firebase.firestore.FieldValue.serverTimestamp();
+
 // Guardando el post en firestore
 const getUserPostData = (content) => { 
   // Al usar una const db=firebase.firestore aparecía este error:
   // Firebase: No Firebase App [DEFAULT] has been created - call Firebase App.initializeApp() (app/no-app).
+  let datePost = firebase.firestore.FieldValue.serverTimestamp();
   let posts = firebase.firestore().collection('posts');
   let data = {
   // name: currentName,
@@ -18,8 +19,8 @@ const getUserPostData = (content) => {
   posts.add(data);
 };
 
-
 export const addPostOnSubmit = () => {
+  window.location.hash = '#/wallPost';
   const contentPost = document.querySelector('#text-area');
   getUserPostData(contentPost.value)
     .then(result => {
@@ -28,6 +29,7 @@ export const addPostOnSubmit = () => {
           console.error('Error adding document: ', error);
         });
     });
+    
 };
 
 export const getPost = (callback) =>
@@ -38,7 +40,7 @@ export const getPost = (callback) =>
         data.push({ id: doc.id, ...doc.data() });
       });
       callback(data);
-    });
+});
 
 // Eliminar el post
 const deletePost = (Id) => {

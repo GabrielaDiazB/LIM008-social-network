@@ -1,7 +1,7 @@
 // Función para poder Registrar una Cuenta Nueva
 export const checkInFunction = (email, password) =>
   firebase.auth().createUserWithEmailAndPassword(email, password)
-    .catch(function (error) {
+    .catch(function(error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -12,7 +12,7 @@ export const checkInFunction = (email, password) =>
 // Función para Iniciar Sesión
 export const singInFunction = (userEmail, userPassword) =>
   firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
-    .catch(function (error) {
+    .catch(function(error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -75,7 +75,7 @@ export const logOut = () =>
   firebase.auth().signOut();
 
 
-// Función del usuario conectado, caputra sus datos y los manda al perfil
+// Función del usuario conectado, captura sus datos y los manda al perfil
 export const callDoc = () => {
   const user = firebase.auth().currentUser;
   return firebase.firestore().collection('users').where('userId', '==', user.uId)
@@ -104,7 +104,7 @@ export const userLogged = () => firebase.auth().onAuthStateChanged(function(user
     // const isAnonymous = user.isAnonymous;
     // const uid = user.uid;
     // const providerData = user.providerData;
-    window.location.hash = '#/perfil'
+    window.location.hash = '#/perfil';
     const user = firebase.auth().currentUser;
     if (user !== null) {
       const emailUser = user.email;

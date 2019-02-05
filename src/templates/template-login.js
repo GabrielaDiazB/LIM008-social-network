@@ -12,6 +12,7 @@ import {
 
 import {
   addPostOnSubmit,
+
 } from '../controller-function/wall.js';
     
 const templatesLogin = {   
@@ -71,6 +72,7 @@ const templatesLogin = {
       <form>
       <h2>Regístrate</h2>  
       <input id="user-name" class="user-name" type="text" placeholder="Nombre">
+      <input id="information" class="user-info" type="text" placeholder="Cuéntanos tus Hobbies">
       <input id="email" class="email" type="email" placeholder="E-mail">
       <input id="password" class="password" type="password" placeholder="Contraseña">
       <button id="sign-up" class="sign-up-btn">Crear Cuenta</button>
@@ -186,7 +188,7 @@ const templatesLogin = {
     const postingPost = post.querySelector('.post');
     postingPost.addEventListener('click', () => {
       addPostOnSubmit();
-      window.location.hash = '#/wallPost';
+      getPost();
     });
     return post;
   },

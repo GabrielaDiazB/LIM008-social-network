@@ -2,27 +2,29 @@ import {checkInFunction, singInFunction, logOut, callDoc} from './controller-fun
 
 export const checkInOnSubmit = () => { 
   const name = document.querySelector('#user-name').value;
+  const information = document.querySelector('#information').value;
   const email = document.querySelector('#email').value;
   const password = document.querySelector('#password').value;
   const firestore = firebase.firestore();
   let nameUser = name;
+  let informationUser = information;
   let emailRef = email;
-  let passwordRef = password;
   let users = firestore.collection('users');
   let data = {
     name: nameUser,
+    information: informationUser,
     email: emailRef,
-    password: passwordRef
   };
   checkInFunction(email, password);
+  // data.userId = firebase.auth().currentUser.uid;
   users.add(data)
     .then(() => { 
       data.userId = firebase.auth().currentUser.uid;
       users.add(data);
       window.location.hash = '#/signIn';
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
+
     });
 };
 
