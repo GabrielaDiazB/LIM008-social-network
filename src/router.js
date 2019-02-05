@@ -1,5 +1,4 @@
-import templatesLogin from './template.js';
-
+import templatesLogin from './templates/template-login.js';
 const viewTmp = (routers) => {
   let router;
   if (routers) { 
@@ -7,7 +6,7 @@ const viewTmp = (routers) => {
   // } else if (router !== routers.substr(2, routers.length - 2)) {
   //   return router = 'signIn';
   } else {
-    router = 'welcome';
+    router = 'perfil';
     router = 'register';
     router = 'signIn';
     router = 'timeline';
