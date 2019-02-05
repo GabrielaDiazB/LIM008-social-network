@@ -10,6 +10,7 @@ const viewTmp = (routers) => {
     router = 'welcome';
     router = 'register';
     router = 'signIn';
+    router = 'timeline';
   }
   const section = document.getElementById('log-container');
   section.innerHTML = '';

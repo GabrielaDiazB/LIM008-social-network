@@ -7,7 +7,8 @@ import {
   userCheckIn,
   logOut } from './firebase-functions.js';
 
-    
+import {getUserPostData} from './wall.js';
+
 const templatesLogin = {   
   signIn: () => { 
     const templateSignIn = `
@@ -97,6 +98,8 @@ const templatesLogin = {
     <h1>Bienvenido</h1>
     <p id="user-para">Usuario:</p>
     </div>
+    </form>
+    </div>
     <footer id="footer-container">
         <nav>
           <div class="footer">
@@ -116,8 +119,45 @@ const templatesLogin = {
       logOut();              
       window.location.hash = '#/signIn';
     });
-
     return divElem; 
+  },
+
+  timeline: () => {
+    const templatePosting = `
+    <header>
+      <nav>
+        <img src="./imagenes/Logo2.png" alt="logowhite" class="logo-img">
+        <a href="#/signIn"><img src="iconos/exit-1.png" id="log-out" class ="icon-header" alt=""></a>
+      </nav>
+    </header>      
+    <div class="card-body">
+      <form class="form">
+        <textarea id="content" class="form-control form-textarea" placeholder="Escribe una publicación"></textarea>
+        <div class="ml-auto">
+          <button class="btn btn-warning" id="send-post" title="Publicar">Publicar</button>
+        </div>
+      </form>
+    </div> 
+    <footer id="footer-container">
+    <nav>
+      <div class="footer">
+        <a href="#"><img src="iconos/house.png" class ="icon-footer" alt=""></a>
+        <a href="#"><img src="iconos/search.png" class ="icon-footer" alt=""></a>
+        <a href="#"><img src="iconos/add-3.png" class ="icon-footer" alt=""></a>
+        <a href="#"><img src="iconos/user-1.png" class ="icon-footer" alt=""></a>
+      </div>
+    </nav>
+  </footer>`;
+
+    const divElem = document.createElement('div');
+    divElem.innerHTML = templatePosting;
+
+    const btnPost = divElem.querySelector('#send-post');
+    btnPost.addEventListener('click', () => {
+      getUserPostData();
+      window.location.hash = '#/timeline';
+    });
+    return divElem;
   },
 };
 export default templatesLogin;

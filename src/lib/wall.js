@@ -1,45 +1,72 @@
 // Funciones para las publicaciones
-const db = () => firebase.firestore();
-document.getElementById('log-out').addEventListener('click', event => {
-  event.preventDefault();
-  firebase.auth().signOut();
-});
+const db = firebase.firestore();
 
-const getUserPostData = () => {
-  // let userPhoto
-  // let currentUserName
-  firebase.auth().onAuthStateChanged(user => {
+// Guarda contenido del post en firestore
+export const getUserPostData = () => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      document.getElementById('send-post').addEventListener('click', event => {
-        event.preventDefault();
-        const contentOfPost = document.getElementById('user-content').value;
-        if (contentOfPost !== '' && contentOfPost !== ' ') {
-        /*  if (user.photoURL === null) { 
-            userPhoto = './src/iconos/userProfile.png';
-          } else {
-            userPhoto = user.photoURL;
-          }
-          if (user.displayName === null) {
-            currentUserName = user.email;
-          } else {
-            currentUserName = user.displayName;
-          }*/
-          db.collection('posts').add({
-            content: contentOfPost
-          }).then(result => {
-            // Swal es una dependencia que instale: Sweet Alert es un alert con diseño incluido
+      const send = document.querySelector('#send-post');
+      send.addEventListener('click', event => {
+        const content = document.querySelector('#content').value;
+        db.collection('posts').add({
+          content: content,
+        })
+          .then(result => {
+            console.log(result);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+    };
+  }); 
+};
+
+const showUserPost = () => {
+  firebase.onAuthStateChanged(user => {
+    if (user) {
+      const currentUser = user.uid;
+      const postRef = db.collection('posts');
+    }
+  });
+};
+
+/* Swal es una dependencia que instale: Sweet Alert es un alert con diseño incluido
             // documentación aquí: https://sweetalert.js.org/guides/#getting-started
             swal({
               confirmButtonText: 'Aceptar',
               type: 'success',
               title: 'Publicación exitosa'
             });
-            document.getElementById('user-content').value = ''; 
-          }).catch(error => {
-            console.error('Error al añadir el documento: ', error);
+            */
+
+const deletePost = (postID) => {
+  swal({
+    title: '¿Estas seguro de eliminar la publicación?',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#ffc107',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar'
+  }).then(confirm => {
+    if (confirm.value) {
+      db.collection('post').doc(postID).delete() 
+        .then(element => { 
+          swal({
+            confirmButtonText: 'Aceptar',
+            type: 'success',
+            title: 'Publicación eliminada'
           });
-        }
-      });
-    };
-  }); 
+          drawPostByUser();
+        }).catch(element => {
+          swal({
+            confirmButtonText: 'Aceptar',
+            type: 'error',
+            title: 'Error al eliminar la publicación',
+            text: 'Inténtalo de nuevo'
+          });
+        });
+    }
+  });
 };
+          

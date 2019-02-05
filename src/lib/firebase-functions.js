@@ -68,7 +68,6 @@ export const userCheckIn = () => {
   });
 };
 
-
 // Función para Iniciar Sesión con Facebook
 export const registerFacebookLogIn = () => {
   if (!firebase.auth().currentUser) {
