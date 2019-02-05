@@ -1,18 +1,19 @@
 import { 
   checkInOnSubmit,
   signInOnSubmit,
-  callDocSubmit } from '../view-controller.js';
+} from '../view-controller.js';
 import {
   registerFacebookLogIn,
   registerGoogleLogIn,
-  registerTwitterLogIn } from '../controller-function/function-firebase.js';
+  registerTwitterLogIn,
+userLogged } from '../controller-function/function-firebase.js';
 
 import { templateBarraNav } from './template-sections.js';
 
+export const signIn = () => {
+  const templateSignIn = `
+  ${templateBarraNav}
 
-const templatesLogin = {   
-  signIn: () => { 
-    const templateSignIn = `
       <img src="./logo/Nombre.png" alt="logo" class="logoname-img">
       <div id="signin-container" class="signin-container">
         <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
@@ -35,6 +36,7 @@ const templatesLogin = {
     divElem.innerHTML = templateSignIn;
     const btnSignIn = divElem.querySelector('#sign-in')
     btnSignIn.addEventListener('click', () => {
+      userLogged();
       signInOnSubmit();
     });
 
@@ -58,10 +60,11 @@ const templatesLogin = {
       window.location.hash = '#/register';
     });
     return divElem;
-  },
+};
 
-  register: () => { 
-    const templateRegister = `
+export  const register = () => {
+
+  const templateRegister = `
       <div class="signup-container" id="sign-up-box">
       <form>
       <h2>Regístrate</h2>  
@@ -80,15 +83,12 @@ const templatesLogin = {
       checkInOnSubmit();
     });
     return divElem;
-  },
+};
 
 
-  perfil: () => {
-callDocSubmit()
-.then((userInfo) => {
-  console.log(userInfo)
-    const templatePerfil = `
-    ${templateBarraNav}
+export const  perfil = (data) => {
+  const templatePerfil = `
+  ${templateBarraNav}
       <div class="container">
          <div class="container-perfil">
          <div class="ft-perfil">
@@ -97,8 +97,8 @@ callDocSubmit()
          </div>
          <div class="container-information"> 
          <div class="information">
-         <span class="name">${userInfo.name}</span>
-         <span class="info"></span>
+         <span class="name">${data.name}</span>
+         <span class="info">${data.information}</span>
          </div>
          <div class = "table"> 
              <table>
@@ -119,11 +119,9 @@ callDocSubmit()
     divElem.setAttribute('class', 'perfil-container');
     divElem.innerHTML = templatePerfil;
     return divElem; 
-})
-  },
+};
 
-  writingPost: () => {
-    const templateWritingPost = `
+export const writingPost = () => { `
     ${templateBarraNav}
       <div class="post-container">
         <i class="fa fa-arrow-left"></i>
@@ -153,10 +151,9 @@ callDocSubmit()
       window.location.hash = '#/wallPost';
     });
     return post;
-  },
+};
 
-  wallPost: () => {
-    const templatePost = `
+export const  wallPost = () => { `
     ${templateBarraNav}
       <div class="post-container">
         <div class="settings-box">
@@ -184,6 +181,4 @@ callDocSubmit()
     const wallPost = document.createElement('div');
     wallPost.innerHTML = templatePost;
     return wallPost;
-  },
 };
-export default templatesLogin;

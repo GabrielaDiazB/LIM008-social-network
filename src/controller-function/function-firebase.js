@@ -7,7 +7,7 @@ export const checkInFunction = (email, password) =>
       const errorMessage = error.message;
       console.log(errorCode);
       console.log(errorMessage);
-  });               
+  });  
 
 // Función para Iniciar Sesión
 export const singInFunction = (userEmail, userPassword) => 
@@ -74,32 +74,42 @@ export const registerTwitterLogIn = () => {
 export const logOut = () => 
   firebase.auth().signOut();
 
-export const callDoc = () => { 
-  /*firebase.auth().onAuthStateChanged(() => {
-      firebase.firestore().collection('users')
-      .get()
-        .then((doc) => { 
-        console.log(`${doc.id}`, `${doc.data().name}`)
-        })
-      .catch(() => {})
-      })*/
+
+
+export const callDoc = (callback) => { 
     const user =  firebase.auth().currentUser;
-    //console.log(user);
+    console.log(user);
     return firebase.firestore().collection('users').where('userId', '==', user.uid)
     .get()
     .then((querySnapshot) => {
     let userInfo = {};
       querySnapshot.forEach((doc) => {
-      //console.log(`${doc.id}`, `${doc.data().name}`)
       userInfo = {
         id: doc.id,
         ...doc.data()
-      }
-    })
-    return userInfo;
+      };
+      console.log(userInfo)
 
-})
-}
+    });
+      //return userInfo;
+callback(userInfo);
+});
+};
+
+export const userLogged = () => 
+  firebase.auth().onAuthStateChanged((user) => {
+    if(user) {
+      window.location.hash='#/perfil';
+      const user =firebase.auth().currentUser;
+      if(user !== null) {
+        const emailUser = user.email;
+        console.log(emailUser);
+      }
+    }
+    else {
+      //usuariocerrasesion
+    }
+  })
 
 /*// funcion para eliminar post
 const firestore = firebase.firestore();

@@ -1,10 +1,10 @@
-import {checkInFunction, singInFunction, logOut, callDoc} from './controller-function/function-firebase.js';
+import {checkInFunction, singInFunction, logOut} from './controller-function/function-firebase.js';
 
 export const checkInOnSubmit = () => { 
   const name = document.querySelector('#user-name').value;
   const information = document.querySelector('#information').value;
   const email = document.querySelector('#email').value;
-  
+  const password = document.querySelector('#password').value;
   const firestore = firebase.firestore();
   let nameUser = name;
   let informationUser = information;
@@ -16,13 +16,12 @@ export const checkInOnSubmit = () => {
     email: emailRef,
   };
   checkInFunction(email, password)
-    .then(() => {
-      data.userId = firebase.auth().currentUser.uid;
-      users.add(data);
-      window.location.hash = '#/signIn'
-        .catch(() => {});
-    });
-};
+      .then(() => {data.userId = firebase.auth().currentUser.uid;
+        users.add(data);
+        window.location.hash = '#/signIn';
+      })
+      .catch(() => {})
+  }
 
 export const signInOnSubmit = () => { 
   const userEmail = document.querySelector('#email-si').value;
@@ -47,12 +46,7 @@ export const logOutOnSubmit = () => {
     .catch(() => {});
 };
 
-
-export const callDocSubmit = () => {
-  /*.then((userInfo) => {
-    console.log(userInfo);
-
-  })*/
-  return callDoc();
-} 
+//export const callDocSubmit = () => {
+  //return callDoc();
+//
 

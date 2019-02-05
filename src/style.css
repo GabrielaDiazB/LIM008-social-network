@@ -100,7 +100,7 @@ footer{
         font-size: 15px;
         outline-color: #00A3A5;
     }
-    .email:hover, .password:hover, .user-name:hover{
+    .email:hover, .password:hover, .user-name:hover, .information:hover{
         border-bottom:1px solid red;
     }
 
@@ -174,7 +174,7 @@ footer{
     background: #283f68;
     border: solid rgba(240, 239, 237, 0.7) 5px;
 }
-.container-information, .information{
+.container-information{
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-size: 15pt;
