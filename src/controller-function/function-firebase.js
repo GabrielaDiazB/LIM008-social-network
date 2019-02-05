@@ -74,43 +74,62 @@ export const registerTwitterLogIn = () => {
 export const logOut = () =>
   firebase.auth().signOut();
 
-
-// Función del usuario conectado, caputra sus datos y los manda al perfil
-export const callDoc = () => {
-  const user = firebase.auth().currentUser;
-  return firebase.firestore().collection('users').where('userId', '==', user.uId)
+export const callDoc = (callback) => { 
+    const user =  firebase.auth().currentUser;
+    console.log(user);
+    return firebase.firestore().collection('users').where('userId', '==', user.uid)
     .get()
     .then((querySnapshot) => {
-      let userInfo = {};
+    let userInfo = {};
       querySnapshot.forEach((doc) => {
-        userInfo = {
-          id: doc.id,
-          ...doc.data()
-        };
-      });
-      return userInfo;
+      userInfo = {
+        id: doc.id,
+        ...doc.data()
+      };
+      console.log(userInfo)
+
     });
+      //return userInfo;
+callback(userInfo);
+});
 };
 
-// Función para saber si el usuario está loggeado
-export const userLogged = () => firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // Usuario está loggeado
-
-
-    // const displayName = user.displayName;
-    // const emailVerified = user.emailVerified;
-    // const photoURL = user.photoURL;
-    // const isAnonymous = user.isAnonymous;
-    // const uid = user.uid;
-    // const providerData = user.providerData;
-    window.location.hash = '#/perfil'
-    const user = firebase.auth().currentUser;
-    if (user !== null) {
-      const emailUser = user.email;
-      console.log(emailUser);
+export const userLogged = () => 
+  firebase.auth().onAuthStateChanged((user) => {
+    if(user) {
+      window.location.hash='#/perfil';
+      const user =firebase.auth().currentUser;
+      if(user !== null) {
+        const emailUser = user.email;
+        console.log(emailUser);
+      }
     }
-  } else {
-    // Usuario ha cerrado sesión
-  }
+    else {
+      //usuariocerrasesion
+    }
+  })
+
+/*// funcion para eliminar post
+const firestore = firebase.firestore();
+firestore.collection("users").doc("id").delete()
+.then(() => {
+    console.log("Document successfully deleted!");
+})
+.catch((error) => {
+    console.error("Error removing document: ", error);
 });
+
+// funcion para editar post
+
+const washingtonRef = firestore.collection("users").doc("id");
+
+return washingtonRef.update({
+    capital: true
+})
+.then(function() {
+    console.log("Document successfully updated!");
+})
+.catch(function(error) {
+    // The document probably doesn't exist.
+    console.error("Error updating document: ", error);
+});*/

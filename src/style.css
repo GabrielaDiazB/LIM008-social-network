@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-
 header{
     background:black;
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     background:#00A3A5;
+    box-shadow: 0 4px 6px 0 rgba(7, 7, 7, 0.24), 0 5px 7px 0 rgba(0,0,0,0.19);
 }  
 
 .logo-img{
@@ -21,8 +21,8 @@ header{
 .icon-header{
     margin-right: 25px;
     float: right;
-    width: 30px;
-    height: 30px;;
+    width: 40px;
+    height: 40px;;
 }
 
 body{
@@ -31,25 +31,26 @@ body{
 
 footer{
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     position: fixed;
     top: 0;
     z-index: 1000;
     display: flex;
+    margin-left: 300px;
 }
 
 .icon-footer{
-    width: 30px;
-    height: 30px;
-    padding: 0px 0px 0px 20px;
+    width: 40px;
+    height: 40px;
+    margin-right: 50px;
 }
 
 @media screen and (max-width: 500px) { 
     .footer{
         width: 100%;
         background: #dfe2e7;
-        padding: 10px;
         line-height: 10px;
+        padding: 10px;
         position: fixed;
         bottom: 0;
         left: 0;
@@ -57,7 +58,7 @@ footer{
         z-index: 1000;
     }
     .icon-footer{
-    padding: 0px 20px 0px 20px;   
+    padding: 0px 10px 0px 10px;   
     }
 }
 
@@ -84,8 +85,12 @@ footer{
         text-align: center;
 
     }
+    .logo-img{
+        width: 50px;
+        height: 50px;;
+    }
     
-    .email, .password, .user-name{
+    .email, .password, .user-name, .information{
         display: block;
         border: none;
         border-bottom: 1px solid black;
@@ -94,9 +99,8 @@ footer{
         width: 80%;
         font-size: 15px;
         outline-color: #00A3A5;
-        
     }
-    .email:hover, .password:hover, .user-name:hover{
+    .email:hover, .password:hover, .user-name:hover, .information:hover{
         border-bottom:1px solid red;
     }
 
@@ -154,7 +158,42 @@ footer{
     }
     .signup-question:hover{
         color: #00A3A5;
-    }
+    }  
+.container{
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;  
+}
+.ft{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    margin: 10px auto;
+    display: block;
+    background: #283f68;
+    border: solid rgba(240, 239, 237, 0.7) 5px;
+}
+.container-information{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15pt;
+}
+.info{
+display:block;
+margin-top: 20px;
+}
+.table{
+    margin-top: 30px;
+}
+.table td{
+    padding: 0px 15px 0px 15px;
+}
+hr{
+    width: 1000px;
+    padding: 1px;
+    background: #009698;
+}
 
     /* Sección de posts */
     .text-align{
