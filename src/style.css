@@ -1,65 +1,56 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-
 header{
     background:black;
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     background:#00A3A5;
+    box-shadow: 0 4px 6px 0 rgba(7, 7, 7, 0.24), 0 5px 7px 0 rgba(0,0,0,0.19);
 }  
 
-label{
+.logo-img{
     float: left;
-}
-
-.background {
-    position: absolute;
-}
+    width: 25px;
+    height: auto;
+} 
 
 .icon-header{
     margin-right: 25px;
     float: right;
-    width: 30px;
-    height: 30px;;
+    width: 40px;
+    height: 40px;;
 }
 
-#post-container {
-    position: absolute;
-    top:50%;
-    background-color: #F2F2F2;
+body{
+    background-color:rgba(182, 239, 239, 0.3);
 }
 
 footer{
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     position: fixed;
     top: 0;
     z-index: 1000;
     display: flex;
+    margin-right: 50px;
 }
 
 .icon-footer{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+    margin-right: 50px;
 }
 
-@media screen and (max-width: 700px) { 
-    .background {
-        width:100%;
-        height: 100%;
-        z-index: inherit 0;
-        position: absolute;
-    }
-
+@media screen and (max-width: 500px) { 
     .footer{
         width: 100%;
         background: #dfe2e7;
-        padding: 10px;
         line-height: 10px;
+        padding: 10px;
         position: fixed;
         bottom: 0;
         left: 0;
@@ -67,69 +58,52 @@ footer{
         z-index: 1000;
     }
     .icon-footer{
-    padding: 0px 20px 0px 20px;
-        
+    padding: 0px 10px 0px 10px;   
     }
 }
 
-p {
-    font-family: Roboto;
-    font-size: 20px;
-}
-
-@media screen and (min-width: 320px) { 
+@media screen and (min-width: 300px) { 
     body{
         display: flex;
-        text-align: center;
         justify-content: center;
         font-family: 'Roboto', sans-serif;
     }
     .log-container {
-        width: 70%;
-        z-index: 100;
-        background-color: #F2F2F2;
+        background-color: rgba(222, 246, 246, 0.6);
         padding: 10px;
         border-radius: 5px;
         margin:80px auto;
     }
-   
-    #post-container {
-        width:75%;
-        border-radius: 6px;
+
+    .logoname-img{
+        width: 230px;
+        text-align: center;
     }
 
-    .email, .password{
+    .logotipo{
+        color:#00A3A5;
+        text-align: center;
+
+    }
+    .logo-img{
+        width: 50px;
+        height: 50px;;
+    }
+    
+    .email, .password, .user-name, .information{
+        display: block;
         border: none;
         border-bottom: 1px solid black;
-        padding: 5% 12%;
-        margin-top: 5px;
+        padding: 10px 20px;
+        margin: 5px auto;
+        width: 80%;
         font-size: 15px;
         outline-color: #00A3A5;
     }
-    .email:hover, .password:hover{
+    .email:hover, .password:hover, .user-name:hover{
         border-bottom:1px solid red;
     }
 
-    .edit, .delete {
-        font-family: Roboto;
-        font-size: 17px;
-        color:white;
-        background-color:#00A3A5;
-        border: none;
-    }
-
-    .edit:hover, .delete:hover {
-        background-color: #007D7E;
-    }
-
-    .edit-icon, .error-icon {
-        width:17px;
-        height: 17px;
-    }
-
-    h2 {
-        font-size: 18px;
-    }
     .fa {
         padding: 5px;
         font-size: 30px;
@@ -147,9 +121,12 @@ p {
         background: #dd4b39;
         color: white;
     }
+    .fa-twitter{
+        background: rgb(110, 194, 250);
+        color:white;
+    }
 
-    .sign-up-btn, .login-btn, 
-    .go-back-btn, .submit {
+    .sign-up-btn, .login-btn{
         border-radius: 5px;
         width: 100%;
         padding: 10px 20px;
@@ -161,8 +138,8 @@ p {
         outline: none;
         cursor: pointer;
     }
-    .sign-up-btn, .go-back-btn,
-    .submit {
+
+    .sign-up-btn{
         background-color: #009698;
     }
     .login-btn{
@@ -177,10 +154,141 @@ p {
 
     .signup-question{
         cursor: pointer;
+        text-align: center;
     }
     .signup-question:hover{
         color: #00A3A5;
-    }  
+    }
+
+    /* Sección de posts */
+    .text-align{
+        text-align: center;
+    }
+
+    .activity-filter{
+        margin: 5px;
+    }
+    .privacy-filter{
+        margin: 5px;
+    }
+
+    .post-container{
+        background-color: rgba(182, 239, 239, 0.3);
+        width: 100%;
+        height: 30%;
+        margin: 10% 0% 2%;
+        border-radius: 8px;
+        padding: 5px 0;
+        font-family: 'Roboto', sans-serif;
+        color: #282828;
+        box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 3px 5px 0 rgba(0,0,0,0.19);
+    }
+
+    .post-container h1{
+        margin: 0 0 20px 0;
+    }
+
+    .fa-arrow-left{
+        padding: 0 0 0 5px;
+        margin: 0;
+        width: 15px;
+    }
+
+    .text-area{
+        width: 96%;
+        resize: none;
+        font-size: 15px;
+        border: none;
+        text-align: justify;
+        padding: 0;
+        margin: 1% 2%;
+        outline: 2px solid #007D7E;
+    }
+
+    .post{
+        font-size: 15px;
+        border-radius: 5px;
+        width: 150px;
+        padding: 10px 20px;
+        margin: 10px 5px 5px 0;
+        color:white;
+        background-color: #009698;
+        border: none;
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 5px 7px 0 rgba(0,0,0,0.19);
+        transition-duration:0.4s;
+        outline: none;
+        cursor: pointer;
+        float: right;
+    }
+    .post:hover{
+        background-color: #007D7E;
+    }
+    .post:active{
+        transform: translateY(3px);
+    }
+    /* Post Publicado */
+    .img-icon-post{
+        width: 25px;
+        height: auto;
+        padding: 0 5px;
+        cursor: pointer;
+    }
+    .img-icon-post:hover{
+        opacity: 0.8;
+    }
+
+    .fa-unlock, .fa-lock{
+        width:25px;
+        margin:0;
+        cursor: auto;
+    }
+    .user-box{
+        width:75%;
+        height: 75px;
+        display: flex; 
+        align-content: center;    
+    }
+    .user-pic{
+        width: 70px;
+        height: 70px;
+        padding: 0 15px 0 5px;
+        margin: 0;
+    }
+    .user-name-post{
+        font-size: 30px;
+        height: 35px;
+        padding: 0 0 0 10px;
+        align-content: center;
+    }
+    .settings-box, .interact-box{
+        float: right;
+    }
+    .settings-box{
+        width: 80px;
+    }
+    .privacy-box{
+        float: left;
+    }
+    .click-counter-favorites, .click-counter-likes{
+        font-size: 20px;
+        width: 5px;
+        margin: 0;
+    }
+    .click-counter-favorites{
+        color: gold;
+    }
+    .click-counter-likes{
+        color: red;
+    }
+    /* Sección de perfil */
+    .ft {
+        width: 70%;
+        height: 30%;
+        margin: 2% 15% ;
+    }
 }
+
+
+
 
 
