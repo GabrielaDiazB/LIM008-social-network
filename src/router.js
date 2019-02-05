@@ -1,5 +1,4 @@
 import templatesLogin from './templates/template-login.js';
-
 const viewTmp = (routers) => {
   let router;
   if (routers) { 
@@ -8,7 +7,6 @@ const viewTmp = (routers) => {
   //   return router = 'signIn';
   } else {
     router = 'perfil';
-    router = 'welcome';
     router = 'register';
     router = 'signIn';
   }

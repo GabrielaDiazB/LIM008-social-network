@@ -1,13 +1,20 @@
 import { 
   checkInOnSubmit,
   signInOnSubmit,
-  logOutOnSubmit } from '../view-controller.js';
+  logOutOnSubmit,
+callDocSubmit} from '../view-controller.js';
 import {
   registerFacebookLogIn,
   registerGoogleLogIn,
-  registerTwitterLogIn
+  registerTwitterLogIn,
+  
 } from '../controller-function/function-firebase.js';
-    
+
+const gg = document.getElementById('header-container')
+gg.addEventListener('click', () => {
+logOutOnSubmit();
+})
+
 const templatesLogin = {   
   signIn: () => { 
     const templateSignIn = `
@@ -34,6 +41,7 @@ const templatesLogin = {
     const btnSignIn = divElem.querySelector('#sign-in')
     btnSignIn.addEventListener('click', () => {
       signInOnSubmit();
+      callDocSubmit();
     });
 
     const btnFacebook = divElem.querySelector('#facebook-login')
@@ -80,37 +88,9 @@ const templatesLogin = {
     return divElem;
   },
 
-  welcome: () => {
-    const templateWelcome = `
-    <header>
-         <nav>
-            <img src="./logo/Logo2.png" alt="logowhite" class="logo-img">
-            <a href="#/signIn"><img src="aicon/exit-1.png" id="sign-out" class ="icon-header" alt=""></a>
-         </nav>
-      </header>
-
-    <footer id="footer-container">
-        <nav>
-          <div class="footer">
-            <a href="#/"><img src="aicon/home.png" class ="icon-footer" alt=""></a>
-            <a href="#"><img src="aicon/search.png" class ="icon-footer" alt=""></a>
-            <a href="#"><img src="aicon/add-3.png" class ="icon-footer" alt=""></a>
-            <a href="#/perfil"><img src="aicon/users-1.png" class ="icon-footer" alt=""></a>
-          </div>
-        </nav>
-      </footer>`;
-    const divElem = document.createElement('div');
-    divElem.innerHTML = templateWelcome;
-
-    const btnLogOut = divElem.querySelector('#sign-out');
-    btnLogOut.addEventListener('click', () => { 
-      logOutOnSubmit();              
-    });
-    return divElem; 
-  },
-
-  perfil: () => {
+  perfil : () => {
     const templatePerfil = `
+    
       <div class="container">
          <div class="container-perfil">
          <div class="ft-perfil">
@@ -120,7 +100,6 @@ const templatesLogin = {
          <div class="container-information"> 
          <div class="information">
          <span class="name">mali</span>
-         <button id="editar-perfil" class="editar-perfil">Editar perfil</button>
          <span class="info">fronted-developer</span>
          </div>
          <div class = "table"> 
@@ -135,8 +114,7 @@ const templatesLogin = {
                      <td>Following</td>
                      <td>Followers</td>
                  </tr>
-             </table>
-             
+             </table>    
          </div>        
          </div>
          </div>
@@ -144,14 +122,7 @@ const templatesLogin = {
     const divElem = document.createElement('div');
     divElem.setAttribute('class', 'perfil-container');
     divElem.innerHTML = templatePerfil;
-
-    const editarPerfil = divElem.querySelector('#editar-perfil');
-    editarPerfil.addEventListener('click', () => { 
-    });
     return divElem; 
-  },
+  }
 };
-
-
 export default templatesLogin;
-

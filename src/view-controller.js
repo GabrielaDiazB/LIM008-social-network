@@ -1,4 +1,4 @@
-import {checkInFunction, singInFunction, logOut} from './controller-function/function-firebase.js';
+import {checkInFunction, singInFunction, logOut, callDoc} from './controller-function/function-firebase.js';
 
 export const checkInOnSubmit = () => { 
   const name = document.querySelector('#user-name').value;
@@ -17,17 +17,16 @@ export const checkInOnSubmit = () => {
     password: passwordRef,
     email: emailRef,
   };
-  checkInFunction(email, password);
-  users.add(data)
-    .then(() => { 
-      window.location.hash = '#/signIn';
-    })
-    .catch((err) => {
-      console.error(err);
+  checkInFunction(email, password)
+    .then(() => {
+      data.userId = firebase.auth().currentUser.uid;
+      users.add(data)
+      window.location.hash = '#/signIn'
+        .catch(() => {});
     });
 };
 
-export const signInOnSubmit = () => {
+export const signInOnSubmit = () => { 
   const userEmail = document.querySelector('#email-si').value;
   const userPassword = document.querySelector('#password-si').value;
   singInFunction(userEmail, userPassword)
@@ -37,14 +36,21 @@ export const signInOnSubmit = () => {
     .catch((error) => {
       alert(error);
     });
-};
+  };
 
 
 export const logOutOnSubmit = () => { 
+  document.getElementById('header-container').style.display='none';
+  document.getElementById('footer-container').style.display='none';
   logOut()
     .then(() => { 
       window.location.hash = '#/signIn';
     })
     .catch(() => {});
 };
-  
+
+
+export const callDocSubmit= () => {
+  callDoc();
+} 
+

@@ -8,9 +8,11 @@ const config = {
 };
 firebase.initializeApp(config);
 
+
 import { changeTmp } from './router.js';
 
 window.addEventListener('load', () => { 
   changeTmp(window.location.hash);
   if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash)
 });
+
