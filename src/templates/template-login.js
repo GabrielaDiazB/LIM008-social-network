@@ -1,20 +1,22 @@
 import { 
   checkInOnSubmit,
   signInOnSubmit,
-} from '../view-controller.js';
+  logOutOnSubmit} from '../view-controller.js';
 import {
   registerFacebookLogIn,
   registerGoogleLogIn,
-  registerTwitterLogIn,
-userLogged } from '../controller-function/function-firebase.js';
+  userLogged } from '../controller-function/function-firebase.js';
 
 import { templateBarraNav } from './template-sections.js';
+
+import {
+  addPostOnSubmit,
+} from '../controller-function/wall.js';
 
 export const signIn = () => {
   const templateSignIn = `
   ${templateBarraNav}
-
-      <img src="./logo/Nombre.png" alt="logo" class="logoname-img">
+`  <img src="./logo/Nombre.png" alt="logo" class="logoname-img">
       <div id="signin-container" class="signin-container">
         <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
         <div id="sign-in-box" class="container-login">
@@ -69,7 +71,6 @@ export  const register = () => {
       <form>
       <h2>Regístrate</h2>  
       <input id="user-name" class="user-name" type="text" placeholder="Nombre">
-      <input id="information" class="information" type="text" placeholder="Escribe algo sobre ti...">
       <input id="email" class="email" type="email" placeholder="E-mail">
       <input id="password" class="password" type="password" placeholder="Contraseña">
       <button id="sign-up" class="sign-up-btn">Crear Cuenta</button>
@@ -81,6 +82,7 @@ export  const register = () => {
     const btnRegister = divElem.querySelector('#sign-up');
     btnRegister.addEventListener('click', () => {
       checkInOnSubmit();
+      window.location.hash = '#/writingPost';
     });
     return divElem;
 };
@@ -148,6 +150,7 @@ export const writingPost = () => { `
 
     const postingPost = post.querySelector('.post');
     postingPost.addEventListener('click', () => {
+      addPostOnSubmit();
       window.location.hash = '#/wallPost';
     });
     return post;

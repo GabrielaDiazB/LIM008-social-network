@@ -1,18 +1,18 @@
 // Función para poder Registrar una Cuenta Nueva
-export const checkInFunction = (email, password) => 
+export const checkInFunction = (email, password) =>
   firebase.auth().createUserWithEmailAndPassword(email, password)
-  .catch(function(error) {
+    .catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode);
       console.log(errorMessage);
-  });  
+    });
 
 // Función para Iniciar Sesión
-export const singInFunction = (userEmail, userPassword) => 
+export const singInFunction = (userEmail, userPassword) =>
   firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
-    .catch(function(error) {
+    .catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -67,14 +67,12 @@ export const registerTwitterLogIn = () => {
   firebase.auth().signInWithPopup(provider)
     .then(() => {
       window.location.hash = '#/perfil';
-    }).catch(() => {});
+    }).catch(() => { });
 };
 
 // Función para Cerrar Sesión
-export const logOut = () => 
+export const logOut = () =>
   firebase.auth().signOut();
-
-
 
 export const callDoc = (callback) => { 
     const user =  firebase.auth().currentUser;
