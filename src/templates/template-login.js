@@ -92,9 +92,9 @@ const templatesLogin = {
     <footer id="footer-container">
         <nav>
           <div class="footer">
-            <a href="#/"><img src="aicon/home.png" class ="icon-footer" alt=""></a>
+            <a href="#/wallPost"><img src="aicon/home.png" class ="icon-footer" alt=""></a>
             <a href="#"><img src="aicon/search.png" class ="icon-footer" alt=""></a>
-            <a href="#"><img src="aicon/add-3.png" class ="icon-footer" alt=""></a>
+            <a href="#/writingPost"><img src="aicon/add-3.png" class ="icon-footer" alt=""></a>
             <a href="#/perfil"><img src="aicon/users-1.png" class ="icon-footer" alt=""></a>
           </div>
         </nav>
@@ -151,8 +151,8 @@ const templatesLogin = {
     return divElem; 
   },
 
-  writePost: () => {
-    const templateWritePost = `
+  writingPost: () => {
+    const templateWritingPost = `
       <div class="post-container">
         <i class="fa fa-arrow-left"></i>
         <h1 class="text-align">¿Qué Recomiendas?</h1>
@@ -173,6 +173,14 @@ const templatesLogin = {
           <button class="post">Publicar</button>
         </form>      
       </div>`;
+    const post = document.createElement('div');
+    post.innerHTML = templateWritingPost;
+
+    const postingPost = post.querySelector('.post');
+    postingPost.addEventListener('click', () => {
+      window.location.hash = '#/wallPost';
+    })
+    return post;
   },
 
   wallPost: () => {
@@ -199,6 +207,10 @@ const templatesLogin = {
           <img  src="./aicon/star-1.png" alt="" class="img-icon-post">
         </div>       
       </div>`;
+
+    const wallPost = document.createElement('div');
+    wallPost.innerHTML = templatePost;
+    return wallPost;
   },
 };
 export default templatesLogin;
