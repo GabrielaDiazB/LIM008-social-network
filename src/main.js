@@ -1,16 +1,17 @@
-const config = {
-  apiKey: 'AIzaSyD4hC2dSxbuFkLy3bux0-zw3XzMEqTO91Y',
-  authDomain: 'redsocial-npng.firebaseapp.com',
-  databaseURL: 'https://redsocial-npng.firebaseio.com',
-  projectId: 'redsocial-npng',
-  storageBucket: 'redsocial-npng.appspot.com',
-  messagingSenderId: '731862420435'
+import { routerRed } from './router.js';
+const init = () => { 
+  const config = {
+    apiKey: 'AIzaSyD4hC2dSxbuFkLy3bux0-zw3XzMEqTO91Y',
+    authDomain: 'redsocial-npng.firebaseapp.com',
+    databaseURL: 'https://redsocial-npng.firebaseio.com',
+    projectId: 'redsocial-npng',
+    storageBucket: 'redsocial-npng.appspot.com',
+    messagingSenderId: '731862420435'
+  };
+
+  firebase.initializeApp(config);
+
+  routerRed();
 };
-firebase.initializeApp(config);
+window.onload = init();
 
-import { changeTmp } from './router.js';
-
-window.addEventListener('load', () => { 
-  changeTmp(window.location.hash);
-  if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash)
-});

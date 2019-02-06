@@ -76,9 +76,9 @@ export const logOut = () =>
 
 
 // Función del usuario conectado, captura sus datos y los manda al perfil
-export const callDoc = () => {
+export const callDoc = (callback) => {
   const user = firebase.auth().currentUser;
-  return firebase.firestore().collection('users').where('userId', '==', user.uId)
+  return firebase.firestore().collection('users').where('userId', '==', user.uid)
     .get()
     .then((querySnapshot) => {
       let userInfo = {};
@@ -87,8 +87,11 @@ export const callDoc = () => {
           id: doc.id,
           ...doc.data()
         };
+        console.log(userInfo);
+
       });
-      return userInfo;
+      // return userInfo;
+      callback(userInfo);
     });
 };
 
@@ -110,7 +113,33 @@ export const userLogged = () => firebase.auth().onAuthStateChanged(function(user
       const emailUser = user.email;
       console.log(emailUser);
     }
-  } else {
-    // Usuario ha cerrado sesión
+    else {
+      // usuario cerró sesion
+    }
   }
-});
+})
+
+// // funcion para eliminar post
+// const firestore = firebase.firestore();
+// firestore.collection("users").doc("id").delete()
+// .then(() => {
+//     console.log("Document successfully deleted!");
+// })
+// .catch((error) => {
+//     console.error("Error removing document: ", error);
+// });
+
+// // funcion para editar post
+
+// const washingtonRef = firestore.collection("users").doc("id");
+
+// return washingtonRef.update({
+//     capital: true
+// })
+// .then(function() {
+//     console.log("Document successfully updated!");
+// })
+// .catch(function(error) {
+//     // The document probably doesn't exist.
+//     console.error("Error updating document: ", error);
+// })
