@@ -2,9 +2,7 @@
 export const templateBarraNav = 
   `<header id="header-container">
         <img src="./logo/Logo2.png" alt="logowhite" class="logo-img">
-        <form>
-        <input type="image" src="aicon/exit-1.png" id="sign-out" class="sign-out-btn"></input>
-        </form>
+        <button id="log-out-btn" class="log-out-btn"><img src="aicon/exit-1.png" id="sign-out" class ="icon-header" alt=""></button>
    </header>
    <footer id="footer-container">
       <nav>

@@ -13,6 +13,5 @@ const init = () => {
 
   routerRed();
 };
-
 window.onload = init();
 

@@ -1,22 +1,21 @@
-import { 
+import {
   checkInOnSubmit,
   signInOnSubmit,
-  logOutOnSubmit} from '../view-controller.js';
+  addPostOnSubmit,
+  logOutOnSubmit
+} from '../view-controller.js';
+
 import {
   registerFacebookLogIn,
   registerGoogleLogIn,
-  userLogged } from '../controller-function/function-firebase.js';
+  userLogged,
+} from '../controller-function/function-firebase.js';
 
 import { templateBarraNav } from './template-sections.js';
 
-import {
-  addPostOnSubmit,
-} from '../controller-function/wall.js';
-
 export const signIn = () => {
   const templateSignIn = `
-  ${templateBarraNav}
-      <img src="./logo/Nombre.png" alt="logo" class="logoname-img">
+  <img src="./logo/Nombre.png" alt="logo" class="logoname-img">
       <div id="signin-container" class="signin-container">
         <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
         <div id="sign-in-box" class="container-login">
@@ -34,68 +33,61 @@ export const signIn = () => {
           <h4 id="signup-question" class="signup-question">¿No tienes una cuenta?</h4>
         </div>
       </div>`;
-    const divElem = document.createElement('div');
-    divElem.innerHTML = templateSignIn;
-    const btnSignIn = divElem.querySelector('#sign-in')
-    btnSignIn.addEventListener('click', () => {
-      userLogged();
-      signInOnSubmit();
-    });
+  const divElem = document.createElement('div');
+  divElem.innerHTML = templateSignIn;
+  const btnSignIn = divElem.querySelector('#sign-in')
+  btnSignIn.addEventListener('click', () => {
+    userLogged();
+    signInOnSubmit();
+  });
 
-    const btnFacebook = divElem.querySelector('#facebook-login')
-    btnFacebook.addEventListener('click', () => {
-      registerFacebookLogIn();
-    });
+  const btnFacebook = divElem.querySelector('#facebook-login')
+  btnFacebook.addEventListener('click', () => {
+    registerFacebookLogIn();
+  });
 
-    const btnGoogle = divElem.querySelector('#google-login')
-    btnGoogle.addEventListener('click', () => {
-      registerGoogleLogIn();
-    });
+  const btnGoogle = divElem.querySelector('#google-login')
+  btnGoogle.addEventListener('click', () => {
+    registerGoogleLogIn();
+  });
 
-    const btnTwitter = divElem.querySelector('#twitter-login')
-    btnTwitter.addEventListener('click', () => { 
-      registerTwitterLogIn();
-    });
+  const btnTwitter = divElem.querySelector('#twitter-login')
+  btnTwitter.addEventListener('click', () => {
+    registerTwitterLogIn();
+  });
 
-    const btnQuestion = divElem.querySelector('#signup-question')
-    btnQuestion.addEventListener('click', () => {               
-      window.location.hash = '#/register';
-    });
-
-    const btn= divElem.querySelector('#sign-out');
-    btn.addEventListener('click', () => { 
-   logOutOnSubmit();
-     });
-
-
-    return divElem;
+  const btnQuestion = divElem.querySelector('#signup-question')
+  btnQuestion.addEventListener('click', () => {
+    window.location.hash = '#/register';
+  });
+  return divElem;
 };
 
-export  const register = () => {
+export const register = () => {
 
   const templateRegister = `
       <div class="signup-container" id="sign-up-box">
-      <form>
-      <h2>Regístrate</h2>  
-      <input id="user-name" class="user-name" type="text" placeholder="Nombre">
-      <input id="email" class="email" type="email" placeholder="E-mail">
-      <input id="password" class="password" type="password" placeholder="Contraseña">
-      <button id="sign-up" class="sign-up-btn">Crear Cuenta</button>
-      </form>
+          <form>
+          <h2>Regístrate</h2>  
+          <input id="user-name" class="user-name" type="text" placeholder="Nombre">
+          <input id="information" class="information" type="text" placeholder="Cuéntanos tus Hobbies">
+          <input id="email" class="email" type="email" placeholder="E-mail">
+          <input id="password" class="password" type="password" placeholder="Contraseña">
+          <button id="sign-up" class="sign-up-btn">Crear Cuenta</button>
+        </form>
      </div>`;
-    const divElem = document.createElement('div');
-    divElem.innerHTML = templateRegister;
+  const divElem = document.createElement('div');
+  divElem.innerHTML = templateRegister;
 
-    const btnRegister = divElem.querySelector('#sign-up');
-    btnRegister.addEventListener('click', () => {
-      checkInOnSubmit();
-      window.location.hash = '#/writingPost';
-    });
-    return divElem;
+  const btnRegister = divElem.querySelector('#sign-up');
+  btnRegister.addEventListener('click', () => {
+    checkInOnSubmit();
+    window.location.hash = '#/writingPost';
+  });
+  return divElem;
 };
 
-
-export const  perfil = (data) => {
+export const perfil = (data) => {
   const templatePerfil = `
   ${templateBarraNav}
       <div class="container">
@@ -124,13 +116,20 @@ export const  perfil = (data) => {
          </div>
          </div>
          <hr>`;
-    const divElem = document.createElement('div');
-    divElem.setAttribute('class', 'perfil-container');
-    divElem.innerHTML = templatePerfil;
-    return divElem; 
+  const divElem = document.createElement('div');
+  divElem.setAttribute('class', 'perfil-container');
+  divElem.innerHTML = templatePerfil;
+
+  const logOutBtn = divElem.querySelector('#log-out-btn');
+  logOutBtn.addEventListener('click', () => {
+    logOutOnSubmit();
+  });
+
+  return divElem;
 };
 
-export const writingPost = () => { `
+export const writingPost = () => {
+  const templateWritingPost = `
     ${templateBarraNav}
       <div class="post-container">
         <i class="fa fa-arrow-left"></i>
@@ -152,18 +151,21 @@ export const writingPost = () => { `
           <button class="post">Publicar</button>
         </form>      
       </div>`;
-    const post = document.createElement('div');
-    post.innerHTML = templateWritingPost;
+  const post = document.createElement('div');
+  post.innerHTML = templateWritingPost;
 
-    const postingPost = post.querySelector('.post');
-    postingPost.addEventListener('click', () => {
-      addPostOnSubmit();
-      window.location.hash = '#/wallPost';
-    });
-    return post;
+  const postingPost = post.querySelector('.post');
+  postingPost.addEventListener('click', () => {
+    addPostOnSubmit();
+    window.location.hash = '#/wallPost';
+
+  
+  });
+  return post;
 };
 
-export const  wallPost = () => { `
+export const wallPost = () => {
+  const templatePost = `
     ${templateBarraNav}
       <div class="post-container">
         <div class="settings-box">
@@ -172,8 +174,8 @@ export const  wallPost = () => { `
         </div>
         <div id="user-box" class="user-box">
               <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
-              <h2 id="user-name" class="user-name-post">Zoila Prima</h2>
-              <h3></h3>
+              <h2 id="user-name" class="user-name-post">ZOILA PRIMA</h2>
+              <h5></h5>
         </div> 
         <textarea id="post-text" class="text-area" cols="25" rows="5" readonly></textarea>
         <div class="privacy-box">
@@ -188,7 +190,7 @@ export const  wallPost = () => { `
         </div>       
       </div>`;
 
-    const wallPost = document.createElement('div');
-    wallPost.innerHTML = templatePost;
-    return wallPost;
+  const divElement = document.createElement('div');
+  divElement.innerHTML = templatePost;
+  return divElement;
 };

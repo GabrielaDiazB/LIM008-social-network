@@ -12,7 +12,7 @@ export const checkInFunction = (email, password) =>
 // Función para Iniciar Sesión
 export const singInFunction = (userEmail, userPassword) =>
   firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
-    .catch(function (error) {
+    .catch(function(error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -70,11 +70,10 @@ export const registerTwitterLogIn = () => {
     }).catch(() => { });
 };
 
-// Función para Cerrar Sesión
-export const logOut = () =>
-  firebase.auth().signOut();
 
-export const callDoc = (callback) => { 
+
+// Función del usuario conectado, captura sus datos y los manda al perfil
+export const callDoc = (callback) => {
   const user = firebase.auth().currentUser;
   console.log(user);
   return firebase.firestore().collection('users').where('userId', '==', user.uid)
@@ -89,47 +88,103 @@ export const callDoc = (callback) => {
         console.log(userInfo);
 
       });
-      //return userInfo;
+      // return userInfo;
       callback(userInfo);
     });
 };
 
-export const userLogged = () => 
-  firebase.auth().onAuthStateChanged((user) => {
-    if(user) {
-      window.location.hash='#/perfil';
-      const user =firebase.auth().currentUser;
-      if(user !== null) {
-        const emailUser = user.email;
-        console.log(emailUser);
-      }
+// Función para saber si el usuario está loggeado
+export const userLogged = () => {
+  firebase.auth().onAuthStateChanged(function(user){ 
+  if (user) {
+    // Usuario está loggeado
+    // const displayName = user.displayName;
+    // const emailVerified = user.emailVerified;
+    // const photoURL = user.photoURL;
+    // const isAnonymous = user.isAnonymous;
+    // const uid = user.uid;
+    // const providerData = user.providerData;
+    window.location.hash = '#/perfil';
+    const user = firebase.auth().currentUser;
+    if (user !== null) {
+      const emailUser = user.email;
+      console.log(emailUser);
     }
     else {
-      //usuariocerrasesion
+      // usuario cerró sesion
     }
+  }
   });
+}
 
-/*// funcion para eliminar post
-const firestore = firebase.firestore();
+export const logOut = () =>
+firebase.auth().signOut();
+
+// funcion para eliminar post
+/*const firestore = firebase.firestore();
 firestore.collection("users").doc("id").delete()
 .then(() => {
     console.log("Document successfully deleted!");
 })
 .catch((error) => {
     console.error("Error removing document: ", error);
-});
-
-// funcion para editar post
-
-const washingtonRef = firestore.collection("users").doc("id");
-
-return washingtonRef.update({
-    capital: true
-})
-.then(function() {
-    console.log("Document successfully updated!");
-})
-.catch(function(error) {
-    // The document probably doesn't exist.
-    console.error("Error updating document: ", error);
+  }
 });*/
+
+// Guarda el Post en Firestore
+export const getUserPostData = (content) => { 
+  let datePost = firebase.firestore.FieldValue.serverTimestamp();
+  let posts = firebase.firestore().collection('posts');
+  let data = {
+  // name: currentName,
+  // userPhoto: userPhotoLink,
+    date: datePost,
+    content: content,
+  // likes: [],
+  };
+  data.userId = firebase.auth().currentUser.uid;
+  posts.add(data);
+};
+
+// Llevar los datos del post al template
+
+export const getPost = (callback) => { 
+  const user = firebase.auth().currentUser;
+  console.log(user);
+  return firebase.firestore().collection('posts').where('userId', '==', user.uid)
+    .onSnapshot((querySnapshot) => {
+      let data = {};
+      querySnapshot.forEach((doc) => {
+        data = { id: doc.id, ...doc.data()
+        };
+      });   
+      callback(data);
+    });
+};
+
+
+// // funcion para eliminar post
+// const firestore = firebase.firestore();
+// firestore.collection("users").doc("id").delete()
+// .then(() => {
+//     console.log("Document successfully deleted!");
+// })
+// .catch((error) => {
+//     console.error("Error removing document: ", error);
+// });
+
+// // funcion para editar post
+
+// const washingtonRef = firestore.collection("users").doc("id");
+
+// return washingtonRef.update({
+//     capital: true
+// })
+// .then(function() {
+//     console.log("Document successfully updated!");
+// })
+// .catch(function(error) {
+//     // The document probably doesn't exist.
+//     console.error("Error updating document: ", error);
+// })
+

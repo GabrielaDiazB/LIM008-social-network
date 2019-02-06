@@ -18,8 +18,15 @@ header{
     height: auto;
 } 
 
-.sign-out-btn{
+.log-out-btn{
+    background-color: #00A3A5;
+    border: none;
+    float: right;
     margin-right: 25px;
+}
+
+.icon-header{
+    margin:0;
     float: right;
     width: 40px;
     height: 40px;
@@ -74,17 +81,15 @@ footer{
         padding: 10px;
         border-radius: 5px;
         margin:80px auto;
+        text-align: center;
     }
 
     .logoname-img{
         width: 230px;
-        text-align: center;
     }
 
     .logotipo{
         color:#00A3A5;
-        text-align: center;
-
     }
     .logo-img{
         width: 50px;
@@ -184,8 +189,8 @@ footer{
     font-size: 15pt;
 }
 .info{
-display:block;
-margin-top: 20px;
+    display:block;
+    margin-top: 20px;
 }
 .table{
     margin-top: 30px;
