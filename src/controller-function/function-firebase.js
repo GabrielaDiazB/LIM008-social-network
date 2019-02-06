@@ -70,14 +70,10 @@ export const registerTwitterLogIn = () => {
     }).catch(() => { });
 };
 
-// Función para Cerrar Sesión
-export const logOut = () =>
-  firebase.auth().signOut();
-
-
 // Función del usuario conectado, captura sus datos y los manda al perfil
 export const callDoc = (callback) => {
   const user = firebase.auth().currentUser;
+  console.log(user);
   return firebase.firestore().collection('users').where('userId', '==', user.uid)
     .get()
     .then((querySnapshot) => {
@@ -117,7 +113,39 @@ export const userLogged = () => firebase.auth().onAuthStateChanged(function(user
       // usuario cerró sesion
     }
   }
-})
+});
+
+// Guarda el Post en Firestore
+export const getUserPostData = (content) => { 
+  let datePost = firebase.firestore.FieldValue.serverTimestamp();
+  let posts = firebase.firestore().collection('posts');
+  let data = {
+  // name: currentName,
+  // userPhoto: userPhotoLink,
+    date: datePost,
+    content: content,
+  // likes: [],
+  };
+  data.userId = firebase.auth().currentUser.uid;
+  posts.add(data);
+};
+
+// Llevar los datos del post al template
+
+export const getPost = (callback) => { 
+  const user = firebase.auth().currentUser;
+  console.log(user);
+  return firebase.firestore().collection('posts').where('userId', '==', user.uid)
+    .onSnapshot((querySnapshot) => {
+      let data = {};
+      querySnapshot.forEach((doc) => {
+        data = { id: doc.id, ...doc.data()
+        };
+      });   
+      callback(data);
+    });
+};
+
 
 // // funcion para eliminar post
 // const firestore = firebase.firestore();
@@ -143,3 +171,6 @@ export const userLogged = () => firebase.auth().onAuthStateChanged(function(user
 //     // The document probably doesn't exist.
 //     console.error("Error updating document: ", error);
 // })
+// Función para Cerrar Sesión
+export const logOut = () =>
+  firebase.auth().signOut();

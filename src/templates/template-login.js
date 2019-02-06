@@ -1,19 +1,17 @@
 import {
   checkInOnSubmit,
   signInOnSubmit,
+  addPostOnSubmit,
+  logOutOnSubmit
 } from '../view-controller.js';
+
 import {
   registerFacebookLogIn,
   registerGoogleLogIn,
-  userLogged
+  userLogged,
 } from '../controller-function/function-firebase.js';
 
 import { templateBarraNav } from './template-sections.js';
-
-import {
-  addPostOnSubmit,
-
-} from '../controller-function/wall.js';
 
 export const signIn = () => {
   const templateSignIn = `
@@ -121,11 +119,17 @@ export const perfil = (data) => {
   const divElem = document.createElement('div');
   divElem.setAttribute('class', 'perfil-container');
   divElem.innerHTML = templatePerfil;
+
+  const logOutBtn = divElem.querySelector('#log-out-btn');
+  logOutBtn.addEventListener('click', () => {
+    logOutOnSubmit();
+  });
+
   return divElem;
 };
 
 export const writingPost = () => {
-  `
+  const templateWritingPost = `
     ${templateBarraNav}
       <div class="post-container">
         <i class="fa fa-arrow-left"></i>
@@ -153,13 +157,12 @@ export const writingPost = () => {
   const postingPost = post.querySelector('.post');
   postingPost.addEventListener('click', () => {
     addPostOnSubmit();
-    getPost();
   });
   return post;
 };
 
-export const wallPost = () => {
-  `
+export const wallPost = (dataPost) => {
+  const templatePost = `
     ${templateBarraNav}
       <div class="post-container">
         <div class="settings-box">
@@ -168,10 +171,10 @@ export const wallPost = () => {
         </div>
         <div id="user-box" class="user-box">
               <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
-              <h2 id="user-name" class="user-name-post">Zoila Prima</h2>
-              <h3></h3>
+              <h2 id="user-name" class="user-name-post">ZOILA PRIMA</h2>
+              <h5><${dataPost.date}/h5>
         </div> 
-        <textarea id="post-text" class="text-area" cols="25" rows="5" readonly></textarea>
+        <textarea id="post-text" class="text-area" cols="25" rows="5" readonly>${dataPost.content}</textarea>
         <div class="privacy-box">
           <i class="fa fa-unlock" class="img-icon-post"></i>
           <i class="fa fa-lock" class="img-icon-post"></i>
@@ -184,7 +187,7 @@ export const wallPost = () => {
         </div>       
       </div>`;
 
-  const wallPost = document.createElement('div');
-  wallPost.innerHTML = templatePost;
-  return wallPost;
+  const divElement = document.createElement('div');
+  divElement.innerHTML = templatePost;
+  return divElement;
 };

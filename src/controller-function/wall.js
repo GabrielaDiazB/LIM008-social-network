@@ -3,44 +3,9 @@
 // let currentName;
 
 // Guardando el post en firestore
-const getUserPostData = (content) => { 
-  // Al usar una const db=firebase.firestore aparecía este error:
-  // Firebase: No Firebase App [DEFAULT] has been created - call Firebase App.initializeApp() (app/no-app).
-  let datePost = firebase.firestore.FieldValue.serverTimestamp();
-  let posts = firebase.firestore().collection('posts');
-  let data = {
-  // name: currentName,
-  // userPhoto: userPhotoLink,
-    date: datePost,
-    content: content,
-  // likes: [],
-  };
-  data.userId = firebase.auth().currentUser.uid;
-  posts.add(data);
-};
 
-export const addPostOnSubmit = () => {
-  window.location.hash = '#/wallPost';
-  const contentPost = document.querySelector('#text-area');
-  getUserPostData(contentPost.value)
-    .then(result => {
-      swal('¡Genial!', 'Tu post se subió satisfactoriamente', 'success')
-        .catch(error => {
-          console.error('Error adding document: ', error);
-        });
-    });
-    
-};
 
-export const getPost = (callback) =>
-  firebase.firestore().collection('posts')
-    .onSnapshot((querySnapshot) => {
-      const data = {};
-      querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data() });
-      });
-      callback(data);
-});
+
 
 // Eliminar el post
 const deletePost = (Id) => {

@@ -1,4 +1,4 @@
-import { checkInFunction, singInFunction, logOut } from './controller-function/function-firebase.js';
+import { checkInFunction, singInFunction, logOut, getUserPostData } from './controller-function/function-firebase.js';
 
 export const checkInOnSubmit = () => {
   const name = document.querySelector('#user-name').value;
@@ -37,14 +37,22 @@ export const signInOnSubmit = () => {
     });
 };
 
-
 export const logOutOnSubmit = () => {
-  document.getElementById('header-container').style.display = 'none';
-  document.getElementById('footer-container').style.display = 'none';
   logOut()
     .then(() => {
       window.location.hash = '#/signIn';
     })
     .catch(() => { });
+};
+
+export const addPostOnSubmit = () => {
+  const contentPost = document.querySelector('#text-area');
+  getUserPostData(contentPost.value);
+  window.location.hash = '#/wallPost';
+  // .then((
+  // swal('¡Genial!', 'Tu post se subió satisfactoriamente', 'success'))
+  // .catch((err) => error => {
+  //   console.error('Error adding document: ', error);
+  // })
 };
 
