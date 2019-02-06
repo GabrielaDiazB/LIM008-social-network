@@ -21,8 +21,9 @@ export const checkInOnSubmit = () => {
     .then(() => {
       data.userId = firebase.auth().currentUser.uid;
       users.add(data);
-      window.location.hash = '#/signIn'
-        .catch(() => {});
+      window.location.hash = '#/signIn';
+    })
+    .catch(() => {
     });
 };
 export const signInOnSubmit = () => {
@@ -54,4 +55,3 @@ export const addPostOnSubmit = () => {
   //   console.error('Error adding document: ', error);
   // })
 };
-

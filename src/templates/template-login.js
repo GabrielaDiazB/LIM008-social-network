@@ -156,33 +156,34 @@ export const writingPost = () => {
   const postingPost = post.querySelector('.post');
   postingPost.addEventListener('click', () => {
     addPostOnSubmit();
+    window.location.hash = '#/wallPost';
   });
   return post;
 };
 
-export const wallPost = (dataPost) => {
+export const wallPost = () => {
   const templatePost = `
     ${templateBarraNav}
       <div class="post-container">
         <div class="settings-box">
-          <img src="./Icons/edit.ico" alt="" class="img-icon-post">
-          <img src="./Icons/garbage-2.png" alt="" class="img-icon-post">
+          <img src="./aicon/edit.ico" alt="" class="img-icon-post">
+          <img src="./aicon/garbage-2.png" alt="" class="img-icon-post">
         </div>
         <div id="user-box" class="user-box">
               <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
               <h2 id="user-name" class="user-name-post">ZOILA PRIMA</h2>
-              <h5><${dataPost.date}/h5>
+              <h5></h5>
         </div> 
-        <textarea id="post-text" class="text-area" cols="25" rows="5" readonly>${dataPost.content}</textarea>
+        <textarea id="post-text" class="text-area" cols="25" rows="5" readonly></textarea>
         <div class="privacy-box">
           <i class="fa fa-unlock" class="img-icon-post"></i>
           <i class="fa fa-lock" class="img-icon-post"></i>
         </div>
         <div class="interact-box">
           <label for="" class="click-counter-likes">2</label>
-          <img src="./Icons/like-2.png" alt="" class="img-icon-post">
+          <img src="./aicon/like-2.png" alt="" class="img-icon-post">
           <label for="" class="click-counter-favorites"> 2</label>
-          <img  src="./Icons/star-1.png" alt="" class="img-icon-post">
+          <img  src="./aicon/star-1.png" alt="" class="img-icon-post">
         </div>       
       </div>`;
 

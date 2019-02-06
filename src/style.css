@@ -29,7 +29,8 @@ header{
     margin:0;
     float: right;
     width: 40px;
-    height: 40px;;
+    height: 40px;
+    background:#00A3A5;
 }
 
 body{
@@ -164,6 +165,7 @@ footer{
     .signup-question:hover{
         color: #00A3A5;
     }  
+
 .container{
     width: 100%;
     z-index: 1000;
@@ -214,9 +216,9 @@ hr{
 
     .post-container{
         background-color: rgba(182, 239, 239, 0.3);
-        width: 100%;
-        height: 30%;
-        margin: 10% 0% 2%;
+        width: 800px;
+        height: 235px;
+        margin: 15px 0;
         border-radius: 8px;
         padding: 10px 0;
         font-family: 'Roboto', sans-serif;
@@ -235,9 +237,9 @@ hr{
     }
 
     .text-area{
-        width: 96%;
+        width: 100%;
         resize: none;
-        font-size: 15px;
+        font-size: 20px;
         border: none;
         text-align: justify;
         padding: 0;
@@ -323,12 +325,7 @@ hr{
     .click-counter-likes{
         color: red;
     }
-    /* Sección de perfil */
-    .ft {
-        width: 70%;
-        height: 30%;
-        margin: 2% 15% ;
-    }
+
 }
 
 

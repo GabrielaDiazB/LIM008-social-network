@@ -70,6 +70,7 @@ export const registerTwitterLogIn = () => {
     }).catch(() => { });
 };
 
+
 // Función del usuario conectado, captura sus datos y los manda al perfil
 export const callDoc = (callback) => {
   const user = firebase.auth().currentUser;
@@ -91,27 +92,41 @@ export const callDoc = (callback) => {
 };
 
 // Función para saber si el usuario está loggeado
-export const userLogged = () => firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
+export const userLogged = () => {
+  firebase.auth().onAuthStateChanged(function(user) { 
+    if (user) {
     // Usuario está loggeado
-
-
     // const displayName = user.displayName;
     // const emailVerified = user.emailVerified;
     // const photoURL = user.photoURL;
     // const isAnonymous = user.isAnonymous;
     // const uid = user.uid;
     // const providerData = user.providerData;
-    window.location.hash = '#/perfil';
-    const user = firebase.auth().currentUser;
-    if (user !== null) {
-      const emailUser = user.email;
-      console.log(emailUser);
-    } else {
+      window.location.hash = '#/perfil';
+      const user = firebase.auth().currentUser;
+      if (user !== null) {
+        const emailUser = user.email;
+        console.log(emailUser);
+      } else {
       // usuario cerró sesion
+      }
     }
+  });
+};
+
+export const logOut = () =>
+  firebase.auth().signOut();
+
+// funcion para eliminar post
+/* const firestore = firebase.firestore();
+firestore.collection("users").doc("id").delete()
+.then(() => {
+    console.log("Document successfully deleted!");
+})
+.catch((error) => {
+    console.error("Error removing document: ", error);
   }
-});
+});*/
 
 // Guarda el Post en Firestore
 // let userPhotoLink;
@@ -131,7 +146,6 @@ export const getUserPostData = (content) => {
 };
 
 // Lleva los datos del post al template
-
 export const getPost = (callback) => { 
   const user = firebase.auth().currentUser;
   console.log(user);
@@ -171,6 +185,3 @@ export const getPost = (callback) => {
 //     // The document probably doesn't exist.
 //     console.error("Error updating document: ", error);
 // })
-// Función para Cerrar Sesión
-export const logOut = () =>
-  firebase.auth().signOut();

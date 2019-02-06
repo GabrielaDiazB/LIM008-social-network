@@ -1,25 +1,13 @@
-
-export const getPost = (callback) =>
-  firebase.firestore().collection('posts')
-    .onSnapshot((querySnapshot) => {
-      const data = [];
-      querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data() });
-      });
-      callback(data);
-    }); 
-
 // Eliminar el post
-const deletePost = (Id) => {
+const deletePost = (userId) => {
   swal({
     title: '¿Estas seguro de eliminar la publicación?',
     type: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#ffc107',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Aceptar'
+    confirmButtonText: 'Aceptar',
+    cancelButtonText: 'Cancelar'
   }).then(confirm => {
-    firebase.firestore().collection('posts').doc(Id).delete();
+    firebase.firestore().collection('posts').doc(userId).delete();
   }).catch(element => {
     swal({
       confirmButtonText: 'Aceptar',

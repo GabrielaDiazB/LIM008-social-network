@@ -6,10 +6,7 @@ const changeTmp = (hash) => {
   } else if (hash === '#/signIn' || hash === '#/register' || hash === '#/perfil' || hash === '#/writingPost' || hash === '#/wallPost') {
     return viewTmp(hash);
   } else {
-    router = 'writingPost';
-    router = 'perfil';
-    router = 'register';
-    router = 'signIn';
+    return viewTmp('#/signIn');
   }
 };
 
@@ -49,5 +46,5 @@ const viewTmp = (routers) => {
 export const routerRed = () => {
   window.addEventListener('load',
     changeTmp(window.location.hash));
-  if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash)
+  if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash);
 };
