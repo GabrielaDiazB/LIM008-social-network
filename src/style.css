@@ -18,8 +18,15 @@ header{
     height: auto;
 } 
 
-.icon-header{
+.log-out-btn{
+    background-color: #00A3A5;
+    border: none;
+    float: right;
     margin-right: 25px;
+}
+
+.icon-header{
+    margin:0;
     float: right;
     width: 40px;
     height: 40px;;
@@ -36,7 +43,7 @@ footer{
     top: 0;
     z-index: 1000;
     display: flex;
-    margin-right: 50px;
+    margin-left: 300px;
 }
 
 .icon-footer{
@@ -73,17 +80,15 @@ footer{
         padding: 10px;
         border-radius: 5px;
         margin:80px auto;
+        text-align: center;
     }
 
     .logoname-img{
         width: 230px;
-        text-align: center;
     }
 
     .logotipo{
         color:#00A3A5;
-        text-align: center;
-
     }
     .logo-img{
         width: 50px;
@@ -100,7 +105,7 @@ footer{
         font-size: 15px;
         outline-color: #00A3A5;
     }
-    .email:hover, .password:hover, .user-name:hover{
+    .email:hover, .password:hover, .user-name:hover, .information:hover{
         border-bottom:1px solid red;
     }
 
@@ -158,7 +163,42 @@ footer{
     }
     .signup-question:hover{
         color: #00A3A5;
-    }
+    }  
+.container{
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;  
+}
+.ft{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    margin: 10px auto;
+    display: block;
+    background: #283f68;
+    border: solid rgba(240, 239, 237, 0.7) 5px;
+}
+.container-information{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15pt;
+}
+.info{
+    display:block;
+    margin-top: 20px;
+}
+.table{
+    margin-top: 30px;
+}
+.table td{
+    padding: 0px 15px 0px 15px;
+}
+hr{
+    width: 1000px;
+    padding: 1px;
+    background: #009698;
+}
 
     /* Sección de posts */
     .text-align{
@@ -178,7 +218,7 @@ footer{
         height: 30%;
         margin: 10% 0% 2%;
         border-radius: 8px;
-        padding: 5px 0;
+        padding: 10px 0;
         font-family: 'Roboto', sans-serif;
         color: #282828;
         box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 3px 5px 0 rgba(0,0,0,0.19);
@@ -201,8 +241,10 @@ footer{
         border: none;
         text-align: justify;
         padding: 0;
-        margin: 1% 2%;
-        outline: 2px solid #007D7E;
+        margin: 0;
+        outline: 3px solid #007D7E;
+        background-color: #f3eded;
+        color: rgba(0, 150, 152, 0.8);
     }
 
     .post{
@@ -259,6 +301,7 @@ footer{
         height: 35px;
         padding: 0 0 0 10px;
         align-content: center;
+        cursor: pointer;
     }
     .settings-box, .interact-box{
         float: right;

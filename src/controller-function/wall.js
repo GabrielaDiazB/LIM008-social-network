@@ -1,29 +1,3 @@
-// FUNCIONES DE POST
-// let userPhotoLink;
-// let currentName;
-let datePost = firebase.firestore.FieldValue.serverTimestamp();
-// Guardando el post en firestore
-const getUserPostData = (content) =>
-// Al usar una const db=firebase.firestore aparecía este error:
-// Firebase: No Firebase App [DEFAULT] has been created - call Firebase App.initializeApp() (app/no-app).
-  firebase.firestore().collection('posts').add({ 
-    // name: currentName,
-    // userPhoto: userPhotoLink,
-    date: datePost,
-    content: content,
-    // likes: [],
-  });
-
-export const addPostOnSubmit = () => {
-  const contentPost = document.querySelector('#text-area');
-  getUserPostData(contentPost.value)
-    .then(result => {
-      swal('¡Genial!', 'Tu post se subió satisfactoriamente', 'success')
-        .catch(error => {
-          console.error('Error adding document: ', error);
-        });
-    });
-};
 
 export const getPost = (callback) =>
   firebase.firestore().collection('posts')
