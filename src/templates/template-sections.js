@@ -1,9 +1,10 @@
+
 export const templateBarraNav = 
   `<header id="header-container">
-      <nav>
         <img src="./logo/Logo2.png" alt="logowhite" class="logo-img">
-        <a href="#/signIn"><img src="aicon/exit-1.png" id="sign-out" class ="icon-header" alt=""></a>
-      </nav>
+        <form>
+        <input type="image" src="aicon/exit-1.png" id="sign-out" class="sign-out-btn"></input>
+        </form>
    </header>
    <footer id="footer-container">
       <nav>
@@ -15,5 +16,4 @@ export const templateBarraNav =
         </div>
       </nav>
    </footer>`;
-
 

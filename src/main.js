@@ -12,8 +12,7 @@ const init = () => {
   firebase.initializeApp(config);
 
   routerRed();
-
-}
+};
 
 window.onload = init();
 

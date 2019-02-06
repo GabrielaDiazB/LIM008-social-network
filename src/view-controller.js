@@ -37,8 +37,6 @@ export const signInOnSubmit = () => {
 
 
 export const logOutOnSubmit = () => { 
-  document.getElementById('header-container').style.display = 'none';
-  document.getElementById('footer-container').style.display = 'none';
   logOut()
     .then(() => { 
       window.location.hash = '#/signIn';

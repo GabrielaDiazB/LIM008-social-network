@@ -1,6 +1,7 @@
 import { 
   checkInOnSubmit,
   signInOnSubmit,
+  logOutOnSubmit
 } from '../view-controller.js';
 import {
   registerFacebookLogIn,
@@ -13,7 +14,6 @@ import { templateBarraNav } from './template-sections.js';
 export const signIn = () => {
   const templateSignIn = `
   ${templateBarraNav}
-
       <img src="./logo/Nombre.png" alt="logo" class="logoname-img">
       <div id="signin-container" class="signin-container">
         <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
@@ -59,6 +59,13 @@ export const signIn = () => {
     btnQuestion.addEventListener('click', () => {               
       window.location.hash = '#/register';
     });
+
+    const btn= divElem.querySelector('#sign-out');
+    btn.addEventListener('click', () => { 
+   logOutOnSubmit();
+     });
+
+
     return divElem;
 };
 

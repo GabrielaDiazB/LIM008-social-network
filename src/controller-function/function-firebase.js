@@ -1,13 +1,13 @@
 // Función para poder Registrar una Cuenta Nueva
 export const checkInFunction = (email, password) => 
   firebase.auth().createUserWithEmailAndPassword(email, password)
-  .catch(function(error) {
+    .catch(function(error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode);
       console.log(errorMessage);
-  });  
+    });  
 
 // Función para Iniciar Sesión
 export const singInFunction = (userEmail, userPassword) => 
@@ -77,23 +77,23 @@ export const logOut = () =>
 
 
 export const callDoc = (callback) => { 
-    const user =  firebase.auth().currentUser;
-    console.log(user);
-    return firebase.firestore().collection('users').where('userId', '==', user.uid)
+  const user = firebase.auth().currentUser;
+  console.log(user);
+  return firebase.firestore().collection('users').where('userId', '==', user.uid)
     .get()
     .then((querySnapshot) => {
-    let userInfo = {};
+      let userInfo = {};
       querySnapshot.forEach((doc) => {
-      userInfo = {
-        id: doc.id,
-        ...doc.data()
-      };
-      console.log(userInfo)
+        userInfo = {
+          id: doc.id,
+          ...doc.data()
+        };
+        console.log(userInfo);
 
-    });
+      });
       //return userInfo;
-callback(userInfo);
-});
+      callback(userInfo);
+    });
 };
 
 export const userLogged = () => 
@@ -109,7 +109,7 @@ export const userLogged = () =>
     else {
       //usuariocerrasesion
     }
-  })
+  });
 
 /*// funcion para eliminar post
 const firestore = firebase.firestore();

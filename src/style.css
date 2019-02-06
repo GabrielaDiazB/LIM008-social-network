@@ -18,11 +18,12 @@ header{
     height: auto;
 } 
 
-.icon-header{
+.sign-out-btn{
     margin-right: 25px;
     float: right;
     width: 40px;
-    height: 40px;;
+    height: 40px;
+    background:#00A3A5;
 }
 
 body{
@@ -159,6 +160,9 @@ footer{
     .signup-question:hover{
         color: #00A3A5;
     }  
+    .sign-out-btn{
+
+    }
 .container{
     width: 100%;
     z-index: 1000;
