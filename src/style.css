@@ -214,10 +214,10 @@ hr{
     .post-container{
         background-color: rgba(182, 239, 239, 0.3);
         width: 800px;
-        height: 230px;
+        height: 235px;
         margin: 15px 0;
         border-radius: 8px;
-        padding: 5px 0;
+        padding: 10px 0;
         font-family: 'Roboto', sans-serif;
         color: #282828;
         box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 3px 5px 0 rgba(0,0,0,0.19);
@@ -241,7 +241,9 @@ hr{
         text-align: justify;
         padding: 0;
         margin: 0;
-        outline: 2px solid #007D7E;
+        outline: 3px solid #007D7E;
+        background-color: #f3eded;
+        color: rgba(0, 150, 152, 0.8);
     }
 
     .post{
@@ -298,6 +300,7 @@ hr{
         height: 35px;
         padding: 0 0 0 10px;
         align-content: center;
+        cursor: pointer;
     }
     .settings-box, .interact-box{
         float: right;
@@ -319,6 +322,7 @@ hr{
     .click-counter-likes{
         color: red;
     }
+
 }
 
 

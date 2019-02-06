@@ -7,28 +7,29 @@ export const checkInOnSubmit = () => {
   const password = document.querySelector('#password').value;
   const firestore = firebase.firestore();
   let nameUser = name;
-  let informationUser = information;
   let emailRef = email;
   let users = firestore.collection('users');
   let data = {
     name: nameUser,
     information: informationUser,
     email: emailRef,
+    password: passwordRef
   };
+  
   checkInFunction(email, password)
       .then(() => {data.userId = firebase.auth().currentUser.uid;
         users.add(data);
         window.location.hash = '#/signIn';
       })
-      .catch(() => {})
+      .catch((err) => {
+      console.error(err);
+    });
   }
-
 export const signInOnSubmit = () => { 
   const userEmail = document.querySelector('#email-si').value;
   const userPassword = document.querySelector('#password-si').value;
   singInFunction(userEmail, userPassword)
     .then(() => {
-      window.location.hash = '#/perfil';
     })
     .catch((error) => {
       alert(error);
@@ -43,8 +44,4 @@ export const logOutOnSubmit = () => {
     })
     .catch(() => {});
 };
-
-//export const callDocSubmit = () => {
-  //return callDoc();
-//
 
