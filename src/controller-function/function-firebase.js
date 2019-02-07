@@ -70,7 +70,6 @@ export const registerTwitterLogIn = () => {
     }).catch(() => { });
 };
 
-
 // Función del usuario conectado, captura sus datos y los manda al perfil
 export const callDoc = (callback) => {
   const user = firebase.auth().currentUser;
@@ -92,78 +91,77 @@ export const callDoc = (callback) => {
 };
 
 // Función para saber si el usuario está loggeado
-export const userLogged = () => {
-  firebase.auth().onAuthStateChanged(function(user) { 
-    if (user) {
+
+export const userLogged = () => firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
     // Usuario está loggeado
+
+
     // const displayName = user.displayName;
     // const emailVerified = user.emailVerified;
     // const photoURL = user.photoURL;
     // const isAnonymous = user.isAnonymous;
     // const uid = user.uid;
     // const providerData = user.providerData;
-      window.location.hash = '#/perfil';
-      const user = firebase.auth().currentUser;
-      if (user !== null) {
-        const emailUser = user.email;
-        console.log(emailUser);
-      } else {
+    window.location.hash = '#/perfil';
+    const user = firebase.auth().currentUser;
+    if (user !== null) {
+      const emailUser = user.email;
+      console.log(emailUser);
+    } else {
       // usuario cerró sesion
       }
     }
   });
-};
-
-export const logOut = () =>
-  firebase.auth().signOut();
-
-// funcion para eliminar post
-/* const firestore = firebase.firestore();
-firestore.collection("users").doc("id").delete()
-.then(() => {
-    console.log("Document successfully deleted!");
-})
-.catch((error) => {
-    console.error("Error removing document: ", error);
-  }
-});*/
 
 // Guarda el Post en Firestore
-// let userPhotoLink;
-// let currentName;
-export const getUserPostData = (content) => { 
+export const getUserPostData = (content) => {
+  console.log('inicio get user data');
   let datePost = firebase.firestore.FieldValue.serverTimestamp();
   let posts = firebase.firestore().collection('posts');
   let data = {
-  // name: currentName,
+  currentName:name,
+  // userPhoto: userPhotoLink,
     date: datePost,
     content: content,
+    userId: firebase.auth().currentUser.uid,
   // likes: [],
   // userPhoto: userPhotoLink,
   };
-  data.userId = firebase.auth().currentUser.uid;
-  posts.add(data);
+  posts.add(data)
+    .then(() => {console.log('hola')})
+
+    .catch(() => {
+     // console.log(err)
+    });
+
 };
 
-// Lleva los datos del post al template
-export const getPost = (callback) => { 
+// Llevar los datos del post al template
+
+export const getPost = (callback) => {
   const user = firebase.auth().currentUser;
+ // if(!user == null){
+    //return null
+ // };
   console.log(user);
+  // proteger variables
   return firebase.firestore().collection('posts').where('userId', '==', user.uid)
     .onSnapshot((querySnapshot) => {
-      let data = {};
+      let data = [];
       querySnapshot.forEach((doc) => {
-        data = { id: doc.id, ...doc.data()
-        };
+        console.log(doc.data());
+        data.push({ id: doc.id, ...doc.data()
+        });
       });   
       callback(data);
     });
 };
 
 
-// // funcion para eliminar post
-// const firestore = firebase.firestore();
-// firestore.collection("users").doc("id").delete()
+// funcion para eliminar post
+export const deletePost = (idPost) => 
+firebase.firestore().collection('posts').doc(idPost).delete();
 // .then(() => {
 //     console.log("Document successfully deleted!");
 // })
@@ -171,12 +169,21 @@ export const getPost = (callback) => {
 //     console.error("Error removing document: ", error);
 // });
 
-// // funcion para editar post
 
-// const washingtonRef = firestore.collection("users").doc("id");
+// funcion para editar post
 
-// return washingtonRef.update({
-//     capital: true
+export const updatePost = (idPost) => 
+firebase.firestore().collection('users').doc(idPost).update({
+  currentName:name,
+  // userPhoto: userPhotoLink,
+    date: datePost,
+    content: content,
+    userId: firebase.auth().currentUser.uid,
+  // likes: [],
+});
+
+
+
 // })
 // .then(function() {
 //     console.log("Document successfully updated!");
@@ -185,3 +192,6 @@ export const getPost = (callback) => {
 //     // The document probably doesn't exist.
 //     console.error("Error updating document: ", error);
 // })
+// Función para Cerrar Sesión
+export const logOut = () =>
+  firebase.auth().signOut();

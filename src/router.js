@@ -1,9 +1,9 @@
-import { signIn, register, perfil, writingPost, wallPost } from './templates/template-login.js';
+import { signIn, register, perfil, writingPost } from './templates/template-login.js';
 import { callDoc, getPost} from './controller-function/function-firebase.js';
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
     return viewTmp('#/signIn');
-  } else if (hash === '#/signIn' || hash === '#/register' || hash === '#/perfil' || hash === '#/writingPost' || hash === '#/wallPost') {
+  } else if (hash === '#/signIn' || hash === '#/register' || hash === '#/perfil' || hash === '#/writingPost') {
     return viewTmp(hash);
   } else {
     return viewTmp('#/signIn');
@@ -13,17 +13,16 @@ const changeTmp = (hash) => {
 const viewTmp = (routers) => {
   const router = routers.substr(2, routers.length - 2);
   const section = document.getElementById('log-container');
+  const postSection = document.getElementById('post-container');
+  postSection.innerHTML = '';
   section.innerHTML = '';
   switch (router) {
-  case 'wallPost':
+  case 'writingPost':
     getPost((dataPost) => {
       console.log(dataPost);
-      // section.innerHTML = '';
-      // section.appendChild(wallPost(dataPost));
+      postSection.innerHTML = '';
+      postSection.appendChild(writingPost(dataPost));
     });
-    break;
-  case 'writingPost':
-    section.appendChild(writingPost());
     break;
   case 'perfil':
     callDoc((data) => {
@@ -46,5 +45,5 @@ const viewTmp = (routers) => {
 export const routerRed = () => {
   window.addEventListener('load',
     changeTmp(window.location.hash));
-  if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash);
+  if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash)
 };

@@ -2,7 +2,10 @@ import {
   checkInOnSubmit,
   signInOnSubmit,
   addPostOnSubmit,
-  logOutOnSubmit
+  logOutOnSubmit,
+  deletePostOnSubmit,
+  updatePostSubmit
+
 } from '../view-controller.js';
 
 import {
@@ -127,7 +130,7 @@ export const perfil = (data) => {
   return divElem;
 };
 
-export const writingPost = () => {
+export const writingPost = (objPost) => {
   const templateWritingPost = `
     ${templateBarraNav}
       <div class="post-container">
@@ -147,34 +150,40 @@ export const writingPost = () => {
               <label for="">Privado</label>
               <input id="privacy-checkbox" type="checkbox" value="private">
           </div>
-          <button class="post">Publicar</button>
+
+          <button type="button" class="post" id="post">Publicar</button>
         </form>      
       </div>`;
   const post = document.createElement('div');
   post.innerHTML = templateWritingPost;
 
-  const postingPost = post.querySelector('.post');
-  postingPost.addEventListener('click', () => {
-    addPostOnSubmit();
-    window.location.hash = '#/wallPost';
+  const postingPost = post.querySelector('#post');
+  postingPost.addEventListener('click', addPostOnSubmit);
+
+  const ul = post.querySelector('.post-container');
+  objPost.forEach(post => {
+    ul.appendChild(itemPost(post));
   });
+
   return post;
 };
 
-export const wallPost = () => {
-  const templatePost = `
+  const itemPost = (dataPost) => {
+  const liElement = document.createElement('li');
+  liElement.classList.add('mdl-list__item');
+  liElement.innerHTML = `
     ${templateBarraNav}
       <div class="post-container">
         <div class="settings-box">
-          <img src="./aicon/edit.ico" alt="" class="img-icon-post">
-          <img src="./aicon/garbage-2.png" alt="" class="img-icon-post">
+          <img src="./aicon/edit.ico" alt="" class="img-icon-post" id="btn-update-${dataPost.id}">
+          <img src="./aicon/garbage-2.png" alt="" id="btn-delete-${dataPost.id}" class="img-icon-post">
         </div>
         <div id="user-box" class="user-box">
               <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
-              <h2 id="user-name" class="user-name-post">ZOILA PRIMA</h2>
-              <h5></h5>
+              <h2 id="user-name" class="user-name-post">${dataPost.name}</h2>
+              <h5><${dataPost.date}/h5>
         </div> 
-        <textarea id="post-text" class="text-area" cols="25" rows="5" readonly></textarea>
+        <textarea id="${dataPost.id}" class="text-area" cols="25" rows="5" readonly>${dataPost.content}</textarea>
         <div class="privacy-box">
           <i class="fa fa-unlock" class="img-icon-post"></i>
           <i class="fa fa-lock" class="img-icon-post"></i>
@@ -186,8 +195,15 @@ export const wallPost = () => {
           <img  src="./aicon/star-1.png" alt="" class="img-icon-post">
         </div>       
       </div>`;
+  
+      const deleted = liElement.querySelector(`#btn-delete-${dataPost.id}`);
+      deleted.addEventListener('click', () => {
+        deletePostOnSubmit(dataPost);
+      });
 
-  const divElement = document.createElement('div');
-  divElement.innerHTML = templatePost;
-  return divElement;
+      const updated = liElement.querySelector(`#btn-update-${dataPost.id}`);
+      updated.addEventListener('click', () => {
+        updatePostSubmit(dataPost);
+      })
+  return liElement;
 };

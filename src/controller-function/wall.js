@@ -1,5 +1,5 @@
 // Eliminar el post
-const deletePost = (userId) => {
+/*const deletePost = (Id) => {
   swal({
     title: '¿Estas seguro de eliminar la publicación?',
     type: 'warning',
@@ -18,4 +18,4 @@ const deletePost = (userId) => {
   });
 };
 
-export const deletePostOnClick = (objPost) => deletePost();
+export const deletePostOnClick = (objPost) => deletePost();*/

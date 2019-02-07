@@ -1,4 +1,5 @@
-import { checkInFunction, singInFunction, logOut, getUserPostData } from './controller-function/function-firebase.js';
+import { checkInFunction, singInFunction, logOut, getUserPostData,
+         deletePost, updatePost} from './controller-function/function-firebase.js';
 
 export const checkInOnSubmit = () => {
   const name = document.querySelector('#user-name').value;
@@ -26,6 +27,7 @@ export const checkInOnSubmit = () => {
     .catch(() => {
     });
 };
+
 export const signInOnSubmit = () => {
   const userEmail = document.querySelector('#email-si').value;
   const userPassword = document.querySelector('#password-si').value;
@@ -37,21 +39,34 @@ export const signInOnSubmit = () => {
     });
 };
 
+export const addPostOnSubmit = () => {
+  const contentPost = document.querySelector('#text-area');
+  getUserPostData(contentPost.value)
+  .then(() => {})
+  .catch(() => {})
+  // .then((
+  // swal('¡Genial!', 'Tu post se subió satisfactoriamente', 'success'))
+  // .catch((err) => error => {
+  //   console.error('Error adding document: ', error);
+  // })
+};
+
+export const deletePostOnSubmit = (objPost) => 
+  deletePost(objPost.id);
+
+export const updatePostSubmit = (content) => {
+  document.querySelector('.text-area').value = content;
+  const botonGuardar = document.querySelector('#post');
+  botonGuardar.innerHTML ='Guardar'
+updatePost()
+ .then (() => {})
+.catch (() => {})
+}
+
 export const logOutOnSubmit = () => {
   logOut()
     .then(() => {
       window.location.hash = '#/signIn';
     })
     .catch(() => { });
-};
-
-export const addPostOnSubmit = () => {
-  const contentPost = document.querySelector('#text-area');
-  getUserPostData(contentPost.value);
-  // window.location.hash = '#/wallPost';
-  // .then((
-  // swal('¡Genial!', 'Tu post se subió satisfactoriamente', 'success'))
-  // .catch((err) => error => {
-  //   console.error('Error adding document: ', error);
-  // })
 };
