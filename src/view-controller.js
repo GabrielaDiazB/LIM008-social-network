@@ -27,6 +27,7 @@ export const checkInOnSubmit = () => {
     .catch(() => {
     });
 };
+
 export const signInOnSubmit = () => {
   const userEmail = document.querySelector('#email-si').value;
   const userPassword = document.querySelector('#password-si').value;
@@ -36,14 +37,6 @@ export const signInOnSubmit = () => {
     .catch((error) => {
       alert(error);
     });
-};
-
-export const logOutOnSubmit = () => {
-  logOut()
-    .then(() => {
-      window.location.hash = '#/signIn';
-    })
-    .catch(() => { });
 };
 
 export const addPostOnSubmit = () => {
@@ -69,3 +62,11 @@ updatePost()
  .then (() => {})
 .catch (() => {})
 }
+
+export const logOutOnSubmit = () => {
+  logOut()
+    .then(() => {
+      window.location.hash = '#/signIn';
+    })
+    .catch(() => { });
+};

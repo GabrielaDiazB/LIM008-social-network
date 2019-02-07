@@ -151,6 +151,7 @@ export const writingPost = (objPost) => {
               <label for="">Privado</label>
               <input id="privacy-checkbox" type="checkbox" value="private">
           </div>
+
           <button type="button" class="post" id="post">Publicar</button>
         </form>      
       </div>`;
@@ -195,6 +196,7 @@ const itemPost = (dataPost) => {
           <img  src="./aicon/star-1.png" alt="" class="img-icon-post">
         </div>       
       </div>`;
+  
       const deleted = liElement.querySelector(`#btn-delete-${dataPost.id}`);
       deleted.addEventListener('click', () => {
         deletePostOnSubmit(dataPost);

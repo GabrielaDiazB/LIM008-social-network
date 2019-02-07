@@ -76,7 +76,8 @@ footer{
         justify-content: center;
         font-family: 'Roboto', sans-serif;
     }
-    /*.log-container {
+
+    /* .log-container {
         background-color: rgba(222, 246, 246, 0.6);
         padding: 10px;
         border-radius: 5px;
@@ -87,9 +88,6 @@ footer{
     .mdl-list__item{
         list-style-type: none;
     }
-
-
-
 
     .logoname-img{
         width: 230px;

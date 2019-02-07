@@ -130,9 +130,11 @@ export const getUserPostData = (content) => {
   };
   posts.add(data)
     .then(() => {console.log('hola')})
+
     .catch(() => {
      // console.log(err)
     });
+
 };
 
 // Llevar los datos del post al template
