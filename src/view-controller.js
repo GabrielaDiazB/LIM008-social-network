@@ -1,4 +1,5 @@
-import { checkInFunction, singInFunction, logOut, getUserPostData } from './controller-function/function-firebase.js';
+import { checkInFunction, singInFunction, logOut, getUserPostData,
+         deletePost, updatePost} from './controller-function/function-firebase.js';
 
 export const checkInOnSubmit = () => {
   const name = document.querySelector('#user-name').value;
@@ -47,8 +48,9 @@ export const logOutOnSubmit = () => {
 
 export const addPostOnSubmit = () => {
   const contentPost = document.querySelector('#text-area');
-  getUserPostData(contentPost.value);
-  //window.location.hash = '#/wallPost';
+  getUserPostData(contentPost.value)
+  .then(() => {})
+  .catch(() => {})
   // .then((
   // swal('¡Genial!', 'Tu post se subió satisfactoriamente', 'success'))
   // .catch((err) => error => {
@@ -56,3 +58,14 @@ export const addPostOnSubmit = () => {
   // })
 };
 
+export const deletePostOnSubmit = (objPost) => 
+  deletePost(objPost.id);
+
+export const updatePostSubmit = (content) => {
+  document.querySelector('.text-area').value = content;
+  const botonGuardar = document.querySelector('#post');
+  botonGuardar.innerHTML ='Guardar'
+updatePost()
+ .then (() => {})
+.catch (() => {})
+}
