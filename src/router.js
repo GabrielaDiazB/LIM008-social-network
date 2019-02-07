@@ -3,7 +3,7 @@ import { callDoc, getPost} from './controller-function/function-firebase.js';
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
     return viewTmp('#/signIn');
-  } else if (hash === '#/signIn' || hash === '#/register' || hash === '#/perfil' || hash === '#/writingPost' || hash === '#/wallPost') {
+  } else if (hash === '#/signIn' || hash === '#/register' || hash === '#/perfil' || hash === '#/writingPost') {
     return viewTmp(hash);
   } else {
     return viewTmp('#/signIn');

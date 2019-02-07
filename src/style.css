@@ -29,7 +29,8 @@ header{
     margin:0;
     float: right;
     width: 40px;
-    height: 40px;;
+    height: 40px;
+    background:#00A3A5;
 }
 
 body{
@@ -75,16 +76,18 @@ footer{
         justify-content: center;
         font-family: 'Roboto', sans-serif;
     }
-    .mdl-list__item{
-        list-style-type:none;
-    }
+
     /* .log-container {
         background-color: rgba(222, 246, 246, 0.6);
         padding: 10px;
         border-radius: 5px;
         margin:80px auto;
         text-align: center;
-    } */
+    }*/
+
+    .mdl-list__item{
+        list-style-type: none;
+    }
 
     .logoname-img{
         width: 230px;
@@ -167,6 +170,9 @@ footer{
     .signup-question:hover{
         color: #00A3A5;
     }  
+    .sign-out-btn{
+
+    }
 .container{
     width: 100%;
     z-index: 1000;

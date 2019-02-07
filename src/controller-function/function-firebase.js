@@ -121,7 +121,7 @@ export const getUserPostData = (content) => {
   let datePost = firebase.firestore.FieldValue.serverTimestamp();
   let posts = firebase.firestore().collection('posts');
   let data = {
-  // name: currentName,
+  currentName:name,
   // userPhoto: userPhotoLink,
     date: datePost,
     content: content,
@@ -130,15 +130,20 @@ export const getUserPostData = (content) => {
   };
   posts.add(data)
     .then(() => {console.log('hola')})
-    //.catch((err) => {
+
+    .catch(() => {
      // console.log(err)
-    //});
+    });
+
 };
 
 // Llevar los datos del post al template
 
-export const getPost = (callback) => { 
+export const getPost = (callback) => {
   const user = firebase.auth().currentUser;
+ // if(!user == null){
+    //return null
+ // };
   console.log(user);
   // proteger variables
   return firebase.firestore().collection('posts').where('userId', '==', user.uid)
@@ -154,9 +159,9 @@ export const getPost = (callback) => {
 };
 
 
-// // funcion para eliminar post
-// const firestore = firebase.firestore();
-// firestore.collection("users").doc("id").delete()
+// funcion para eliminar post
+export const deletePost = (idPost) => 
+firebase.firestore().collection('posts').doc(idPost).delete();
 // .then(() => {
 //     console.log("Document successfully deleted!");
 // })
@@ -164,12 +169,21 @@ export const getPost = (callback) => {
 //     console.error("Error removing document: ", error);
 // });
 
-// // funcion para editar post
 
-// const washingtonRef = firestore.collection("users").doc("id");
+// funcion para editar post
 
-// return washingtonRef.update({
-//     capital: true
+export const updatePost = (idPost) => 
+firebase.firestore().collection('users').doc(idPost).update({
+  currentName:name,
+  // userPhoto: userPhotoLink,
+    date: datePost,
+    content: content,
+    userId: firebase.auth().currentUser.uid,
+  // likes: [],
+});
+
+
+
 // })
 // .then(function() {
 //     console.log("Document successfully updated!");
