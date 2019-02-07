@@ -92,6 +92,7 @@ export const callDoc = (callback) => {
 };
 
 // Función para saber si el usuario está loggeado
+
 export const userLogged = () => firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // Usuario está loggeado
@@ -108,15 +109,15 @@ export const userLogged = () => firebase.auth().onAuthStateChanged(function(user
     if (user !== null) {
       const emailUser = user.email;
       console.log(emailUser);
-    }
-    else {
+    } else {
       // usuario cerró sesion
     }
   }
 });
 
 // Guarda el Post en Firestore
-export const getUserPostData = (content) => { 
+export const getUserPostData = (content) => {
+  console.log('inicio get user data');
   let datePost = firebase.firestore.FieldValue.serverTimestamp();
   let posts = firebase.firestore().collection('posts');
   let data = {
@@ -124,10 +125,14 @@ export const getUserPostData = (content) => {
   // userPhoto: userPhotoLink,
     date: datePost,
     content: content,
+    userId: firebase.auth().currentUser.uid,
   // likes: [],
   };
-  data.userId = firebase.auth().currentUser.uid;
-  posts.add(data);
+  posts.add(data)
+    .then(() => {console.log('hola')})
+    //.catch((err) => {
+     // console.log(err)
+    //});
 };
 
 // Llevar los datos del post al template
@@ -135,12 +140,14 @@ export const getUserPostData = (content) => {
 export const getPost = (callback) => { 
   const user = firebase.auth().currentUser;
   console.log(user);
+  // proteger variables
   return firebase.firestore().collection('posts').where('userId', '==', user.uid)
     .onSnapshot((querySnapshot) => {
-      let data = {};
+      let data = [];
       querySnapshot.forEach((doc) => {
-        data = { id: doc.id, ...doc.data()
-        };
+        console.log(doc.data());
+        data.push({ id: doc.id, ...doc.data()
+        });
       });   
       callback(data);
     });

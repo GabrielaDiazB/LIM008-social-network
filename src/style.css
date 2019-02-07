@@ -75,13 +75,16 @@ footer{
         justify-content: center;
         font-family: 'Roboto', sans-serif;
     }
-    .log-container {
+    .mdl-list__item{
+        list-style-type:none;
+    }
+    /* .log-container {
         background-color: rgba(222, 246, 246, 0.6);
         padding: 10px;
         border-radius: 5px;
         margin:80px auto;
         text-align: center;
-    }
+    } */
 
     .logoname-img{
         width: 230px;
