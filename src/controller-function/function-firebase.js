@@ -120,13 +120,14 @@ export const getUserPostData = (content) => {
   console.log('inicio get user data');
   let datePost = firebase.firestore.FieldValue.serverTimestamp();
   let posts = firebase.firestore().collection('posts');
+  let name = 'gab';
   let data = {
-  currentName:name,
-  // userPhoto: userPhotoLink,
+    currentName: name,
+    // userPhoto: userPhotoLink,
     date: datePost,
     content: content,
     userId: firebase.auth().currentUser.uid,
-  // likes: [],
+    likes: [],
   };
   posts.add(data)
     .then(() => {console.log('hola')})
