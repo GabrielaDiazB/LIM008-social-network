@@ -130,9 +130,11 @@ export const getUserPostData = (content) => {
   };
   posts.add(data)
     .then(() => {console.log('hola')})
+
     .catch(() => {
      // console.log(err)
     });
+
 };
 
 // Llevar los datos del post al template
@@ -159,7 +161,7 @@ export const getPost = (callback) => {
 
 // funcion para eliminar post
 export const deletePost = (idPost) => 
-firebase.firestore().collection('posts').doc(idPost).delete();
+  firebase.firestore().collection('posts').doc(idPost).delete();
 // .then(() => {
 //     console.log("Document successfully deleted!");
 // })
@@ -171,12 +173,11 @@ firebase.firestore().collection('posts').doc(idPost).delete();
 // funcion para editar post
 
 export const updatePost = (idPost, content) => { 
-
-return firebase.firestore().collection('users').doc(idPost).update({
-content: content
-});
+  const ref = firebase.firestore().collection('posts').doc(idPost);
+  return ref.update({
+    content: content,
+  });
 }
-
 
 // })
 // .then(function() {

@@ -27,6 +27,7 @@ export const checkInOnSubmit = () => {
     .catch(() => {
     });
 };
+
 export const signInOnSubmit = () => {
   const userEmail = document.querySelector('#email-si').value;
   const userPassword = document.querySelector('#password-si').value;
@@ -38,6 +39,7 @@ export const signInOnSubmit = () => {
     });
 };
 
+<<<<<<< HEAD
 
 
 export const addPostOnSubmit = () => {
@@ -47,32 +49,14 @@ export const addPostOnSubmit = () => {
     window.location.hash = '#/perfil';
   })
   .catch(() => {})
-  // .then((
-  // swal('¡Genial!', 'Tu post se subió satisfactoriamente', 'success'))
-  // .catch((err) => error => {
-  //   console.error('Error adding document: ', error);
-  // })
 };
 
 export const deletePostOnSubmit = (objPost) => 
   deletePost(objPost.id);
 
-export const updatePostSubmit = (content) => {
-  console.log('gola')
-  document.querySelector('.text-area').value = content;
-  const botonGuardar = document.querySelector('#post');
-  botonGuardar.innerHTML = 'Guardar';
-  botonGuardar.addEventListener('click', () => {
-     updatePost()
- .then (() => {
-  botonGuardar.innerHTML = 'Guardar';
-  document.querySelector('.text-area').value = '';
-
- })
-.catch (() => {})
-console.log('haaaaaaaa')
-  })
-}
+export const updatePostSubmit = (objPost, content) => {
+  return updatePost(objPost, content);
+};
 
 
 
@@ -83,3 +67,4 @@ export const logOutOnSubmit = () => {
     })
     .catch(() => { });
 };
+

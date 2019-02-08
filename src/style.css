@@ -44,13 +44,15 @@ footer{
     top: 0;
     z-index: 1000;
     display: flex;
-    margin-left: 300px;
+    width: 50%;
+    margin: 0;
 }
+
 
 .icon-footer{
     width: 40px;
     height: 40px;
-    margin-right: 50px;
+    padding: 0 30px;
 }
 
 @media screen and (max-width: 500px) { 
@@ -76,18 +78,19 @@ footer{
         justify-content: center;
         font-family: 'Roboto', sans-serif;
     }
-    .log-container{
-        padding: 10px 10px 10px 10px;
+
+     /*.log-container {
+        background-color: rgba(222, 246, 246, 0.6);
+        padding: 10px;
         border-radius: 5px;
         text-align: center;
         margin-top: 120px;
-    }
+    } */
     
 
     .mdl-list__item{
         list-style-type: none;
     }
-
 
     .logoname-img{
         width: 230px;
@@ -177,7 +180,9 @@ footer{
     width: 100%;
     z-index: 1000;
     display: flex;
-    justify-content: center;  
+    justify-content: center;
+    padding: 10px;
+    margin:80px auto; 
 }
 .ft{
     height: 120px;
@@ -193,9 +198,14 @@ footer{
     font-family: 'Roboto', sans-serif;
     font-size: 15pt;
 }
+.name{
+    font-size: 30px;
+    font-weight: bold;
+}
 .info{
     display:block;
     margin-top: 20px;
+    font-size: 25px;
 }
 .table{
     margin-top: 30px;
@@ -225,7 +235,19 @@ hr{
         background-color: rgba(182, 239, 239, 0.3);
         width: 800px;
         height: 235px;
-        margin: 15px 0;
+        margin: 110px 0 20px;
+        border-radius: 8px;
+        padding: 10px 0;
+        font-family: 'Roboto', sans-serif;
+        color: #282828;
+        box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 3px 5px 0 rgba(0,0,0,0.19);
+    }
+
+    .post-container-posted{
+        background-color: rgba(182, 239, 239, 0.3);
+        width: 800px;
+        height: 235px;
+        margin: 90px 0px;
         border-radius: 8px;
         padding: 10px 0;
         font-family: 'Roboto', sans-serif;
