@@ -1,4 +1,5 @@
-import { signIn, register, perfil, writingPost } from './templates/template-login.js';
+import { signIn, register, perfil} from './templates/template-login.js';
+import writePost from './templates/template-login.js';
 import { callDoc, getPost} from './controller-function/function-firebase.js';
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
@@ -18,10 +19,10 @@ const viewTmp = (routers) => {
   section.innerHTML = '';
   switch (router) {
   case 'writingPost':
-    getPost((dataPost) => {
+    getPost((objPost) => {
       console.log(dataPost);
       postSection.innerHTML = '';
-      postSection.appendChild(writingPost(dataPost));
+      postSection.appendChild(writePost(objPost));
     });
     break;
   case 'perfil':

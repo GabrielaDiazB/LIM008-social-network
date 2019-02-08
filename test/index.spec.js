@@ -1,5 +1,4 @@
 import MockFirebase from 'mock-cloud-firestore';
-
 const fixtureData = {
   __collection__: {
     posts: {
@@ -15,7 +14,7 @@ const fixtureData = {
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
 import { addPostOnSubmit, getPost } from '../src/view-controller.js';
-
+import writePost from '../src/templates/template-login.js';
 describe('crear post', () => {
   it('debería agregar un post', (done) => {
     return addPostOnSubmit('Hola mundo')

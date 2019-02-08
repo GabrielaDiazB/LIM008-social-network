@@ -130,7 +130,7 @@ export const perfil = (data) => {
   return divElem;
 };
 
-export const writingPost = (objPost) => {
+export default (objPost) => {
   const templateWritingPost = `
     ${templateBarraNav}
       <div class="post-container">
@@ -164,7 +164,6 @@ export const writingPost = (objPost) => {
   objPost.forEach(post => {
     ul.appendChild(itemPost(post));
   });
-
   return post;
 };
 
