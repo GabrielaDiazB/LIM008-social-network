@@ -161,7 +161,7 @@ export const getPost = (callback) => {
 
 // funcion para eliminar post
 export const deletePost = (idPost) => 
-firebase.firestore().collection('posts').doc(idPost).delete();
+  firebase.firestore().collection('posts').doc(idPost).delete();
 // .then(() => {
 //     console.log("Document successfully deleted!");
 // })
@@ -172,17 +172,12 @@ firebase.firestore().collection('posts').doc(idPost).delete();
 
 // funcion para editar post
 
-export const updatePost = (idPost) => 
-firebase.firestore().collection('users').doc(idPost).update({
-  currentName:name,
-  // userPhoto: userPhotoLink,
-    date: datePost,
+export const updatePost = (idPost, content) => { 
+  const ref = firebase.firestore().collection('posts').doc(idPost);
+  return ref.update({
     content: content,
-    userId: firebase.auth().currentUser.uid,
-  // likes: [],
-});
-
-
+  });
+}
 
 // })
 // .then(function() {
