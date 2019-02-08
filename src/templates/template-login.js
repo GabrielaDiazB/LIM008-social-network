@@ -130,7 +130,7 @@ export const perfil = (data) => {
   return divElem;
 };
 
-export default (objPost) => {
+export const writingPost = (objPost) => {
   const templateWritingPost = `
     ${templateBarraNav}
       <div class="post-container">
@@ -150,7 +150,6 @@ export default (objPost) => {
               <label for="">Privado</label>
               <input id="privacy-checkbox" type="checkbox" value="private">
           </div>
-
           <button type="button" class="post" id="post">Publicar</button>
         </form>      
       </div>`;
@@ -164,10 +163,11 @@ export default (objPost) => {
   objPost.forEach(post => {
     ul.appendChild(itemPost(post));
   });
+
   return post;
 };
 
-  const itemPost = (dataPost) => {
+const itemPost = (dataPost) => {
   const liElement = document.createElement('li');
   liElement.classList.add('mdl-list__item');
   liElement.innerHTML = `

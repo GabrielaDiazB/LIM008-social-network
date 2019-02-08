@@ -5,8 +5,8 @@ export const checkInFunction = (email, password) =>
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
+      swal(errorCode);
+      swal(errorMessage);
     });
 
 // Función para Iniciar Sesión
@@ -32,7 +32,7 @@ export const registerFacebookLogIn = () => {
       .catch((error) => {
         const errorCode = error.code;
         if (errorCode === 'auth/account-exists-with-different-credential') {
-          alert('Es el mismo usuario');
+          swal('Es el mismo usuario');
         }
       });
   } else {
@@ -110,9 +110,9 @@ export const userLogged = () => firebase.auth().onAuthStateChanged(function(user
       console.log(emailUser);
     } else {
       // usuario cerró sesion
-      }
     }
-  });
+  }
+});
 
 // Guarda el Post en Firestore
 export const getUserPostData = (content) => {
@@ -120,30 +120,31 @@ export const getUserPostData = (content) => {
   let datePost = firebase.firestore.FieldValue.serverTimestamp();
   let posts = firebase.firestore().collection('posts');
   let data = {
-  currentName:name,
-  // userPhoto: userPhotoLink,
+    currentName: name,
+    // userPhoto: userPhotoLink,
     date: datePost,
     content: content,
     userId: firebase.auth().currentUser.uid,
   // likes: [],
-  // userPhoto: userPhotoLink,
   };
   posts.add(data)
-    .then(() => {console.log('hola')})
+    .then(() => {
+      console.log('hola')
+      ;
+    })
 
     .catch(() => {
-     // console.log(err)
+      // console.log(err)
     });
-
 };
 
 // Llevar los datos del post al template
 
 export const getPost = (callback) => {
   const user = firebase.auth().currentUser;
- // if(!user == null){
-    //return null
- // };
+  // if(!user == null){
+  // return null
+  // };
   console.log(user);
   // proteger variables
   return firebase.firestore().collection('posts').where('userId', '==', user.uid)
@@ -162,13 +163,23 @@ export const getPost = (callback) => {
 // funcion para eliminar post
 export const deletePost = (idPost) => 
   firebase.firestore().collection('posts').doc(idPost).delete();
-// .then(() => {
-//     console.log("Document successfully deleted!");
-// })
-// .catch((error) => {
-//     console.error("Error removing document: ", error);
-// });
-
+/*  swal({
+    title: '¿Estas seguro de eliminar la publicación?',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Aceptar',
+    cancelButtonText: 'Cancelar'
+  }).then(confirm => {
+    firebase.firestore().collection('posts').doc(userId).delete();
+  }).catch(element => {
+    swal({
+      confirmButtonText: 'Aceptar',
+      type: 'error',
+      title: 'Error al eliminar la publicación',
+      text: 'Inténtalo de nuevo'
+    });
+  });
+*/
 
 // funcion para editar post
 
@@ -177,7 +188,7 @@ export const updatePost = (idPost, content) => {
   return ref.update({
     content: content,
   });
-}
+};
 
 // })
 // .then(function() {

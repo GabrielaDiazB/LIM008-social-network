@@ -1,5 +1,5 @@
 import { checkInFunction, singInFunction, logOut, getUserPostData,
-         deletePost, updatePost} from './controller-function/function-firebase.js';
+  deletePost, updatePost} from './controller-function/function-firebase.js';
 
 export const checkInOnSubmit = () => {
   const name = document.querySelector('#user-name').value;

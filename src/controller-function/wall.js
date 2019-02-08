@@ -1,21 +1,30 @@
-// Eliminar el post
-/*const deletePost = (Id) => {
-  swal({
-    title: '¿Estas seguro de eliminar la publicación?',
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Aceptar',
-    cancelButtonText: 'Cancelar'
-  }).then(confirm => {
-    firebase.firestore().collection('posts').doc(userId).delete();
-  }).catch(element => {
-    swal({
-      confirmButtonText: 'Aceptar',
-      type: 'error',
-      title: 'Error al eliminar la publicación',
-      text: 'Inténtalo de nuevo'
-    });
-  });
+// Agregar likes - en proceso
+
+// 
+const checkUserIDforLikes = (userId, likes) => {
+  const positionUserId = likes.indexOf(userId);
+  if (positionUserId === -1) {
+    return true;
+  } else {
+    return positionUserID;
+  }
 };
 
-export const deletePostOnClick = (objPost) => deletePost();*/
+const addLikes = (postId) => {
+  const currentUser = user.uid;
+  db.collection('posts').doc(postId).get()
+    .then(post => {
+      let userLikes = posts.data().likes;
+      const checkUserLikes = checkUserIdforLikes(currentUser, posts.data().likes);
+      if (checkUserLikes === true) {
+        userLikes.push(currentUser);
+        db.collection('posts').doc(postID).update({
+          likes: currentUserLikes
+        }).then(element => {
+          getPost();
+        }).catch(element => {
+          console.log('Error al aumentar contador de likes');
+        });
+      }
+    });
+};
