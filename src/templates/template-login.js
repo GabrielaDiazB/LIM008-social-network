@@ -85,7 +85,7 @@ export const register = () => {
   const btnRegister = divElem.querySelector('#sign-up');
   btnRegister.addEventListener('click', () => {
     checkInOnSubmit();
-    window.location.hash = '#/writingPost';
+    window.location.hash = '#/signIn';
   });
   return divElem;
 };
@@ -94,31 +94,31 @@ export const perfil = (data) => {
   const templatePerfil = `
   ${templateBarraNav}
       <div class="container">
-         <div class="container-perfil">
-         <div class="ft-perfil">
-         <img src= ${'http://florflores.com/wp-content/uploads/211-girasoles.jpg'} class="ft" alt="foto de perfil"/>
-         </div>
-         </div>
-         <div class="container-information"> 
-         <div class="information">
-         <span class="name">${data.name}</span>
-         <span class="info">${data.information}</span>
-         </div>
-         <div class = "table"> 
-             <table>
-                 <tr>
-                     <th>#</th>
-                     <th>#</th>
-                 </tr>
-                 <tr>
-                     <td>Me encanta</td>
-                     <td>Favoritos</td>
-                 </tr>
-             </table>    
-         </div>        
-         </div>
-         </div>
-         <hr>`;
+        <div class="container-profile">
+          <div class="ft-perfil">
+            <img src= ${'http://florflores.com/wp-content/uploads/211-girasoles.jpg'} class="ft" alt="foto de perfil"/>
+          </div>
+        </div>
+        <div class="container-information"> 
+          <div class="information">
+            <span class="name">${data.name}</span>
+            <span class="info">${data.information}</span>
+          </div>
+          <div class = "table"> 
+            <table>
+              <tr>
+                <th>#</th>
+                <th>#</th>
+              </tr>
+              <tr>
+                <td>Me encanta</td>
+                <td>Favoritos</td>
+              </tr>
+           </table>    
+          </div>        
+        </div>
+      </div>
+    `;
   const divElem = document.createElement('div');
   divElem.setAttribute('class', 'perfil-container');
   divElem.innerHTML = templatePerfil;
@@ -174,37 +174,48 @@ const itemPost = (dataPost) => {
   liElement.classList.add('mdl-list__item');
   liElement.innerHTML = `
     ${templateBarraNav}
-      <div class="post-container">
+      <div class="post-container-posted">
         <div class="settings-box">
           <img src="./aicon/edit.ico" alt="" class="img-icon-post" id="btn-update-${dataPost.id}">
           <img src="./aicon/garbage-2.png" alt="" id="btn-delete-${dataPost.id}" class="img-icon-post">
         </div>
-        <div id="user-box" class="user-box">
-              <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
-              <h2 id="user-name" class="user-name-post">${dataPost.name}</h2>
-              <h5><${dataPost.date}/h5>
-        </div> 
-        <textarea id="${dataPost.id}" class="text-area" cols="25" rows="5" readonly>${dataPost.content}</textarea>
-        <div class="privacy-box">
-          <i class="fa fa-unlock" class="img-icon-post"></i>
-          <i class="fa fa-lock" class="img-icon-post"></i>
-        </div>
-        <div class="interact-box">
-          <label for="" class="click-counter-likes">2</label>
-          <img src="./aicon/like-2.png" alt="" class="img-icon-post">
-          <label for="" class="click-counter-favorites"> 2</label>
-          <img  src="./aicon/star-1.png" alt="" class="img-icon-post">
-        </div>       
+        <form>
+          <div id="user-box" class="user-box">
+                <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
+                <h2 id="user-name" class="user-name-post">${dataPost.name}</h2>
+                <h5><${dataPost.date}/h5>
+          </div> 
+          <textarea id="post-edit-${dataPost.id}" class="text-area" cols="25" rows="5" disabled>${dataPost.content}</textarea>
+          <div class="privacy-box">
+            <i class="fa fa-unlock" class="img-icon-post"></i>
+            <i class="fa fa-lock" class="img-icon-post"></i>
+          </div>
+          <div class="interact-box">
+            <label for="" class="click-counter-likes">2</label>
+            <img src="./aicon/like-2.png" alt="" class="img-icon-post">
+            <label for="" class="click-counter-favorites"> 2</label>
+            <img  src="./aicon/star-1.png" alt="" class="img-icon-post">
+          </div> 
+          <button id="save-post-edit" class="save-post-edit" type="button">Guardar</button>
+        </form>      
       </div>`;
-  
-      const deleted = liElement.querySelector(`#btn-delete-${dataPost.id}`);
-      deleted.addEventListener('click', () => {
-        deletePostOnSubmit(dataPost);
-      });
+  const editBtn = liElement.querySelector(`#btn-update-${dataPost.id}`);
+  const textArea = liElement.querySelector(`#post-edit-${dataPost.id}`);
+  editBtn.addEventListener('click', () => {
+    textArea.disabled = false;
+    liElement.querySelector('#save-post-edit').style.display = 'block';
+  });
+      
+  const saveEdit = liElement.querySelector('#save-post-edit');
+  saveEdit.addEventListener('click', () => {
+    textArea.disabled = true;
+    updatePostSubmit(dataPost.id, textArea.value);
+  });
 
-      const updated = liElement.querySelector(`#btn-update-${dataPost.id}`);
-      updated.addEventListener('click', () => {
-        updatePostSubmit(dataPost);
-      })
+  const deleted = liElement.querySelector(`#btn-delete-${dataPost.id}`);
+  deleted.addEventListener('click', () => {
+    deletePostOnSubmit(dataPost);
+  });
+
   return liElement;
 };
