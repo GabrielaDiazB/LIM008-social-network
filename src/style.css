@@ -76,19 +76,17 @@ footer{
         justify-content: center;
         font-family: 'Roboto', sans-serif;
     }
-    /*.log-container {
-        background-color: rgba(222, 246, 246, 0.6);
-        padding: 10px;
+    .log-container{
+        padding: 10px 10px 10px 10px;
         border-radius: 5px;
-        margin:80px auto;
         text-align: center;
-    }*/
+        margin-top: 120px;
+    }
+    
 
     .mdl-list__item{
         list-style-type: none;
     }
-
-
 
 
     .logoname-img{

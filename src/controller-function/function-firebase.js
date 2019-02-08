@@ -170,16 +170,12 @@ firebase.firestore().collection('posts').doc(idPost).delete();
 
 // funcion para editar post
 
-export const updatePost = (idPost) => 
-firebase.firestore().collection('users').doc(idPost).update({
-  currentName:name,
-  // userPhoto: userPhotoLink,
-    date: datePost,
-    content: content,
-    userId: firebase.auth().currentUser.uid,
-  // likes: [],
-});
+export const updatePost = (idPost, content) => { 
 
+return firebase.firestore().collection('users').doc(idPost).update({
+content: content
+});
+}
 
 
 // })

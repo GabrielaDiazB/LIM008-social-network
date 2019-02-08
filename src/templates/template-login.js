@@ -85,7 +85,6 @@ export const register = () => {
   const btnRegister = divElem.querySelector('#sign-up');
   btnRegister.addEventListener('click', () => {
     checkInOnSubmit();
-    window.location.hash = '#/writingPost';
   });
   return divElem;
 };
@@ -101,7 +100,7 @@ export const perfil = (data) => {
          </div>
          <div class="container-information"> 
          <div class="information">
-         <span class="name">${data.name}</span>
+         <span class="name" id="name">${data.name}</span>
          <span class="info">${data.information}</span>
          </div>
          <div class = "table"> 
@@ -163,7 +162,9 @@ export const writingPost = (objPost) => {
   const ul = post.querySelector('.post-container');
   objPost.forEach(post => {
     ul.appendChild(itemPost(post));
+    
   });
+
 
   return post;
 };
@@ -179,7 +180,7 @@ const itemPost = (dataPost) => {
           <img src="./aicon/garbage-2.png" alt="" id="btn-delete-${dataPost.id}" class="img-icon-post">
         </div>
         <div id="user-box" class="user-box">
-              <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
+              <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic"> 
               <h2 id="user-name" class="user-name-post">${dataPost.name}</h2>
               <h5><${dataPost.date}/h5>
         </div> 
@@ -201,8 +202,8 @@ const itemPost = (dataPost) => {
       });
 
       const updated = liElement.querySelector(`#btn-update-${dataPost.id}`);
-      updated.addEventListener('click', () => {
-        updatePostSubmit(dataPost);
+      updated.addEventListener('click', () => { 
+        updatePostSubmit(dataPost.content)
       })
   return liElement;
 };

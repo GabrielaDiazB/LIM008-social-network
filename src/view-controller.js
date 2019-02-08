@@ -38,18 +38,14 @@ export const signInOnSubmit = () => {
     });
 };
 
-export const logOutOnSubmit = () => {
-  logOut()
-    .then(() => {
-      window.location.hash = '#/signIn';
-    })
-    .catch(() => { });
-};
+
 
 export const addPostOnSubmit = () => {
   const contentPost = document.querySelector('#text-area');
   getUserPostData(contentPost.value)
-  .then(() => {})
+  .then(() => {
+    window.location.hash = '#/perfil';
+  })
   .catch(() => {})
   // .then((
   // swal('¡Genial!', 'Tu post se subió satisfactoriamente', 'success'))
@@ -62,10 +58,28 @@ export const deletePostOnSubmit = (objPost) =>
   deletePost(objPost.id);
 
 export const updatePostSubmit = (content) => {
+  console.log('gola')
   document.querySelector('.text-area').value = content;
   const botonGuardar = document.querySelector('#post');
-  botonGuardar.innerHTML ='Guardar'
-updatePost()
- .then (() => {})
+  botonGuardar.innerHTML = 'Guardar';
+  botonGuardar.addEventListener('click', () => {
+     updatePost()
+ .then (() => {
+  botonGuardar.innerHTML = 'Guardar';
+  document.querySelector('.text-area').value = '';
+
+ })
 .catch (() => {})
+console.log('haaaaaaaa')
+  })
 }
+
+
+
+export const logOutOnSubmit = () => {
+  logOut()
+    .then(() => {
+      window.location.hash = '#/signIn';
+    })
+    .catch(() => { });
+};
