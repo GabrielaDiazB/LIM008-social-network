@@ -51,6 +51,7 @@ export const signIn = () => {
 
   const btnGoogle = divElem.querySelector('#google-login')
   btnGoogle.addEventListener('click', () => {
+    userLogged()
     registerGoogleLogIn();
   });
 
@@ -101,7 +102,7 @@ export const perfil = (data) => {
         </div>
         <div class="container-information"> 
           <div class="information">
-            <span class="name">${data.name}</span>
+            <span class="name">${data.displayName}</span>
             <span class="info">${data.information}</span>
           </div>
           <div class = "table"> 
@@ -185,7 +186,7 @@ const itemPost = (dataPost) => {
           <div id="user-box" class="user-box">
                 <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
                 <h2 id="user-name" class="user-name-post">${dataPost.name}</h2>
-                <h5><${dataPost.date}/h5>
+                <h5>${dataPost.timestamp}</h5>
           </div> 
           <textarea id="post-edit-${dataPost.id}" class="text-area" cols="25" rows="5" disabled>${dataPost.content}</textarea>
           <div class="privacy-box">

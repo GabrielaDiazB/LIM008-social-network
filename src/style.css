@@ -34,7 +34,7 @@ header{
 }
 
 body{
-    background-color:rgba(182, 239, 239, 0.3);
+    background: rgb(240, 240, 247);
 }
 
 footer{
@@ -87,7 +87,6 @@ footer{
         margin-top: 120px;
     } */
     
-
     .mdl-list__item{
         list-style-type: none;
     }
@@ -173,9 +172,6 @@ footer{
     .signup-question:hover{
         color: #00A3A5;
     }  
-    .sign-out-btn{
-
-    }
 .container{
     width: 100%;
     z-index: 1000;
@@ -354,6 +350,8 @@ hr{
     .click-counter-likes{
         color: red;
     }
+
+   
 
 }
 

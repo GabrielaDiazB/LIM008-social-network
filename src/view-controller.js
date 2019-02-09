@@ -2,18 +2,18 @@ import { checkInFunction, singInFunction, logOut, getUserPostData,
          deletePost, updatePost} from './controller-function/function-firebase.js';
 
 export const checkInOnSubmit = () => {
-  const name = document.querySelector('#user-name').value;
+  const displayName = document.querySelector('#user-name').value;
   const information = document.querySelector('#information').value;
   const email = document.querySelector('#email').value;
   const password = document.querySelector('#password').value;
 
   const firestore = firebase.firestore();
-  let nameUser = name;
+  let nameUser = displayName;
   let informationUser = information;
-  let emailRef = email;
+  let emailRef = email;          
   let users = firestore.collection('users');
   let data = {
-    name: nameUser,
+    displayName: nameUser,
     information: informationUser,
     email: emailRef,
   };
@@ -39,20 +39,22 @@ export const signInOnSubmit = () => {
     });
 };
 
-<<<<<<< HEAD
 
 
 export const addPostOnSubmit = () => {
   const contentPost = document.querySelector('#text-area');
   getUserPostData(contentPost.value)
-  .then(() => {
-    window.location.hash = '#/perfil';
-  })
+  .then(() => {})
   .catch(() => {})
 };
 
-export const deletePostOnSubmit = (objPost) => 
-  deletePost(objPost.id);
+export const deletePostOnSubmit = (objPost) => { 
+  if(confirm('estas recontra segur de eliminar...'))
+  if(confirm('seguro seguro seguro muy seguro muy pero muy seguro')) 
+  if(confirm('alerta alerta alerta alerta se esta eliminando.........!!!!!!!!!!')){
+   return deletePost(objPost.id);
+  }
+}
 
 export const updatePostSubmit = (objPost, content) => {
   return updatePost(objPost, content);
