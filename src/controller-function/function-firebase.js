@@ -26,6 +26,7 @@ export const registerFacebookLogIn = () => {
     provider.addScope('public_profile');
     firebase.auth().signInWithPopup(provider)
       .then(() => {
+        console.log(provider);
         window.location.hash = '#/perfil';
       })
       .catch((error) => {
@@ -46,6 +47,7 @@ export const registerGoogleLogIn = () => {
     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     firebase.auth().signInWithPopup(provider)
       .then(() => {
+        console.log(provider);
         window.location.hash = '#/perfil';
       })
       .catch((error) => {
@@ -92,7 +94,8 @@ export const callDoc = (callback) => {
 
 // Función para saber si el usuario está loggeado
 
-export const userLogged = () => firebase.auth().onAuthStateChanged(function(user) {
+export const userLogged = () => 
+firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // Usuario está loggeado
 
@@ -105,6 +108,7 @@ export const userLogged = () => firebase.auth().onAuthStateChanged(function(user
     // const providerData = user.providerData;
     window.location.hash = '#/perfil';
     const user = firebase.auth().currentUser;
+    console.log(user)
     if (user !== null) {
       const emailUser = user.email;
       console.log(emailUser);
@@ -116,12 +120,10 @@ export const userLogged = () => firebase.auth().onAuthStateChanged(function(user
 
 // Guarda el Post en Firestore
 export const getUserPostData = (content) => {
-  console.log('inicio get user data');
   let datePost = firebase.firestore.FieldValue.serverTimestamp();
   let posts = firebase.firestore().collection('posts');
-  let name = 'gab';
   let data = {
-    currentName: name,
+    currentName: '',
     // userPhoto: userPhotoLink,
     date: datePost,
     content: content,
@@ -134,7 +136,6 @@ export const getUserPostData = (content) => {
     .catch(() => {
      // console.log(err)
     });
-
 };
 
 // Llevar los datos del post al template
@@ -144,7 +145,7 @@ export const getPost = (callback) => {
  // if(!user == null){
     //return null
  // };
-  console.log(user);
+  //console.log(user);
   // proteger variables
   return firebase.firestore().collection('posts').where('userId', '==', user.uid)
     .onSnapshot((querySnapshot) => {
@@ -179,14 +180,18 @@ export const updatePost = (idPost, content) => {
   });
 }
 
-// })
-// .then(function() {
-//     console.log("Document successfully updated!");
-// })
-// .catch(function(error) {
-//     // The document probably doesn't exist.
-//     console.error("Error updating document: ", error);
-// })
+export const likesPost = (idPost, likes) => {
+  const ref = firebase.firestore().collection('posts').doc(idPost)
+}
+
+
+
+
+
+
+
+
+
 // Función para Cerrar Sesión
 export const logOut = () =>
   firebase.auth().signOut();

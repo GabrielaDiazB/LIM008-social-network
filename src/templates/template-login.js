@@ -51,6 +51,7 @@ export const signIn = () => {
 
   const btnGoogle = divElem.querySelector('#google-login')
   btnGoogle.addEventListener('click', () => {
+    userLogged()
     registerGoogleLogIn();
   });
 
@@ -101,7 +102,7 @@ export const perfil = (data) => {
         </div>
         <div class="container-information"> 
           <div class="information">
-            <span class="name">${data.name}</span>
+            <span class="name">${data.displayName}</span>
             <span class="info">${data.information}</span>
           </div>
           <div class = "table"> 
@@ -164,7 +165,9 @@ export const writingPost = (objPost) => {
   const ul = post.querySelector('.post-container');
   objPost.forEach(post => {
     ul.appendChild(itemPost(post));
+    
   });
+
 
   return post;
 };
