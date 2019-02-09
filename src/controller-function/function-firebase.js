@@ -12,12 +12,11 @@ export const checkInFunction = (email, password) =>
 // Función para Iniciar Sesión
 export const singInFunction = (userEmail, userPassword) =>
   firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
-    .catch(function(error) {
+    .catch((error) => {
       // Handle Errors here.
-      const errorCode = error.code;
+      // const errorCode = error.code;
       const errorMessage = error.message;
-      window.alert('Error : ' + errorCode);
-      window.alert('Error : ' + errorMessage);
+      return errorMessage;
     });
 
 // Función para Iniciar Sesión con Facebook
@@ -122,14 +121,21 @@ firebase.auth().onAuthStateChanged(function(user) {
 // Guarda el Post en Firestore
 export const getUserPostData = (content) => {
   let datePost = firebase.firestore.FieldValue.serverTimestamp();
-  return firebase.firestore().collection('posts').add({ 
-      currentName:'',
+  let posts = firebase.firestore().collection('posts');
+  let data = {
+    currentName: '',
     // userPhoto: userPhotoLink,
-      date: datePost,
-      content: content,
-      userId: firebase.auth().currentUser.uid,
-      likes: []
-    })
+    date: datePost,
+    content: content,
+    userId: firebase.auth().currentUser.uid,
+    likes: [],
+  };
+  posts.add(data)
+    .then(() => {console.log('hola')})
+
+    .catch(() => {
+     // console.log(err)
+    });
 };
 
 // Llevar los datos del post al template

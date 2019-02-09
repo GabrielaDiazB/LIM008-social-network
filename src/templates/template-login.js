@@ -19,23 +19,23 @@ import { templateBarraNav } from './template-sections.js';
 export const signIn = () => {
   const templateSignIn = `
   <img src="./logo/Nombre.png" alt="logo" class="logoname-img">
-      <div id="signin-container" class="signin-container">
-        <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
-        <div id="sign-in-box" class="container-login">
-          <form>
-            <input id="email-si" class="email" type="email" placeholder="Correo">
-            <input id="password-si" class="password" type="password" placeholder="Contraseña">
-            <button id="sign-in" class="login-btn" type="button">iniciar sesion</button>
-          </form>
-          <h2>Ingresa directamente con:</h2>
-          <button id="facebook-login" class="fa fa-facebook"></button>
-          <button id="google-login" class="fa fa-google"></button>
-          <button id="twitter-login" class="fa fa-twitter"></button>
-        </div>
-        <div>
-          <h4 id="signup-question" class="signup-question">¿No tienes una cuenta?</h4>
-        </div>
-      </div>`;
+  <div id="signin-container" class="signin-container">
+    <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
+    <div id="sign-in-box" class="container-login">
+      <form>
+        <input id="email-si" class="email" type="email" placeholder="Correo">
+        <input id="password-si" class="password" type="password" placeholder="Contraseña">
+        <button id="sign-in" class="login-btn" type="button">iniciar sesion</button>
+      </form>
+      <h2>Ingresa directamente con:</h2>
+      <button id="facebook-login" class="fa fa-facebook"></button>
+      <button id="google-login" class="fa fa-google"></button>
+      <button id="twitter-login" class="fa fa-twitter"></button>
+    </div>
+    <div>
+      <h4 id="signup-question" class="signup-question">¿No tienes una cuenta?</h4>
+    </div>
+  </div>`;
   const divElem = document.createElement('div');
   divElem.innerHTML = templateSignIn;
   const btnSignIn = divElem.querySelector('#sign-in')
@@ -185,8 +185,8 @@ const itemPost = (dataPost) => {
         <form>
           <div id="user-box" class="user-box">
                 <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
-                <h2 id="user-name" class="user-name-post">${dataPost.name}</h2>
-                <h5>${dataPost.timestamp}</h5>
+                <h2 id="user-name" class="user-name-post">${dataPost.currentName}</h2>
+                <h5>${dataPost.date}</h5>
           </div> 
           <textarea id="post-edit-${dataPost.id}" class="text-area" cols="25" rows="5" disabled>${dataPost.content}</textarea>
           <div class="privacy-box">
@@ -194,14 +194,15 @@ const itemPost = (dataPost) => {
             <i class="fa fa-lock" class="img-icon-post"></i>
           </div>
           <div class="interact-box">
-            <label for="" class="click-counter-likes">2</label>
-            <img src="./aicon/like-2.png" alt="" class="img-icon-post">
-            <label for="" class="click-counter-favorites"> 2</label>
-            <img  src="./aicon/star-1.png" alt="" class="img-icon-post">
+            <label for="" class="click-counter-likes" id="click-counter-likes">${dataPost.likes}</label>
+            <img src="./aicon/like-2.png" alt="" id="like-btn" class="img-icon-post">
+            <label for="" class="click-counter-favorites" id="click-counter-favorites"></label>
+            <img  src="./aicon/star-1.png" alt="" class="img-icon-post" id="favorite-btn">
           </div> 
           <button id="save-post-edit" class="save-post-edit" type="button">Guardar</button>
         </form>      
       </div>`;
+  liElement.querySelector('#save-post-edit').style.display = 'none';
   const editBtn = liElement.querySelector(`#btn-update-${dataPost.id}`);
   const textArea = liElement.querySelector(`#post-edit-${dataPost.id}`);
   editBtn.addEventListener('click', () => {
@@ -213,11 +214,29 @@ const itemPost = (dataPost) => {
   saveEdit.addEventListener('click', () => {
     textArea.disabled = true;
     updatePostSubmit(dataPost.id, textArea.value);
+    liElement.querySelector('#save-post-edit').style.display = 'none';
   });
 
   const deleted = liElement.querySelector(`#btn-delete-${dataPost.id}`);
   deleted.addEventListener('click', () => {
     deletePostOnSubmit(dataPost);
+  });
+
+  const likesBtn = liElement.querySelector('#like-btn');
+  let likesCounter = 0;
+  
+  likesBtn.addEventListener('click', () => {
+    console.log('ouch');
+    likesCounter += 1;
+    liElement.querySelector('.click-counter-likes').innerHTML = likesCounter;
+  });
+
+  const favoritesBtn = liElement.querySelector('#favorite-btn');
+  let favoritesCounter = 0;
+
+  favoritesBtn.addEventListener('click', () => {
+    favoritesCounter += 1;
+    liElement.querySelector('#click-counter-favorites').innerHTML = favoritesCounter;
   });
 
   return liElement;
