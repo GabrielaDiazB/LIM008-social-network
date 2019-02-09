@@ -32,10 +32,8 @@ export const signInOnSubmit = () => {
   const userEmail = document.querySelector('#email-si').value;
   const userPassword = document.querySelector('#password-si').value;
   singInFunction(userEmail, userPassword)
-    .then(() => {
-    })
     .catch((error) => {
-      alert(error);
+      window.alert('Error : ' + error);
     });
 };
 

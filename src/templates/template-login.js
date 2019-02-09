@@ -19,23 +19,23 @@ import { templateBarraNav } from './template-sections.js';
 export const signIn = () => {
   const templateSignIn = `
   <img src="./logo/Nombre.png" alt="logo" class="logoname-img">
-      <div id="signin-container" class="signin-container">
-        <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
-        <div id="sign-in-box" class="container-login">
-          <form>
-            <input id="email-si" class="email" type="email" placeholder="Correo">
-            <input id="password-si" class="password" type="password" placeholder="Contraseña">
-            <button id="sign-in" class="login-btn" type="button">iniciar sesion</button>
-          </form>
-          <h2>Ingresa directamente con:</h2>
-          <button id="facebook-login" class="fa fa-facebook"></button>
-          <button id="google-login" class="fa fa-google"></button>
-          <button id="twitter-login" class="fa fa-twitter"></button>
-        </div>
-        <div>
-          <h4 id="signup-question" class="signup-question">¿No tienes una cuenta?</h4>
-        </div>
-      </div>`;
+  <div id="signin-container" class="signin-container">
+    <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
+    <div id="sign-in-box" class="container-login">
+      <form>
+        <input id="email-si" class="email" type="email" placeholder="Correo">
+        <input id="password-si" class="password" type="password" placeholder="Contraseña">
+        <button id="sign-in" class="login-btn" type="button">iniciar sesion</button>
+      </form>
+      <h2>Ingresa directamente con:</h2>
+      <button id="facebook-login" class="fa fa-facebook"></button>
+      <button id="google-login" class="fa fa-google"></button>
+      <button id="twitter-login" class="fa fa-twitter"></button>
+    </div>
+    <div>
+      <h4 id="signup-question" class="signup-question">¿No tienes una cuenta?</h4>
+    </div>
+  </div>`;
   const divElem = document.createElement('div');
   divElem.innerHTML = templateSignIn;
   const btnSignIn = divElem.querySelector('#sign-in')
@@ -199,6 +199,7 @@ const itemPost = (dataPost) => {
           <button id="save-post-edit" class="save-post-edit" type="button">Guardar</button>
         </form>      
       </div>`;
+  liElement.querySelector('#save-post-edit').style.display = 'none';
   const editBtn = liElement.querySelector(`#btn-update-${dataPost.id}`);
   const textArea = liElement.querySelector(`#post-edit-${dataPost.id}`);
   editBtn.addEventListener('click', () => {
@@ -210,6 +211,7 @@ const itemPost = (dataPost) => {
   saveEdit.addEventListener('click', () => {
     textArea.disabled = true;
     updatePostSubmit(dataPost.id, textArea.value);
+    liElement.querySelector('#save-post-edit').style.display = 'none';
   });
 
   const deleted = liElement.querySelector(`#btn-delete-${dataPost.id}`);

@@ -12,12 +12,11 @@ export const checkInFunction = (email, password) =>
 // Función para Iniciar Sesión
 export const singInFunction = (userEmail, userPassword) =>
   firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
-    .catch(function(error) {
+    .catch((error) => {
       // Handle Errors here.
-      const errorCode = error.code;
+      // const errorCode = error.code;
       const errorMessage = error.message;
-      window.alert('Error : ' + errorCode);
-      window.alert('Error : ' + errorMessage);
+      return errorMessage;
     });
 
 // Función para Iniciar Sesión con Facebook
