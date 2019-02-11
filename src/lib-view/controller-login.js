@@ -4,9 +4,6 @@ import {
   logOut, 
   userLogged} from '../controller-function/function-login.js';
 
-const changeHash = (hash) => {
-  location.hash = hash;
-};
 
 // controler de crear una cuenta nueva
 export const checkInOnSubmit = () => {
@@ -14,25 +11,25 @@ export const checkInOnSubmit = () => {
   const information = document.querySelector('#information').value;
   const email = document.querySelector('#email').value;
   const password = document.querySelector('#password').value;
+
   const firestore = firebase.firestore();
   let nameUser = displayName;
   let informationUser = information;
   let emailRef = email;          
-  let users = firestore.collection('posts');
+  let users = firestore.collection('users');
   let data = {
-    displayName: nameUser,
+    name: nameUser,
     information: informationUser,
     email: emailRef,
   };
   checkInFunction(email, password)
     .then(() => {
-      data.userId = firebase.auth().currentUser.uid;
+      data.uid = firebase.auth().currentUser.uid;
       users.add(data);
-      changeHash('/signIn');
+      window.location.hash = '#/signIn';
     })
     .catch((error) => {
       alert(error + 'llena los campos vacios');
-      changeHash('/register');
     });
 };
 
@@ -43,18 +40,19 @@ export const signInOnSubmit = () => {
   singInFunction(userEmail, userPassword)
     .then((user) => { 
       userLogged(user);
-      changeHash('/perfil');
+      window.location.hash = '#/perfil';
     })
     .catch((error) => {
       alert(error + 'llena los campos vacios');
-      changeHash('/signIn');
+      window.location.hash = '#/signIn';
     });
 };
 
 export const logOutOnSubmit = () => {
   logOut()
     .then(() => {
-      changeHash('/signIn');
+      console.log('cerro sesion');
+      window.location.hash = '#/signIn';
     });
 };
 

@@ -1,3 +1,4 @@
+
 const firebasemock = require('firebase-mock');
 const mockauth = new firebasemock.MockFirebase();
 const mockfirestore = new firebasemock.MockFirestore();
@@ -9,11 +10,11 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => mockauth,
   () => mockfirestore
 );
+
 import {
   checkInFunction,
   singInFunction,
-  //logOut,
-} from '../src/controller-function/function.login.js';
+} from '../src/controller-function/function-login.js';
 
 describe('Create an account with email and password', () => {
   it('debería poder crear un usuario', () => {

@@ -5,6 +5,8 @@ import {
   updateLikesOnSubmit
 } from '../lib-view/controller-post.js';
 
+import { dataPostUser } from '../app.js';
+
 import { templateBarraNav } from './template-barraNav.js';
 
 export const writingPost = (objPost) => {
@@ -34,8 +36,15 @@ export const writingPost = (objPost) => {
   post.innerHTML = templateWritingPost;
   
   const postingPost = post.querySelector('#post');
-  postingPost.addEventListener('click', addPostOnSubmit);
-  
+  postingPost.addEventListener('click', () => {
+    if('uid' === 'public') {
+      return window.location.hash = '#/wallpost'
+    }
+    else if('uid' === 'private') {
+      return window.location.hash ='#/perfil'
+    }
+    addPostOnSubmit();
+  });
   const ul = post.querySelector('.post-container');
   objPost.forEach(post => {
     ul.appendChild(itemPost(post));    
@@ -43,7 +52,8 @@ export const writingPost = (objPost) => {
   return post;
 };
   
-const itemPost = (dataPost) => {
+export const itemPost = (dataPost) => {
+  const datePost = dataPostUser(dataPost.date.toDate());
   const liElement = document.createElement('li');
   liElement.classList.add('mdl-list__item');
   liElement.innerHTML = `
@@ -55,9 +65,9 @@ const itemPost = (dataPost) => {
           </div>
           <form>
             <div id="user-box" class="user-box">
-                  <img src="${dataPost.userPhoto} alt="" id="user-pic-post" class="user-pic">
+                  <img src="${dataPost.userPhoto} alt="" id="user-pic-post" class="ft">
                   <h2 id="user-name" class="user-name-post">${dataPost.name}</h2>
-                  <h5>${dataPost.date}</h5>
+                  <h5>${datePost}</h5>
             </div> 
             <textarea id="post-edit-${dataPost.id}" class="text-area" cols="25" rows="5" disabled>${dataPost.content}</textarea>
             <div class="privacy-box">
@@ -97,6 +107,5 @@ const itemPost = (dataPost) => {
   likesBtn.addEventListener('click', () => {
     updateLikesOnSubmit(dataPost, dataPost.like += 1);  
   });
-  
   return liElement;
 };

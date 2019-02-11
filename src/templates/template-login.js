@@ -12,7 +12,6 @@ const changeHash = (hash) => {
   location.hash = hash;
 };
 
-
 export const signIn = () => {
   const templateSignIn = `
   <img src="../imagen/logo/Nombre.png" alt="logo" class="logoname-img">
@@ -71,16 +70,16 @@ export const register = () => {
           <input id="information" class="information" type="text" placeholder="Cuéntanos tus Hobbies">
           <input id="email" class="email" type="email" placeholder="E-mail">
           <input id="password" class="password" type="password" placeholder="Contraseña">
-          <button id="sign-up" class="sign-up-btn">Crear Cuenta</button>
+          <button id="sign-up" type="button" class="sign-up-btn">Crear Cuenta</button>
         </form>
      </div>`;
   const divElem = document.createElement('div');
   divElem.innerHTML = templateRegister;
 
   const btnRegister = divElem.querySelector('#sign-up');
-  btnRegister.addEventListener('click', () => {
-    checkInOnSubmit();
-  });
+  btnRegister.addEventListener('click', () => { 
+    checkInOnSubmit()})
+  
   return divElem;
 };
 

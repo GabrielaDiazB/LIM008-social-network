@@ -18,8 +18,8 @@ export const perfil = (data) => {
             <div class = "table"> 
               <table>
                 <tr>
-                  <th>#</th>
-                  <th>#</th>
+                  <th>${data.like}</th>
+                  <th>${data.favorito}</th>
                 </tr>
                 <tr>
                   <td>Me encanta</td>

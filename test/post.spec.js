@@ -16,14 +16,14 @@ const fixtureData = {
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
 import { 
-  getUserPostData,
+  addUserPostData,
   getPost,
   //deletePost,
-} from '../src/controller-function/function-post.js/index.js';
+} from '../src/controller-function/function-post.js';
 
 describe('crear post', () => {
   it('debería agregar un post', (done) => {
-    return getUserPostData('Hola mundo')
+    return addUserPostData('Hola mundo')
       .then(() => getPost(
         (data) => {
           const results = data.find((post) => post.content === 'Hola mundo');

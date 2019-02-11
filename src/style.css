@@ -194,6 +194,16 @@ footer{
     background: #283f68;
     border: solid rgba(240, 239, 237, 0.7) 5px;
 }
+
+#user-pic-post{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    margin: 2px;
+    background: #283f68;
+    border: solid rgba(240, 239, 237, 0.7) 2px;  
+}
+
 .container-information{
     text-align: center;
     font-family: 'Roboto', sans-serif;
