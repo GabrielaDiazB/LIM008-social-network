@@ -1,9 +1,6 @@
 import { 
   checkInFunction, 
   singInFunction,
-  registerFacebookLogIn,
-  registerGoogleLogIn,
-  registerTwitterLogIn,
   logOut, 
   userLogged} from '../controller-function/function-login.js';
 
