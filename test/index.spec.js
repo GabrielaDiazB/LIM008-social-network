@@ -1,4 +1,5 @@
 import MockFirebase from 'mock-cloud-firestore';
+
 const fixtureData = {
   __collection__: {
     posts: {

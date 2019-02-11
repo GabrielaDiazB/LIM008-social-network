@@ -1,6 +1,6 @@
+
 // Agregar likes - en proceso
 
-// 
 const checkUserIDforLikes = (userId, likes) => {
   const positionUserId = likes.indexOf(userId);
   if (positionUserId === -1) {
@@ -21,10 +21,37 @@ const addLikes = (postId) => {
         db.collection('posts').doc(postID).update({
           likes: currentUserLikes
         }).then(element => {
-          getPost();
+          //
         }).catch(element => {
-          console.log('Error al aumentar contador de likes');
+          //
         });
       }
     });
+};
+
+const privatePost = () => {
+  let collection = db.collection('posts')
+    .where('privacity', '==', 'Privado')
+    .where('userId', '==', `${dataPost.name}`)
+    .orderBy('createdAt', 'desc');
+  query.onSnapshot((content) => {
+    createPost(content);
+  });
+};
+
+const publicPost = () => {
+  let collection = db.collection('posts')
+    .where('privacity', '==', 'Público')
+    .orderBy('createdAt', 'desc');
+  query.onSnapshot((content) => {
+    createPost(content);
+  }); 
+};
+
+const countLikes = (userId, like, event) => {
+  event.preventDefault();
+  let likeUpdate = like + 1;
+  firebase.firestore().collection('posts').doc(id).update({
+    like: likeUpdate
+  });
 };

@@ -146,7 +146,7 @@ export const writingPost = (objPost) => {
           <textarea id="text-area" class="text-area" cols="25" rows="5" autofocus placeholder="Escribe aquí..." required></textarea>
           <div class="privacy-filter">
               <label for="">Público</label>
-              <input id="privacy-checkbox" type="checkbox" value="public">
+              <input id="privacy-checkbox" type="select" value="public">
               <label for="">Privado</label>
               <input id="privacy-checkbox" type="checkbox" value="private">
           </div>

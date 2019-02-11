@@ -118,6 +118,7 @@ export const userLogged = () => firebase.auth().onAuthStateChanged(function(user
 export const getUserPostData = (content) => {
   console.log('inicio get user data');
   let datePost = firebase.firestore.FieldValue.serverTimestamp();
+  // let statusPost = document.querySelector();
   let posts = firebase.firestore().collection('posts');
   let data = {
     currentName: name,
@@ -125,7 +126,8 @@ export const getUserPostData = (content) => {
     date: datePost,
     content: content,
     userId: firebase.auth().currentUser.uid,
-  // likes: [],
+    // likes: [],
+    // privacity: statusPost
   };
   posts.add(data)
     .then(() => {
