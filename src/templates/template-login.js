@@ -1,24 +1,21 @@
 import {
   checkInOnSubmit,
-  signInOnSubmit,
-  addPostOnSubmit,
-  logOutOnSubmit,
-  deletePostOnSubmit,
-  updatePostSubmit
-
-} from '../view-controller.js';
-
+  signInOnSubmit} from '../lib-view/controller-login.js';
+  
 import {
   registerFacebookLogIn,
   registerGoogleLogIn,
-  userLogged,
-} from '../controller-function/function-firebase.js';
+  registerTwitterLogIn
+} from '../controller-function/function-login.js';
 
-import { templateBarraNav } from './template-sections.js';
+const changeHash = (hash) => {
+  location.hash = hash;
+};
+
 
 export const signIn = () => {
   const templateSignIn = `
-  <img src="./logo/Nombre.png" alt="logo" class="logoname-img">
+  <img src="../imagen/logo/Nombre.png" alt="logo" class="logoname-img">
   <div id="signin-container" class="signin-container">
     <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
     <div id="sign-in-box" class="container-login">
@@ -40,7 +37,6 @@ export const signIn = () => {
   divElem.innerHTML = templateSignIn;
   const btnSignIn = divElem.querySelector('#sign-in')
   btnSignIn.addEventListener('click', () => {
-    userLogged();
     signInOnSubmit();
   });
 
@@ -49,26 +45,24 @@ export const signIn = () => {
     registerFacebookLogIn();
   });
 
-  const btnGoogle = divElem.querySelector('#google-login')
-  btnGoogle.addEventListener('click', () => {
-    userLogged()
+  const btnGoogle = divElem.querySelector('#google-login');
+  btnGoogle.addEventListener('click', () => { 
     registerGoogleLogIn();
   });
 
   const btnTwitter = divElem.querySelector('#twitter-login')
-  btnTwitter.addEventListener('click', () => {
+  btnTwitter.addEventListener('click', () =>{ 
     registerTwitterLogIn();
   });
 
   const btnQuestion = divElem.querySelector('#signup-question')
   btnQuestion.addEventListener('click', () => {
-    window.location.hash = '#/register';
+    changeHash('/register');
   });
   return divElem;
 };
 
 export const register = () => {
-
   const templateRegister = `
       <div class="signup-container" id="sign-up-box">
           <form>
@@ -86,160 +80,8 @@ export const register = () => {
   const btnRegister = divElem.querySelector('#sign-up');
   btnRegister.addEventListener('click', () => {
     checkInOnSubmit();
-    window.location.hash = '#/signIn';
   });
   return divElem;
 };
 
-export const perfil = (data) => {
-  const templatePerfil = `
-  ${templateBarraNav}
-      <div class="container">
-        <div class="container-profile">
-          <div class="ft-perfil">
-            <img src= ${'http://florflores.com/wp-content/uploads/211-girasoles.jpg'} class="ft" alt="foto de perfil"/>
-          </div>
-        </div>
-        <div class="container-information"> 
-          <div class="information">
-            <span class="name">${data.name}</span>
-            <span class="info">${data.information}</span>
-          </div>
-          <div class = "table"> 
-            <table>
-              <tr>
-                <th>#</th>
-                <th>#</th>
-              </tr>
-              <tr>
-                <td>Me encanta</td>
-                <td>Favoritos</td>
-              </tr>
-           </table>    
-          </div>        
-        </div>
-      </div>
-    `;
-  const divElem = document.createElement('div');
-  divElem.setAttribute('class', 'perfil-container');
-  divElem.innerHTML = templatePerfil;
 
-  const logOutBtn = divElem.querySelector('#log-out-btn');
-  logOutBtn.addEventListener('click', () => {
-    logOutOnSubmit();
-  });
-
-;
-
-  return divElem;
-};
-
-export const writingPost = (objPost) => {
-  const templateWritingPost = `
-    ${templateBarraNav}
-      <div class="post-container">
-        <i class="fa fa-arrow-left"></i>
-        <h1 class="text-align">¿Qué Recomiendas?</h1>
-        <form>
-          <div class="activity-filter">
-              <label for="">Interior</label>
-              <input type="checkbox" value="Inside">
-              <label for="">Exterior</label>
-              <input type="checkbox" value="Outside"> 
-          </div>
-          <textarea id="text-area" class="text-area" cols="25" rows="5" autofocus placeholder="Escribe aquí..." required></textarea>
-          <div class="privacy-filter">
-              <label for="">Público</label>
-              <input id="privacy-checkbox" type="checkbox" value="public">
-              <label for="">Privado</label>
-              <input id="privacy-checkbox" type="checkbox" value="private">
-          </div>
-
-          <button type="button" class="post" id="post">Publicar</button>
-        </form>      
-      </div>`;
-  const post = document.createElement('div');
-  post.innerHTML = templateWritingPost;
-
-  const postingPost = post.querySelector('#post');
-  postingPost.addEventListener('click', addPostOnSubmit);
-
-  const ul = post.querySelector('.post-container');
-  objPost.forEach(post => {
-    ul.appendChild(itemPost(post));
-    
-  });
-
-
-  return post;
-};
-
-const itemPost = (dataPost) => {
-  const liElement = document.createElement('li');
-  liElement.classList.add('mdl-list__item');
-  liElement.innerHTML = `
-    ${templateBarraNav}
-      <div class="post-container-posted">
-        <div class="settings-box">
-          <img src="./aicon/edit.ico" alt="" class="img-icon-post" id="btn-update-${dataPost.id}">
-          <img src="./aicon/garbage-2.png" alt="" id="btn-delete-${dataPost.id}" class="img-icon-post">
-        </div>
-        <form>
-          <div id="user-box" class="user-box">
-                <img src="./aicon/user-2.png" alt="" id="user-pic-post" class="user-pic">
-                <h2 id="user-name" class="user-name-post">${dataPost.currentName}</h2>
-                <h5>${dataPost.date}</h5>
-          </div> 
-          <textarea id="post-edit-${dataPost.id}" class="text-area" cols="25" rows="5" disabled>${dataPost.content}</textarea>
-          <div class="privacy-box">
-            <i class="fa fa-unlock" class="img-icon-post"></i>
-            <i class="fa fa-lock" class="img-icon-post"></i>
-          </div>
-          <div class="interact-box">
-            <label for="" class="click-counter-likes" id="click-counter-likes">${dataPost.likes}</label>
-            <img src="./aicon/like-2.png" alt="" id="like-btn" class="img-icon-post">
-            <label for="" class="click-counter-favorites" id="click-counter-favorites"></label>
-            <img  src="./aicon/star-1.png" alt="" class="img-icon-post" id="favorite-btn">
-          </div> 
-          <button id="save-post-edit" class="save-post-edit" type="button">Guardar</button>
-        </form>      
-      </div>`;
-  liElement.querySelector('#save-post-edit').style.display = 'none';
-  const editBtn = liElement.querySelector(`#btn-update-${dataPost.id}`);
-  const textArea = liElement.querySelector(`#post-edit-${dataPost.id}`);
-  editBtn.addEventListener('click', () => {
-    textArea.disabled = false;
-    liElement.querySelector('#save-post-edit').style.display = 'block';
-  });
-  
-  const saveEdit = liElement.querySelector('#save-post-edit');
-  saveEdit.addEventListener('click', () => {
-    textArea.disabled = true;
-    updatePostSubmit(dataPost.id, textArea.value);
-    liElement.querySelector('#save-post-edit').style.display = 'none';
-  });
-
-  const deleted = liElement.querySelector(`#btn-delete-${dataPost.id}`);
-  deleted.addEventListener('click', () => {
-    deletePostOnSubmit(dataPost);
-  });
-
-  const likesBtn = liElement.querySelector('#like-btn');
-  let likesCounter = 0;
-  
-  likesBtn.addEventListener('click', () => {
-    console.log('ouch');
-    likesCounter += 1;
-    liElement.querySelector('.click-counter-likes').innerHTML = likesCounter;
-  });
-
-  const favoritesBtn = liElement.querySelector('#favorite-btn');
-  let favoritesCounter = 0;
-
-  favoritesBtn.addEventListener('click', () => {
-    favoritesCounter += 1;
-    liElement.querySelector('#click-counter-favorites').innerHTML = favoritesCounter;
-  });
-
-  return liElement;
-};

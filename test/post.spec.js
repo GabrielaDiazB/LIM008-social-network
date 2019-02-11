@@ -1,0 +1,47 @@
+import MockFirebase from 'mock-cloud-firestore';
+
+const fixtureData = {
+  __collection__: {
+    posts: {
+      __doc__: {
+        abc123: {
+          content: 'Hola mundo',
+          userId: 'abc'
+        },
+      }
+    }
+  }
+};
+
+global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
+
+import { 
+  getUserPostData,
+  getPost,
+  //deletePost,
+} from '../src/controller-function/function-post.js/index.js';
+
+describe('crear post', () => {
+  it('debería agregar un post', (done) => {
+    return getUserPostData('Hola mundo')
+      .then(() => getPost(
+        (data) => {
+          const results = data.find((post) => post.content === 'Hola mundo');
+          expect(results.content).toBe('Hola mundo');
+          done();
+        }
+      ));
+  });
+});
+  /* it('debería poder eliminar el post indicado', (done) => {
+    return deletePost('abc123')
+      .then(() => getPost(
+        (data) => {
+          const results = data.find((post) => post.id === 'abc123');
+          expect(results).toBe(undefined);
+          done();
+        }
+      ));
+  }); 
+}); 
+*/
