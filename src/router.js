@@ -1,5 +1,9 @@
-import { signIn, register, perfil, writingPost } from './templates/template-login.js';
-import { callDoc, getPost} from './controller-function/function-firebase.js';
+import { signIn, register} from './templates/template-login.js';
+import { perfil } from './templates/template-perfil.js'; 
+import { writingPost } from './templates/template-post.js';
+import { callDoc } from './controller-function/function-perfil.js';
+import { getPost } from './controller-function/function-post.js';
+
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
     return viewTmp('#/signIn');

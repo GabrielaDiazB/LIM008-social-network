@@ -12,9 +12,9 @@ global.firebase = firebasemock.MockFirebaseSdk(
 );
 import {
   checkInFunction,
-  singInFunction
-  
-} from '../src/controller-function/function-firebase.js';
+  singInFunction,
+  //logOut,
+} from '../src/controller-function/function.login.js';
 
 describe('Create an account with email and password', () => {
   it('debería poder crear un usuario', () => {
@@ -32,19 +32,10 @@ describe('LogIn with email and password', () => {
       });
   });
 });
-/*describe('Facebook authentication', () => {
-  it('debería ser una función', () => {
-    expect(typeof registerFacebookLogIn).toBe('function');
-  });
-});
-describe('Google authentication', () => {
-  it('debería ser una función', () => {
-    expect(typeof registerGoogleLogIn).toBe('function');
-  });
-});
-describe('Twitter authentication', () => {
-  it('debería ser una función', () => {
-    expect(typeof registerTwitterLogIn).toBe('function');
-  });
-});
-*/
+
+/*describe('cerrar sesion', () => {
+  it('deberia cerrar sesion', () => {
+   expect(typeof logOut).toBe('null');
+  })
+})*/
+
