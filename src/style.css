@@ -9,7 +9,7 @@ header{
     right: 0;
     z-index: 1000;
     background:#00A3A5;
-    box-shadow: 0 4px 6px 0 rgba(7, 7, 7, 0.24), 0 5px 7px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 3px 5px 0 rgba(7, 7, 7, 0.1), 0 4px 6px 0 rgba(0,0,0,0.09);
 }  
 
 .logo-img{
@@ -34,7 +34,7 @@ header{
 }
 
 body{
-    background-color:rgba(182, 239, 239, 0.3);
+    background: rgb(240, 240, 247);
 }
 
 footer{
@@ -53,6 +53,9 @@ footer{
     width: 40px;
     height: 40px;
     padding: 0 30px;
+}
+.icon-footer:hover{
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 500px) { 
@@ -79,16 +82,18 @@ footer{
         font-family: 'Roboto', sans-serif;
     }
 
-    /* .log-container {
-        background-color: rgba(222, 246, 246, 0.6);
+    li{
+        list-style-type: none;
+    }
+
+    .log-container {
+        /* background-color: rgba(222, 246, 246, 0.6);
         padding: 10px;
         border-radius: 5px;
-        margin:80px auto;
-        text-align: center;
-    }*/
+        margin:80px auto; */
+        /* text-align: center;
+        list-style-type: none; */
 
-    .mdl-list__item{
-        list-style-type: none;
     }
 
     .logoname-img{
@@ -189,6 +194,16 @@ footer{
     background: #283f68;
     border: solid rgba(240, 239, 237, 0.7) 5px;
 }
+
+#user-pic-post{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    margin: 2px;
+    background: #283f68;
+    border: solid rgba(240, 239, 237, 0.7) 2px;  
+}
+
 .container-information{
     text-align: center;
     font-family: 'Roboto', sans-serif;
@@ -289,11 +304,27 @@ hr{
         cursor: pointer;
         float: right;
     }
-    .post:hover{
+    .post:hover, .save-post-edit:hover{
         background-color: #007D7E;
     }
-    .post:active{
+    .post:active, .save-post-edit:active{
         transform: translateY(3px);
+    }
+
+    .save-post-edit{
+        font-size: 15px;
+        border-radius: 5px;
+        width: 150px;
+        padding: 10px 20px;
+        margin: 60px 5px 5px 0;
+        color: white;
+        background-color: #009698;
+        border: none;
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 5px 7px 0 rgba(0,0,0,0.19);;
+        transition-duration: 0.4s;
+        outline: none;
+        cursor: pointer;
+        float: left;
     }
     /* Post Publicado */
     .img-icon-post{
@@ -351,5 +382,6 @@ hr{
         color: red;
     }
 
-}
+   
 
+}

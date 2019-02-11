@@ -1,9 +1,13 @@
-import { signIn, register, perfil, writingPost } from './templates/template-login.js';
-import { callDoc, getPost} from './controller-function/function-firebase.js';
+import { signIn, register} from './templates/template-login.js';
+import { perfil } from './templates/template-perfil.js'; 
+import { writingPost } from './templates/template-post.js';
+import { callDoc } from './controller-function/function-perfil.js';
+import { getPost} from './controller-function/function-post.js';
+
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
     return viewTmp('#/signIn');
-  } else if (hash === '#/signIn' || hash === '#/register' || hash === '#/perfil' || hash === '#/writingPost') {
+  } else if (hash === '#/signIn' || hash === '#/register' || hash === '#/perfil' || hash === '#/writingPost' || hash === '#/wallPost') {
     return viewTmp(hash);
   } else {
     return viewTmp('#/signIn');
@@ -17,6 +21,12 @@ const viewTmp = (routers) => {
   postSection.innerHTML = '';
   section.innerHTML = '';
   switch (router) {
+  /*case 'wallPost':
+    privatePost((dataPost) => {
+      postSection.innerHTML = '';
+      postSection.appendChild(itemPost(dataPost));
+    });
+    break;*/
   case 'writingPost':
     getPost((dataPost) => {
       console.log(dataPost);

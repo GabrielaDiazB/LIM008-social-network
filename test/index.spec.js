@@ -1,31 +1,34 @@
-import MockFirebase from 'mock-cloud-firestore';
+const firebasemock = require('firebase-mock');
+const mockauth = new firebasemock.MockFirebase();
+const mockfirestore = new firebasemock.MockFirestore();
+mockfirestore.autoFlush();
+mockauth.autoFlush();
+global.firebase = firebasemock.MockFirebaseSdk(
+  // use null if your code does not use RTDB
+  path => (path ? mockdatabase.child(path) : null),
+  () => mockauth,
+  () => mockfirestore
+);
 
-const fixtureData = {
-  __collection__: {
-    posts: {
-      __doc__: {
-        abc123: {
-          content: 'Hola mundo',
-        },
-      }
-    }
-  }
-};
+import {
+  checkInFunction,
+  singInFunction,
+} from '../src/controller-function/function-login.js';
 
-global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
-
-import { addPostOnSubmit, deletePostOnSubmit } from '../src/view-controller.js';
-import {getPost} from '../src/controller-function/function-firebase.js';
-describe('crear post', () => {
-  it('debería agregar un post', (done) => {
-    return addPostOnSubmit('Hola mundo')
-      .then(() => getPost(
-        (data) => {
-          const results = data.find((post) => post.content === 'Hola mundo');
-          expect(results).toBe('Hola mundo');
-          done();
-        }
-      ));
+describe('Create an account with email and password', () => {
+  it('debería poder crear un usuario', () => {
+    return checkInFunction('correofake@hotmail.com', '123456')
+      .then((user) => {
+        expect(user.email).toBe('correofake@hotmail.com');
+      });
+  });
+});
+describe('LogIn with email and password', () => {
+  it('debería iniciar sesión', () => {
+    return singInFunction('correofake@hotmail.com', '123456')
+      .then((user) => {
+        expect(user.email).toBe('correofake@hotmail.com');
+      });
   });
   it('debería poder eliminar el post indicado', (done) => {
     return deletePostOnSubmit('abc123')
@@ -39,3 +42,12 @@ describe('crear post', () => {
   }); 
 });
 
+<<<<<<< HEAD
+=======
+/*describe('cerrar sesion', () => {
+  it('deberia cerrar sesion', () => {
+   expect(typeof logOut).toBe('null');
+  })
+})*/
+
+>>>>>>> 551d52f2af65d117018b57f4d03f5c2ff4408a9a
