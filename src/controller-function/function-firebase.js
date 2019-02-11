@@ -121,6 +121,19 @@ firebase.auth().onAuthStateChanged(function(user) {
 // Guarda el Post en Firestore
 export const getUserPostData = (content) => {
   let datePost = firebase.firestore.FieldValue.serverTimestamp();
+  // let datePost = () => {    
+  //   let month = '' + (dateFromFirebase.getMonth() + 1);
+  //   let day = '' + dateFromFirebase.getDate();
+  //   let year = dateFromFirebase.getFullYear();
+  //   if (month.length < 2) {
+  //     month = '0' + month;
+  //   }
+  //   if (day-length < 2) {
+  //     day = '0' + day;
+  //   }
+
+  //   return [day, month, year].join('/')
+  // }
   let posts = firebase.firestore().collection('posts');
   let data = {
     currentName: '',
@@ -129,7 +142,7 @@ export const getUserPostData = (content) => {
     content: content,
     userId: firebase.auth().currentUser.uid,
     likes: [],
-  };
+  };  
   posts.add(data)
     .then(() => {console.log('hola')})
 
@@ -181,17 +194,13 @@ export const updatePost = (idPost, content) => {
 }
 
 export const likesPost = (idPost, likes) => {
-  const ref = firebase.firestore().collection('posts').doc(idPost)
+  const ref = firebase.firestore().collection('posts').doc(idPost);
+  return ref.update({
+    likes: likes,
+  });
 }
 
 
 
-
-
-
-
-
-
 // Función para Cerrar Sesión
-export const logOut = () =>
-  firebase.auth().signOut();
+export const logOut = () => firebase.auth().signOut()

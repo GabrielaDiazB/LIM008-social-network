@@ -102,7 +102,7 @@ export const perfil = (data) => {
         </div>
         <div class="container-information"> 
           <div class="information">
-            <span class="name">${data.displayName}</span>
+            <span class="name">${data.name}</span>
             <span class="info">${data.information}</span>
           </div>
           <div class = "table"> 
@@ -128,6 +128,8 @@ export const perfil = (data) => {
   logOutBtn.addEventListener('click', () => {
     logOutOnSubmit();
   });
+
+;
 
   return divElem;
 };
@@ -209,7 +211,7 @@ const itemPost = (dataPost) => {
     textArea.disabled = false;
     liElement.querySelector('#save-post-edit').style.display = 'block';
   });
-      
+  
   const saveEdit = liElement.querySelector('#save-post-edit');
   saveEdit.addEventListener('click', () => {
     textArea.disabled = true;

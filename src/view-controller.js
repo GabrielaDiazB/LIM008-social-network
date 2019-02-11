@@ -42,14 +42,14 @@ export const signInOnSubmit = () => {
 export const addPostOnSubmit = () => {
   const contentPost = document.querySelector('#text-area');
   getUserPostData(contentPost.value)
-  .then(() => {})
+  .then(() => {
+    window.alert('subido con éxito')
+  })
   .catch(() => {})
 };
 
 export const deletePostOnSubmit = (objPost) => { 
-  if(confirm('estas recontra segur de eliminar...'))
-  if(confirm('seguro seguro seguro muy seguro muy pero muy seguro')) 
-  if(confirm('alerta alerta alerta alerta se esta eliminando.........!!!!!!!!!!')){
+  if(confirm('¿Estás seguro que quieres eliminar?')){
    return deletePost(objPost.id);
   }
 }

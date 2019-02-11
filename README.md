@@ -6,7 +6,7 @@
 ***
 # Definición de producto
 ***
-El mercado de redes sociales es muy amplio ya que actualmente todxs usamos, y para ello realizamos encuestas a diferentes usuarios y se realizo con una cuestionario de preguntas online y personal.
+El mercado de redes sociales es muy amplio, actualmente todxs las usamos para comunicarnos con otras personas, saber de noticias, hechos y como espacios de dispersión. Para ello realizamos encuestas a diferentes usuarios y se realizo con una cuestionario de preguntas online y personal.
 la cuál nos dieron ideas de que necesitaban la mayoria de usuarios y que era lo que más buscaban en una red social.
 Llegando a una conclusión de todas las entrevistas,lo que más buscan son recomendaciones y también las brindan, es por ello que nuestra red social es sobre dar y recibir recomendaciones de las actividades que realizan dentro y/o fuera de casa.
 
