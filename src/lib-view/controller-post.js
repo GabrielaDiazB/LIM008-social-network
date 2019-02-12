@@ -1,16 +1,18 @@
 import { getNameUser, getPhotoUser } from '../lib-view/controller-login.js';
-import { addUserPostData, deletePost, updatePost, likesPost} from '../controller-function/function-post.js';
+import { addUserPostData, deletePost, updatePost, likesPost, favoritesPost} from '../controller-function/function-post.js';
 import { idUser } from './controller-login.js';
 
 // controler para guardar el post en  firebase cloud
 export const addPostOnSubmit = () => {
-  const filterPost = document.querySelector('#privacy-checkbox').value;
+  const filterPrivatePrivacy = document.querySelector('#privacy-filter').value;
   const contentPost = document.querySelector('#text-area').value;
   let countLike = 0;
+  let countFavorite = 0;
   const uidUser = idUser();
   const name = getNameUser();
   const photo = getPhotoUser();
-  addUserPostData(contentPost, uidUser, name, photo, filterPost, countLike);
+  addUserPostData(contentPost, uidUser, name, photo, filterPrivatePrivacy, countLike, countFavorite);
+  
 };
   
 export const deletePostOnSubmit = (objPost) => { 
@@ -26,4 +28,6 @@ export const updateLikesOnSubmit = (objPost, like) => {
   return likesPost(objPost.id, like);
 };
   
-  
+export const updateFavoritesOnSubmit = (objPost, favorite) => {
+  return favoritesPost(objPost.id, favorite);
+};  

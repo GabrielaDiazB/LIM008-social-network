@@ -2,8 +2,11 @@ import {
   addPostOnSubmit,
   deletePostOnSubmit,
   updatePostSubmit,
-  updateLikesOnSubmit
+  updateLikesOnSubmit,
+  updateFavoritesOnSubmit
 } from '../lib-view/controller-post.js';
+
+import { logOutOnSubmit } from '../lib-view/controller-login.js';
 
 import { dataPostUser } from '../app.js';
 
@@ -23,12 +26,10 @@ export const writingPost = (objPost) => {
                 <input type="checkbox" value="Outside"> 
             </div>
             <textarea id="text-area" class="text-area" cols="25" rows="5" autofocus placeholder="Escribe aquí..." required></textarea>
-            <div class="privacy-filter">
-                <label for="">Público</label>
-                <input id="privacy-checkbox" type="checkbox" value="public">
-                <label for="">Privado</label>
-                <input id="privacy-checkbox" type="checkbox" value="private">
-            </div>
+            <select class="privacy-filter" id="privacy-filter">
+                <option value = "Público">Público</option>
+                <option value = "Privado" id="privateOption">Privado</option>
+            </select>
             <button type="button" class="post" id="post">Publicar</button>
           </form>      
         </div>`;
@@ -37,18 +38,20 @@ export const writingPost = (objPost) => {
   
   const postingPost = post.querySelector('#post');
   postingPost.addEventListener('click', () => {
-    if('uid' === 'public') {
-      return window.location.hash = '#/wallpost'
-    }
-    else if('uid' === 'private') {
-      return window.location.hash ='#/perfil'
-    }
     addPostOnSubmit();
   });
+
+  const logOutBtn = post.querySelector('#log-out-btn');
+  logOutBtn.addEventListener('click', logOutOnSubmit);
+  
   const ul = post.querySelector('.post-container');
-  objPost.forEach(post => {
+  objPost.forEach((post) => {
     ul.appendChild(itemPost(post));    
   });
+
+
+
+
   return post;
 };
   
@@ -77,8 +80,8 @@ export const itemPost = (dataPost) => {
             <div class="interact-box">
               <label for="" class="click-counter-likes" id="click-counter-likes">${dataPost.like}</label>
               <img src="../imagen/aicon/like-2.png" alt="" id="like-btn-${dataPost.id}" class="img-icon-post">
-              <label for="" class="click-counter-favorites" id="click-counter-favorites"></label>
-              <img  src="../imagen/aicon/star-1.png" alt="" class="img-icon-post" id="favorite-btn">
+              <label for="" class="click-counter-favorites" id="click-counter-favorites">${dataPost.favorite}</label>
+              <img  src="../imagen/aicon/star-1.png" alt="" class="img-icon-post" id="favorite-btn-${dataPost.id}">
             </div> 
             <button id="save-post-edit" class="save-post-edit" type="button">Guardar</button>
           </form>      
@@ -90,7 +93,7 @@ export const itemPost = (dataPost) => {
     textArea.disabled = false;
     liElement.querySelector('#save-post-edit').style.display = 'block';
   });
-        
+  
   const saveEdit = liElement.querySelector('#save-post-edit');
   saveEdit.addEventListener('click', () => {
     textArea.disabled = true;
@@ -107,5 +110,12 @@ export const itemPost = (dataPost) => {
   likesBtn.addEventListener('click', () => {
     updateLikesOnSubmit(dataPost, dataPost.like += 1);  
   });
+
+  const favoriteBtn = liElement.querySelector(`#favorite-btn-${dataPost.id}`);
+  favoriteBtn.addEventListener('click', () => {
+    updateFavoritesOnSubmit(dataPost, dataPost.favorite += 1);
+  });
+
+
   return liElement;
 };

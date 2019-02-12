@@ -6,10 +6,10 @@ export const templateBarraNav =
   <footer id="footer-container">
     <nav>
       <div class="footer">
-        <a href="#/wallPost"><img src="../imagen/aicon/home.png" class ="icon-footer" alt=""></a>
+        <a href="#/wall"><img src="../imagen/aicon/home.png" class ="icon-footer" alt=""></a>
         <a href="#"><img src="../imagen/aicon/search.png" class ="icon-footer" alt=""></a>
         <a href="#/writingPost"><img src="../imagen/aicon/add-3.png" class ="icon-footer" alt=""></a>
-        <a href="#/perfil"><img src="../imagen/aicon/users-1.png" class ="icon-footer" alt=""></a>
+        <a href="#/profile"><img src="../imagen/aicon/users-1.png" class ="icon-footer" alt=""></a>
       </div>
      </nav>
   </footer>`;
