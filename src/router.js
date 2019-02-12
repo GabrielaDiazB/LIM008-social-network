@@ -5,7 +5,6 @@ import { callDoc } from './controller-function/function-perfil.js';
 import {idUser} from './lib-view/controller-login.js';
 import { /* getPost,*/ privacyStatePost } from './controller-function/function-post.js';
 
-
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
     return viewTmp('#/signIn');
@@ -32,10 +31,11 @@ const viewTmp = (routers) => {
   case 'writingPost':
     privacyStatePost('Público', (dataPost) => {
       postSection.innerHTML = '';
-      postSection.appendChild(writingPost(dataPost));
-    });
+      console.log(objPost)
+      postSection.appendChild(writingPost(objPost));
+       });
     break;
-
+      
   case 'profile':
     callDoc((data) => {
       section.innerHTML = '';
@@ -50,9 +50,11 @@ const viewTmp = (routers) => {
   case 'register':
     section.appendChild(register());
     break;
+      
   case 'signIn':
     section.appendChild(signIn());
     break;
+      
   default:
     section.appendChild(signIn());
     break;

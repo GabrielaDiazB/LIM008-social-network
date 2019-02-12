@@ -30,4 +30,3 @@ export const updateLikesOnSubmit = (objPost, like) => {
 export const updateFavoritesOnSubmit = (objPost, favorite) => {
   return favoritesPost(objPost.id, favorite);
 };
-

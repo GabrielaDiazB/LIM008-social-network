@@ -12,7 +12,6 @@ const changeHash = (hash) => {
   location.hash = hash;
 };
 
-
 export const signIn = () => {
   const templateSignIn = `
   <img src="../imagen/logo/Nombre.png" alt="logo" class="logoname-img">
@@ -51,13 +50,13 @@ export const signIn = () => {
   });
 
   const btnTwitter = divElem.querySelector('#twitter-login')
-  btnTwitter.addEventListener('click', () =>{ 
+  btnTwitter.addEventListener('click', () => { 
     registerTwitterLogIn();
   });
 
   const btnQuestion = divElem.querySelector('#signup-question')
   btnQuestion.addEventListener('click', () => {
-    changeHash('/register');
+    changeHash('/register');  
   });
   return divElem;
 };
@@ -78,7 +77,7 @@ export const register = () => {
   divElem.innerHTML = templateRegister;
 
   const btnRegister = divElem.querySelector('#sign-up');
-  btnRegister.addEventListener('click', () => {
+  btnRegister.addEventListener('click', () => { 
     checkInOnSubmit();
   });
   return divElem;

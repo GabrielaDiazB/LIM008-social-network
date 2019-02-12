@@ -6,11 +6,9 @@ import {
   updateFavoritesOnSubmit
 } from '../lib-view/controller-post.js';
 
-import { logOutOnSubmit} from '../lib-view/controller-login.js';
-
+import { logOutOnSubmit } from '../lib-view/controller-login.js';
+import { dataPostUser } from '../app.js';
 import { templateBarraNav } from './template-barraNav.js';
-
-import {dataPostUser} from '../app.js';
 
 export const writingPost = (objPost) => {
   const templateWritingPost = `
@@ -37,10 +35,15 @@ export const writingPost = (objPost) => {
   post.innerHTML = templateWritingPost;
   
   const postingPost = post.querySelector('#post');
-  postingPost.addEventListener('click', addPostOnSubmit);
+  postingPost.addEventListener('click', () => {
+    addPostOnSubmit();
+  });
+
+  const logOutBtn = post.querySelector('#log-out-btn');
+  logOutBtn.addEventListener('click', logOutOnSubmit);
   
   const ul = post.querySelector('.post-container');
-  objPost.forEach(post => {
+  objPost.forEach((post) => {
     ul.appendChild(itemPost(post));    
   });
 
@@ -63,7 +66,7 @@ export const itemPost = (dataPost) => {
           </div>
           <form>
             <div id="user-box" class="user-box">
-                  <img src="${dataPost.userPhoto} alt="" id="user-pic-post" class="user-pic">
+                  <img src="${dataPost.userPhoto} alt="" id="user-pic-post" class="ft">
                   <h2 id="user-name" class="user-name-post">${dataPost.name}</h2>
                   <h5>${datePost}</h5>
             </div> 
@@ -88,7 +91,7 @@ export const itemPost = (dataPost) => {
     textArea.disabled = false;
     liElement.querySelector('#save-post-edit').style.display = 'block';
   });
-        
+  
   const saveEdit = liElement.querySelector('#save-post-edit');
   saveEdit.addEventListener('click', () => {
     textArea.disabled = true;
@@ -110,6 +113,7 @@ export const itemPost = (dataPost) => {
   favoriteBtn.addEventListener('click', () => {
     updateFavoritesOnSubmit(dataPost, dataPost.favorite += 1);
   });
+
 
   // const ul = liElement.querySelector('.post-container');
   // dataPost.forEach(liElement => {

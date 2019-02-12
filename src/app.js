@@ -8,3 +8,4 @@ export const dataPostUser = (date) => {
 
     return [day, month, year].join('/');
 }
+
