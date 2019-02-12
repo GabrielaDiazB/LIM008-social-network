@@ -18,7 +18,8 @@ global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled
 import { 
   addUserPostData,
   getPost,
-  //deletePost,
+  updatePost,
+  // deletePost,
 } from '../src/controller-function/function-post.js';
 
 describe('crear post', () => {
@@ -32,8 +33,7 @@ describe('crear post', () => {
         }
       ));
   });
-});
-  /* it('debería poder eliminar el post indicado', (done) => {
+  it('debería poder eliminar el post indicado', (done) => {
     return deletePost('abc123')
       .then(() => getPost(
         (data) => {
@@ -42,6 +42,15 @@ describe('crear post', () => {
           done();
         }
       ));
-  }); 
-}); 
-*/
+  });
+  it('debería poder editar el post indicado'), (done) => {
+    return updatePost('abc123')
+      .then(() => getPost(
+        (data) => {
+          const results = data.find((post) => post.id === 'abc123');
+          expect(results).toBe('sisdjk');
+          done();
+        }
+      ));
+  }; 
+});

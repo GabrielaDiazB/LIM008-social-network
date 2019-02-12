@@ -18,7 +18,7 @@ export const registerFacebookLogIn = () => {
       .catch((error) => {
         const errorCode = error.code;
         if (errorCode === 'auth/account-exists-with-different-credential') {
-          alert('Es el mismo usuario');
+          swal('Es el mismo usuario');
         }
       });
   } else {
@@ -38,7 +38,7 @@ export const registerGoogleLogIn = () => {
       .catch((error) => {
         const errorCode = error.code;
         if (errorCode === 'auth/account-exists-with-different-credential') {
-          alert('Es el mismo usuario');
+          swal('Es el mismo usuario');
         }
       });
   } else {
@@ -56,7 +56,7 @@ export const registerTwitterLogIn = () => {
       }).catch((error) => {
         const errorCode = error.code;
         if (errorCode === 'auth/account-exists-with-different-credential') {
-          alert('Es el mismo usuario');
+          swal('Es el mismo usuario');
           changeHash('/signIn');
         }
       });

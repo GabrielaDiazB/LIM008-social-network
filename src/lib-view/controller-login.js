@@ -53,10 +53,6 @@ export const logOutOnSubmit = () => {
     .then(() => {
       console.log('cerro sesion');
       window.location.hash = '#/signIn';
-<<<<<<< HEAD:src/view-controller.js
-    })
-    .catch(() => { });
-=======
     });
 };
 
@@ -68,5 +64,4 @@ export const getNameUser = () =>
 
 export const getPhotoUser = () => { 
   return firebase.auth().currentUser.photoURL;
->>>>>>> 551d52f2af65d117018b57f4d03f5c2ff4408a9a:src/lib-view/controller-login.js
 };

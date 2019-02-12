@@ -42,12 +42,9 @@ describe('LogIn with email and password', () => {
   }); 
 });
 
-<<<<<<< HEAD
-=======
-/*describe('cerrar sesion', () => {
+/* describe('cerrar sesion', () => {
   it('deberia cerrar sesion', () => {
    expect(typeof logOut).toBe('null');
   })
 })*/
 
->>>>>>> 551d52f2af65d117018b57f4d03f5c2ff4408a9a

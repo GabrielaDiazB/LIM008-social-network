@@ -2,7 +2,7 @@ import { signIn, register} from './templates/template-login.js';
 import { perfil } from './templates/template-perfil.js'; 
 import { writingPost } from './templates/template-post.js';
 import { callDoc } from './controller-function/function-perfil.js';
-import { getPost} from './controller-function/function-post.js';
+import { getPost } from './controller-function/function-post.js';
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
@@ -21,7 +21,7 @@ const viewTmp = (routers) => {
   postSection.innerHTML = '';
   section.innerHTML = '';
   switch (router) {
-  /*case 'wallPost':
+  /* case 'wallPost':
     privatePost((dataPost) => {
       postSection.innerHTML = '';
       postSection.appendChild(itemPost(dataPost));

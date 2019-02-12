@@ -23,12 +23,10 @@ export const writingPost = (objPost) => {
                 <input type="checkbox" value="Outside"> 
             </div>
             <textarea id="text-area" class="text-area" cols="25" rows="5" autofocus placeholder="Escribe aquí..." required></textarea>
-            <div class="privacy-filter">
-                <label for="">Público</label>
-                <input id="privacy-checkbox" type="checkbox" value="public">
-                <label for="">Privado</label>
-                <input id="privacy-checkbox" type="checkbox" value="private">
-            </div>
+            <select class="privacy-filter">
+                <option id = "publico"value = "Public">Público</option>
+                <option  id = "privado"value = "Private">Privado</option>
+            </select>
             <button type="button" class="post" id="post">Publicar</button>
           </form>      
         </div>`;
@@ -37,11 +35,10 @@ export const writingPost = (objPost) => {
   
   const postingPost = post.querySelector('#post');
   postingPost.addEventListener('click', () => {
-    if('uid' === 'public') {
-      return window.location.hash = '#/wallpost'
-    }
-    else if('uid' === 'private') {
-      return window.location.hash ='#/perfil'
+    if ('uid' === 'public') {
+      return window.location.hash = '#/wallpost';
+    } else if ('uid' === 'private') {
+      return window.location.hash = '#/perfil';
     }
     addPostOnSubmit();
   });
@@ -103,7 +100,7 @@ export const itemPost = (dataPost) => {
     deletePostOnSubmit(dataPost);
   });
 
-  const likesBtn = liElement.querySelector(`#like-btn-${dataPost.id}`)
+  const likesBtn = liElement.querySelector(`#like-btn-${dataPost.id}`);
   likesBtn.addEventListener('click', () => {
     updateLikesOnSubmit(dataPost, dataPost.like += 1);  
   });

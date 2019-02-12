@@ -1,8 +1,8 @@
 
 // Agregar likes - en proceso
-
 const checkUserIDforLikes = (userId, likes) => {
   const positionUserId = likes.indexOf(userId);
+  console.log(positionUserId);
   if (positionUserId === -1) {
     return true;
   } else {
@@ -10,8 +10,16 @@ const checkUserIDforLikes = (userId, likes) => {
   }
 };
 
+const likesCounter = (postId, like, event) => {
+  event.preventDefault();
+  let likeUpdate = like + 1;
+  firebase.firestore().collection('posts').doc(postId).update({
+    like: likeUpdate
+  });
+};
+
 const addLikes = (postId) => {
-  const currentUser = user.uid;
+  const currentUser = userId.uid;
   db.collection('posts').doc(postId).get()
     .then(post => {
       let userLikes = posts.data().likes;
@@ -19,11 +27,11 @@ const addLikes = (postId) => {
       if (checkUserLikes === true) {
         userLikes.push(currentUser);
         db.collection('posts').doc(postID).update({
-          likes: currentUserLikes
+          likes: likes
         }).then(element => {
-          //
+          // something
         }).catch(element => {
-          //
+          // something
         });
       }
     });
@@ -32,10 +40,10 @@ const addLikes = (postId) => {
 const privatePost = () => {
   let collection = db.collection('posts')
     .where('privacity', '==', 'Privado')
-    .where('userId', '==', `${dataPost.name}`)
+    .where('userId', '==', `${userId.uid}`)
     .orderBy('createdAt', 'desc');
-  query.onSnapshot((content) => {
-    createPost(content);
+  collection.onSnapshot((content) => {
+    getPost(content);
   });
 };
 
@@ -43,15 +51,8 @@ const publicPost = () => {
   let collection = db.collection('posts')
     .where('privacity', '==', 'Público')
     .orderBy('createdAt', 'desc');
-  query.onSnapshot((content) => {
-    createPost(content);
+  collection.onSnapshot((content) => {
+    getPost(content);
   }); 
 };
 
-const countLikes = (userId, like, event) => {
-  event.preventDefault();
-  let likeUpdate = like + 1;
-  firebase.firestore().collection('posts').doc(id).update({
-    like: likeUpdate
-  });
-};

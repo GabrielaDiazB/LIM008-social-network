@@ -21,7 +21,7 @@ export const signIn = () => {
       <form>
         <input id="email-si" class="email" type="email" placeholder="Correo">
         <input id="password-si" class="password" type="password" placeholder="Contraseña">
-        <button id="sign-in" class="login-btn" type="button">iniciar sesion</button>
+        <button id="sign-in" class="login-btn" type="button">INICIAR SESIÓN</button>
       </form>
       <h2>Ingresa directamente con:</h2>
       <button id="facebook-login" class="fa fa-facebook"></button>
