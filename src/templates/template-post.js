@@ -6,6 +6,8 @@ import {
   updateFavoritesOnSubmit
 } from '../lib-view/controller-post.js';
 
+import { logOutOnSubmit} from '../lib-view/controller-login.js';
+
 import { templateBarraNav } from './template-barraNav.js';
 
 import {dataPostUser} from '../app.js';
@@ -42,13 +44,13 @@ export const writingPost = (objPost) => {
     ul.appendChild(itemPost(post));    
   });
 
-  const privateOption = post.querySelector('#privateOption').value;
-  
-
+  const logOutBtn = post.querySelector('#log-out-btn');
+  logOutBtn.addEventListener('click', logOutOnSubmit);
+ 
   return post;
 };
   
-const itemPost = (dataPost) => {
+export const itemPost = (dataPost) => {
   const datePost = dataPostUser(dataPost.date.toDate());
   const liElement = document.createElement('li');
   liElement.classList.add('mdl-list__item');

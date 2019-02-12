@@ -13,7 +13,7 @@ export const registerFacebookLogIn = () => {
     provider.addScope('public_profile');
     return firebase.auth().signInWithPopup(provider)
       .then(() => {
-        window.location.hash = '#/writingPost';
+        window.location.hash = '#/wall';
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -33,7 +33,7 @@ export const registerGoogleLogIn = () => {
     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     firebase.auth().signInWithPopup(provider)
       .then(() => {
-        window.location.hash = '#/writingPost';
+        window.location.hash = '#/wall';
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -52,7 +52,7 @@ export const registerTwitterLogIn = () => {
     const provider = new firebase.auth.TwitterAuthProvider();
     firebase.auth().signInWithPopup(provider)
       .then(() => {
-        window.location.hash = '#/writingPost';
+        window.location.hash = '#/wall';
       }).catch((error) => {
         const errorCode = error.code;
         if (errorCode === 'auth/account-exists-with-different-credential') {
@@ -77,5 +77,6 @@ export const userLogged = () => {
 };
 
 // Función para Cerrar Sesión
-export const logOut = () =>
-  firebase.auth().signOut(); 
+export const logOut = () => {
+  firebase.auth().signOut()
+}

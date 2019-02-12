@@ -1,13 +1,15 @@
 import { signIn, register} from './templates/template-login.js';
-import { perfil } from './templates/template-perfil.js'; 
-import { writingPost } from './templates/template-post.js';
+import { profile } from './templates/template-perfil.js'; 
+import { writingPost} from './templates/template-post.js';
 import { callDoc } from './controller-function/function-perfil.js';
-import { getPost } from './controller-function/function-post.js';
+import {idUser} from './lib-view/controller-login.js';
+import { /* getPost,*/ privacyStatePost } from './controller-function/function-post.js';
+
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
     return viewTmp('#/signIn');
-  } else if (hash === '#/signIn' || hash === '#/register' || hash === '#/perfil' || hash === '#/writingPost') {
+  } else if (hash === '#/signIn' || hash === '#/register' || hash === '#/profile' || hash === '#/writingPost' || hash === '#/wall') {
     return viewTmp(hash);
   } else {
     return viewTmp('#/signIn');
@@ -17,22 +19,33 @@ const changeTmp = (hash) => {
 const viewTmp = (routers) => {
   const router = routers.substr(2, routers.length - 2);
   const section = document.getElementById('log-container');
-  const postSection = document.getElementById('post-container');
+  const postSection = document.getElementById('post-container-box');
   postSection.innerHTML = '';
   section.innerHTML = '';
   switch (router) {
-  case 'writingPost':
-    getPost((dataPost) => {
-      console.log(dataPost);
+  case 'wall':
+    privacyStatePost('Público', (dataPost) => {
       postSection.innerHTML = '';
       postSection.appendChild(writingPost(dataPost));
     });
     break;
-  case 'perfil':
+  /* case 'wall':
+  privacyStatePost('Público', (dataPost) => {
+    postSection.innerHTML = '';
+    postSection.appendChild(writingPost(dataPost));
+  });
+    break;*/ 
+
+  case 'profile':
     callDoc((data) => {
       section.innerHTML = '';
-      section.appendChild(perfil(data));
+      section.appendChild(profile(data));
     });
+    privacyStatePost('Privado', (dataPost) => {
+      postSection.innerHTML = '';
+      postSection.appendChild(writingPost(dataPost))
+    });
+
     break;
   case 'register':
     section.appendChild(register());
@@ -49,5 +62,5 @@ const viewTmp = (routers) => {
 export const routerRed = () => {
   window.addEventListener('load',
     changeTmp(window.location.hash));
-  if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash)
+  if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash);
 };

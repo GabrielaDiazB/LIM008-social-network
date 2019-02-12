@@ -1,5 +1,6 @@
 // import { getNameUser, getPhotoUser } from '../lib-view/controller-login.js'
-import {idUser} from '../lib-view/controller-login.js'
+import {idUser} from '../lib-view/controller-login.js';
+
 export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, type, likes, favorites) => { 
   let posts = firebase.firestore().collection('posts');
   let data = {
@@ -16,9 +17,11 @@ export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, 
 };
 
 // llamando los datos del post al template
-export const getPost = (callback) => {  
+/* export const getPost = (callback) => {  
 
-  return firebase.firestore().collection('posts').orderBy('date', 'desc')//.where('userId', '==', user.uid)
+  return firebase.firestore().collection('posts')
+    .where('privacy', '==', 'Público')
+    .orderBy('date', 'desc') // .where('userId', '==', user.uid)
     .onSnapshot((querySnapshot) => {
       let data = [];
       querySnapshot.forEach((doc) => {
@@ -27,7 +30,7 @@ export const getPost = (callback) => {
       });   
       callback(data);
     });
-};
+}; */
 
 // funcion para eliminar post
 export const deletePost = (idPost) => 
@@ -60,31 +63,17 @@ export const favoritesPost = (idPost, favorites) => {
 
 // Función para que un post sea privado
 
-export const privatePost = (callback, idPost, condition) => {
+export const privacyStatePost = (type, callback) => {
   let collection = firebase.firestore().collection('posts')
-    .where('uid', '==', idUser())
-    .where('privacy', '==', 'Privado') 
+    .where('privacy', '==', type)
     .orderBy('date', 'desc');
+
   collection.onSnapshot((querySnapshot) => {
-    getPost(querySnapshot);
     let data = [];
     querySnapshot.forEach((doc) => {
       data.push({ id: doc.id, ...doc.data()
       });
-      //console.log(data);
-    });   
-    
-    callback(data);
+      callback(data);
+    });
   });
 };
-
-// Función para que un post sea público
-
-// const publicPost = () => {
-//   let collection = firestore.collection('posts')
-//     .where('privacity', '==', 'Público')
-//     .orderBy('createdAt', 'desc');
-//   query.onSnapshot((content) => {
-//     createPost(content);
-//   });
-// };

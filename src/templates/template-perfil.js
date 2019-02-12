@@ -1,7 +1,7 @@
 import { logOutOnSubmit} from '../lib-view/controller-login.js';
 import { templateBarraNav } from './template-barraNav.js';
 
-export const perfil = (data) => {
+export const profile = (data) => {
   const templatePerfil = `
     ${templateBarraNav}
         <div class="container">
@@ -12,7 +12,7 @@ export const perfil = (data) => {
           </div>
           <div class="container-information"> 
             <div class="information">
-              <span class="name">${data.name}</span>
+              <span class="name">${data.displayName}</span>
               <span class="info">${data.information}</span>
             </div>
             <div class = "table"> 

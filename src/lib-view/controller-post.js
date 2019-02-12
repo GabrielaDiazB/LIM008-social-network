@@ -1,5 +1,5 @@
 import { getNameUser, getPhotoUser } from '../lib-view/controller-login.js';
-import { addUserPostData, deletePost, updatePost, likesPost, favoritesPost, privatePost} from '../controller-function/function-post.js';
+import { addUserPostData, deletePost, updatePost, likesPost, favoritesPost} from '../controller-function/function-post.js';
 import { idUser } from './controller-login.js';
 
 // controler para guardar el post en  firebase cloud
@@ -11,9 +11,6 @@ export const addPostOnSubmit = () => {
   const uidUser = idUser();
   const name = getNameUser();
   const photo = getPhotoUser();
-  privatePost((dataPost) => {
-    console.log(dataPost);
-  });
   addUserPostData(contentPost, uidUser, name, photo, filterPrivatePrivacy, countLike, countFavorite);
 };
   
