@@ -43,7 +43,7 @@ const viewTmp = (routers) => {
     });
     privacyStatePost('Privado', (dataPost) => {
       postSection.innerHTML = '';
-      postSection.appendChild(writingPost(dataPost))
+      postSection.appendChild(writingPost(dataPost));
     });
 
     break;
