@@ -56,7 +56,7 @@ export const signIn = () => {
 
   const btnQuestion = divElem.querySelector('#signup-question');
   btnQuestion.addEventListener('click', () => {
-    changeHash('/register');
+    changeHash('/register');  
   });
   return divElem;
 };
@@ -78,10 +78,8 @@ export const register = () => {
 
   const btnRegister = divElem.querySelector('#sign-up');
   btnRegister.addEventListener('click', () => { 
-    checkInOnSubmit()
-    ;
+    checkInOnSubmit();
   });
-  
   return divElem;
 };
 

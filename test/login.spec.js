@@ -42,16 +42,40 @@ describe('Facebook authentication', () => {
   it('debería ser una función', () => {
     expect(typeof registerFacebookLogIn).toBe('function');
   });
+  it('debería poder iniciar sesión con Facebook', () => {
+    return registerFacebookLogIn().then((result) => {
+      expect(typeof result).toBe('object');
+    });
+  });
 });
 
 describe('Google authentication', () => {
   it('debería ser una función', () => {
     expect(typeof registerGoogleLogIn).toBe('function');
   });
+  it('debería poder iniciar sesión con Facebook', () => {
+    return registerGoogleLogIn().then((result) => {
+      expect(typeof result).toBe('object');
+    });
+  });
 });
 
 describe('Twitter authentication', () => {
   it('debería ser una función', () => {
     expect(typeof registerTwitterLogIn).toBe('function');
+  });
+  it('debería poder iniciar sesión con Facebook', () => {
+    return registerTwitterLogIn().then((result) => {
+      expect(typeof result).toBe('object');
+    });
+  });
+});
+
+describe('logOutUser', () => {
+  it('debería ser una función', () => {
+    expect(typeof (logOut)).toBe('function');
+  });
+  it('debería poder cerrar sesión', () => {
+    return logOut();
   });
 });

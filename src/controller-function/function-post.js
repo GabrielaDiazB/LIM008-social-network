@@ -9,7 +9,7 @@ export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, 
     like: likes,
     privacity: type
   };
-  posts.add(data);
+  return posts.add(data);
 };
 
 // llamando los datos del post al template
@@ -45,15 +45,12 @@ export const likesPost = (idPost, likes) => {
   });
 };
 
-export const privatePost = () => {
-  if (privacity.value === 'Private') {
-    firebase.firestore().collection('posts')
-      .where('privacity', '==', 'privado')
-      .where('id', '==', `${userId.uid}`)
-      .orderBy('date', 'desc');
-    query.onSnapshot((content) => {
-      getPost(content);
-    });
-  }
-};
-
+/* export const privatePost = () => {
+firebase.firestore().collection('posts')
+    .where('privacity', '==', 'privado')
+    .where('userId', '==', `${.}`)
+    .orderBy('date', 'desc')
+    .onSnapshot((content) => {
+  getPost(content);
+  })
+} */
