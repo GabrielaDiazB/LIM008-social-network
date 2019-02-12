@@ -111,5 +111,8 @@ export const itemPost = (dataPost) => {
     updateFavoritesOnSubmit(dataPost, dataPost.favorite += 1);
   });
 
+  const logOutBtn = liElement.querySelector('#log-out-btn');
+  logOutBtn.addEventListener('click', logOutOnSubmit);
+
   return liElement;
 };
