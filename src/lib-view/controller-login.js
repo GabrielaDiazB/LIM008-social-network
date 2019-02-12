@@ -18,9 +18,9 @@ export const checkInOnSubmit = () => {
   let nameUser = displayName;
   let informationUser = information;
   let emailRef = email;          
-  let users = firestore.collection('posts');
+  let users = firestore.collection('users');
   let data = {
-    displayName: nameUser,
+    name: nameUser,
     information: informationUser,
     email: emailRef,
   };

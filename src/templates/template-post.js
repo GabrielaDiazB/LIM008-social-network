@@ -2,12 +2,13 @@ import {
   addPostOnSubmit,
   deletePostOnSubmit,
   updatePostSubmit,
-  updateLikesOnSubmit
+  updateLikesOnSubmit,
+  updateFavoritesOnSubmit
 } from '../lib-view/controller-post.js';
 
 import { templateBarraNav } from './template-barraNav.js';
 
-import {dataPostUser} from '../app.js'
+import {dataPostUser} from '../app.js';
 
 export const writingPost = (objPost) => {
   const templateWritingPost = `
@@ -23,12 +24,10 @@ export const writingPost = (objPost) => {
                 <input type="checkbox" value="Outside"> 
             </div>
             <textarea id="text-area" class="text-area" cols="25" rows="5" autofocus placeholder="Escribe aquí..." required></textarea>
-            <div class="privacy-filter">
-                <label for="">Público</label>
-                <input id="privacy-checkbox" type="checkbox" value="public">
-                <label for="">Privado</label>
-                <input id="privacy-checkbox" type="checkbox" value="private">
-            </div>
+            <select class="privacy-filter" id="privacy-filter">
+                <option value = "Público">Público</option>
+                <option value = "Privado" id="privateOption">Privado</option>
+            </select>
             <button type="button" class="post" id="post">Publicar</button>
           </form>      
         </div>`;
@@ -42,6 +41,10 @@ export const writingPost = (objPost) => {
   objPost.forEach(post => {
     ul.appendChild(itemPost(post));    
   });
+
+  const privateOption = post.querySelector('#privateOption').value;
+  
+
   return post;
 };
   
@@ -70,8 +73,8 @@ const itemPost = (dataPost) => {
             <div class="interact-box">
               <label for="" class="click-counter-likes" id="click-counter-likes">${dataPost.like}</label>
               <img src="../imagen/aicon/like-2.png" alt="" id="like-btn-${dataPost.id}" class="img-icon-post">
-              <label for="" class="click-counter-favorites" id="click-counter-favorites"></label>
-              <img  src="../imagen/aicon/star-1.png" alt="" class="img-icon-post" id="favorite-btn">
+              <label for="" class="click-counter-favorites" id="click-counter-favorites">${dataPost.favorite}</label>
+              <img  src="../imagen/aicon/star-1.png" alt="" class="img-icon-post" id="favorite-btn-${dataPost.id}">
             </div> 
             <button id="save-post-edit" class="save-post-edit" type="button">Guardar</button>
           </form>      
@@ -96,9 +99,14 @@ const itemPost = (dataPost) => {
     deletePostOnSubmit(dataPost);
   });
 
-  const likesBtn = liElement.querySelector(`#like-btn-${dataPost.id}`)
+  const likesBtn = liElement.querySelector(`#like-btn-${dataPost.id}`);
   likesBtn.addEventListener('click', () => {
     updateLikesOnSubmit(dataPost, dataPost.like += 1);  
+  });
+
+  const favoriteBtn = liElement.querySelector(`#favorite-btn-${dataPost.id}`);
+  favoriteBtn.addEventListener('click', () => {
+    updateFavoritesOnSubmit(dataPost, dataPost.favorite += 1);
   });
   
   return liElement;

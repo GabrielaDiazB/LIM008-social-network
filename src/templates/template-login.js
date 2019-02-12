@@ -35,12 +35,12 @@ export const signIn = () => {
   </div>`;
   const divElem = document.createElement('div');
   divElem.innerHTML = templateSignIn;
-  const btnSignIn = divElem.querySelector('#sign-in')
+  const btnSignIn = divElem.querySelector('#sign-in');
   btnSignIn.addEventListener('click', () => {
     signInOnSubmit();
   });
 
-  const btnFacebook = divElem.querySelector('#facebook-login')
+  const btnFacebook = divElem.querySelector('#facebook-login');
   btnFacebook.addEventListener('click', () => {
     registerFacebookLogIn();
   });
@@ -71,7 +71,7 @@ export const register = () => {
           <input id="information" class="information" type="text" placeholder="Cuéntanos tus Hobbies">
           <input id="email" class="email" type="email" placeholder="E-mail">
           <input id="password" class="password" type="password" placeholder="Contraseña">
-          <button id="sign-up" class="sign-up-btn">Crear Cuenta</button>
+          <button id="sign-up" class="sign-up-btn" type="button">Crear Cuenta</button>
         </form>
      </div>`;
   const divElem = document.createElement('div');

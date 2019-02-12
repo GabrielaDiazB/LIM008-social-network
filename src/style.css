@@ -230,12 +230,13 @@ hr{
     }
     .privacy-filter{
         margin: 5px;
+        height: 25px;
     }
 
     .post-container{
         background-color: rgba(182, 239, 239, 0.3);
         width: 800px;
-        height: 235px;
+        height: 260px;
         margin: 110px 0 20px;
         border-radius: 8px;
         padding: 10px 0;
