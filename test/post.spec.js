@@ -114,7 +114,7 @@ describe('deletePost', () => {
 
 describe('privacyStatePost', () => {
   it('debería poder poner en privado o público el post indicado', (done) => {
-    privacyStatePost('Público', 'Hola mundo mali')
+    privacyStatePost('Público')
     .then(() => {
         const callback = (posts) => {
           const results = posts.find((post) => {
@@ -123,7 +123,7 @@ describe('privacyStatePost', () => {
           expect(results.type).toBe('Público');
           done();
         };
-        getPost(callback);
+        privacyStatePost(type, callback);
       });
   });
 });

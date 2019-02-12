@@ -1,4 +1,4 @@
-import { idUser} from '../lib-view/controller-login.js' 
+//import { idUser} from '../lib-view/controller-login.js' 
 
 
 export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, type, likes, favorites) => { 

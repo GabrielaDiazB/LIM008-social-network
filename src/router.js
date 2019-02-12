@@ -1,5 +1,5 @@
 import { signIn, register} from './templates/template-login.js';
-import { perfil } from './templates/template-perfil.js'; 
+import { profile } from './templates/template-perfil.js'; 
 import { writingPost, itemPost } from './templates/template-post.js';
 import { callDoc } from './controller-function/function-perfil.js';
 import { getPost, privacyStatePost} from './controller-function/function-post.js';
@@ -23,13 +23,12 @@ const viewTmp = (routers) => {
   section.innerHTML = '';
   switch (router) {
   case 'wall':
-  itemPost((dataPost) => {
+  privacyStatePost('Público',(objPost) => { 
     postSection.innerHTML = '';
     console.log(objPost)
-    postSection.appendChild(privacyStatePost(dataPost));
-  })
- 
-    break;
+    postSection.appendChild(writingPost(objPost));
+     });
+     break;
   case 'writingPost':
       getPost((objPost) => { 
       postSection.innerHTML = '';
@@ -40,14 +39,14 @@ const viewTmp = (routers) => {
   case 'profile':
     callDoc((data) => {
       section.innerHTML = '';
-      section.appendChild(perfil(data));
+      section.appendChild(profile(data));
     });
-    privacyStatePost('Privado', (dataPost) => {
+  privacyStatePost('Privado',(objPost) => { 
       postSection.innerHTML = '';
-      postSection.appendChild(itemPost(dataPost))
-      console.log(dataPost)
-    });
-    break;
+      console.log(objPost)
+      postSection.appendChild(writingPost(objPost));
+       });
+       break;
   case 'register':
     section.appendChild(register());
     break;

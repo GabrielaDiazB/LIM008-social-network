@@ -1,7 +1,7 @@
 import { idUser } from '../lib-view/controller-login.js';
 // llamando a datos para crear un perfil
 export const callDoc = (callback) => {
-  return firebase.firestore().collection('users') //.where('userId', '==', idUser)
+  return firebase.firestore().collection('users').where('userId', '==', idUser)
     .get()
     .then((querySnapshot) => {
       let userInfo = {};

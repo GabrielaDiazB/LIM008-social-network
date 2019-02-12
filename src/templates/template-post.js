@@ -64,7 +64,7 @@ export const itemPost = (dataPost) => {
         <div class="post-container-posted">
           <div class="settings-box">
             <img src="../imagen/aicon/edit.ico" alt="" class="img-icon-post" id="btn-update-${dataPost.id}">
-            <img src="../imagen/aicon/garbage-2.png" alt="" id="btn-delete-${dataPost.id}" class="img-icon-post">
+            '<img src="../imagen/aicon/garbage-2.png" alt="" id="btn-delete-${dataPost.id}" class="img-icon-post">'
           </div>
           <form>
             <div id="user-box" class="user-box">
@@ -115,7 +115,9 @@ export const itemPost = (dataPost) => {
   favoriteBtn.addEventListener('click', () => {
     updateFavoritesOnSubmit(dataPost, dataPost.favorite += 1);
   });
-
+  
+  const logOutBtn = liElement.querySelector('#log-out-btn');
+  logOutBtn.addEventListener('click', logOutOnSubmit);
 
   return liElement;
 };
