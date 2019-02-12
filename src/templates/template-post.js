@@ -46,9 +46,6 @@ export const writingPost = (objPost) => {
   objPost.forEach((post) => {
     ul.appendChild(itemPost(post));    
   });
-
-  const logOutBtn = post.querySelector('#log-out-btn');
-  logOutBtn.addEventListener('click', logOutOnSubmit);
  
   return post;
 };
@@ -114,11 +111,5 @@ export const itemPost = (dataPost) => {
     updateFavoritesOnSubmit(dataPost, dataPost.favorite += 1);
   });
 
-
-  // const ul = liElement.querySelector('.post-container');
-  // dataPost.forEach(liElement => {
-  //   ul.appendChild(itemPost(liElement));    
-  // });
-  
   return liElement;
 };

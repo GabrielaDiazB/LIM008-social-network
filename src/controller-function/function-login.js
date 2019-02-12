@@ -78,5 +78,5 @@ export const userLogged = () => {
 
 // Función para Cerrar Sesión
 export const logOut = () => {
-  firebase.auth().signOut()
-}
+  return firebase.auth().signOut();
+};

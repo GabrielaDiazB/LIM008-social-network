@@ -33,7 +33,7 @@ const viewTmp = (routers) => {
       postSection.innerHTML = '';
       console.log(objPost)
       postSection.appendChild(writingPost(objPost));
-       });
+    });
     break;
       
   case 'profile':

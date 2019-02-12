@@ -115,7 +115,7 @@ describe('deletePost', () => {
 describe('privacyStatePost', () => {
   it('debería poder poner en privado o público el post indicado', (done) => {
     privacyStatePost('Público', 'Hola mundo mali')
-    .then(() => {
+      .then(() => {
         const callback = (posts) => {
           const results = posts.find((post) => {
             return post.type === 'Público';

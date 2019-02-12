@@ -16,20 +16,19 @@ export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, 
 };
 
 // llamando los datos del post al template
-/* export const getPost = (callback) => {  
+export const getPost = (callback) => {  
 
   return firebase.firestore().collection('posts')
-    .where('privacy', '==', 'Público')
     .orderBy('date', 'desc') // .where('userId', '==', user.uid)
     .onSnapshot((querySnapshot) => {
       let data = [];
-       querySnapshot.forEach((doc) => {
+      querySnapshot.forEach((doc) => {
         data.push({ id: doc.id, ...doc.data()
         });
       });   
       callback(data);
     });
-}; */
+};
 
 // funcion para eliminar post
 export const deletePost = (idPost) => 

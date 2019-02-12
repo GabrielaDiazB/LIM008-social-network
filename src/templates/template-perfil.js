@@ -3,7 +3,6 @@ import { templateBarraNav } from './template-barraNav.js';
 
 export const profile = (data) => {
   const templatePerfil = `
-    ${templateBarraNav}
         <div class="container">
           <div class="container-profile">
             <div class="ft-perfil">
@@ -12,7 +11,7 @@ export const profile = (data) => {
           </div>
           <div class="container-information"> 
             <div class="information">
-              <span class="name">${data.displayName}</span>
+              <span class="name">${data.name}</span>
               <span class="info">${data.information}</span>
             </div>
             <div class = "table"> 
@@ -33,8 +32,5 @@ export const profile = (data) => {
   const divElem = document.createElement('div');
   divElem.setAttribute('class', 'perfil-container');
   divElem.innerHTML = templatePerfil;
-  
-  const logOutBtn = divElem.querySelector('#log-out-btn');
-  logOutBtn.addEventListener('click', logOutOnSubmit);
   return divElem;
 };

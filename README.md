@@ -57,10 +57,6 @@ Aqui definimos las historias de usuario basado en la recopilación de informaci�
 
 ![sin titulo](./imagen/imgReadme/historia2.jpg)
 
-* definición de terminado de la segunda historia de usuario
-
-![sin titulo](./imagen/imgReadme/terminado2.PNG)
-
 * prototypo de baja fidelidad de la segunda historia de usuario.
 
 ![sin titulo](./imagen/imgReadme/prototypo2.jpg)
@@ -68,10 +64,6 @@ Aqui definimos las historias de usuario basado en la recopilación de informaci�
 * tercera historia de usuario
 
 ![sin titulo](./imagen/imgReadme/historia3.jpg)
-
-* definición de terminado de la tercera historia de usuario
-
-![sin titulo](./imagen/imgReadme/terminado3.jpg)
 
 * prototypo de baja fidelidad de la tercera historia de usuario.
 
@@ -81,10 +73,6 @@ Aqui definimos las historias de usuario basado en la recopilación de informaci�
 
 ![sin titulo](./imagen/imgReadme/historia4.jpg)
 
-* definición de terminado de la cuarta historia de usuario
-
-![sin titulo](./imagen/imgReadme/terminado4.jpg)
-
 * prototypo de baja fidelidad de la cuarta  historia de usuario.
 
 ![sin titulo](./imagen/imgReadme/prototypo4.jpg)
@@ -92,10 +80,6 @@ Aqui definimos las historias de usuario basado en la recopilación de informaci�
 * quinta historia de usuario
 
 ![sin titulo](./imagen/imgReadme/historia5.jpg)
-
-* definición de terminado de quinta historia de usuario
-
-![sin titulo](./imagen/imgReadme/terminado5.jpg)
 
 * prototypo de baja fidelidad de quinta historia de usuario.
 
