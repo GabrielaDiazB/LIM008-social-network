@@ -1,10 +1,10 @@
 import { signIn, register} from './templates/template-login.js';
-import { perfil } from './templates/template-perfil.js'; 
-import { writingPost, itemPost } from './templates/template-post.js';
+import { profile } from './templates/template-perfil.js'; 
+import { writingPost} from './templates/template-post.js';
 import { callDoc } from './controller-function/function-perfil.js';
-import { getPost, privacyStatePost} from './controller-function/function-post.js';
-import { idUser } from './lib-view/controller-login.js'
- 
+import {idUser} from './lib-view/controller-login.js';
+import { /* getPost,*/ privacyStatePost } from './controller-function/function-post.js';
+
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
     return viewTmp('#/signIn');
@@ -23,37 +23,38 @@ const viewTmp = (routers) => {
   section.innerHTML = '';
   switch (router) {
   case 'wall':
-  itemPost((dataPost) => {
-    postSection.innerHTML = '';
-    console.log(objPost)
-    postSection.appendChild(privacyStatePost(dataPost));
-  })
- 
+    privacyStatePost('Público', (dataPost) => {
+      postSection.innerHTML = '';
+      postSection.appendChild(writingPost(dataPost));
+    });
     break;
   case 'writingPost':
-      getPost((objPost) => { 
+    privacyStatePost('Público', (dataPost) => {
       postSection.innerHTML = '';
       console.log(objPost)
       postSection.appendChild(writingPost(objPost));
        });
     break;
+      
   case 'profile':
     callDoc((data) => {
       section.innerHTML = '';
-      section.appendChild(perfil(data));
+      section.appendChild(profile(data));
     });
     privacyStatePost('Privado', (dataPost) => {
       postSection.innerHTML = '';
-      postSection.appendChild(itemPost(dataPost))
-      console.log(dataPost)
+      postSection.appendChild(writingPost(dataPost))
     });
+
     break;
   case 'register':
     section.appendChild(register());
     break;
+      
   case 'signIn':
     section.appendChild(signIn());
     break;
+      
   default:
     section.appendChild(signIn());
     break;
@@ -63,5 +64,5 @@ const viewTmp = (routers) => {
 export const routerRed = () => {
   window.addEventListener('load',
     changeTmp(window.location.hash));
-  if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash)
+  if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash);
 };

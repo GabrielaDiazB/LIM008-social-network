@@ -12,11 +12,10 @@ export const addPostOnSubmit = () => {
   const name = getNameUser();
   const photo = getPhotoUser();
   addUserPostData(contentPost, uidUser, name, photo, filterPrivatePrivacy, countLike, countFavorite);
-  
 };
   
 export const deletePostOnSubmit = (objPost) => { 
-  if (confirm('esta seguro de eliminar!!!'))
+  if (confirm('¿¡Estás seguro de eliminar el post!?'))
     return deletePost(objPost.id);
 };
   
@@ -27,7 +26,7 @@ export const updatePostSubmit = (objPost, content) => {
 export const updateLikesOnSubmit = (objPost, like) => {
   return likesPost(objPost.id, like);
 };
-  
+
 export const updateFavoritesOnSubmit = (objPost, favorite) => {
   return favoritesPost(objPost.id, favorite);
-};  
+};

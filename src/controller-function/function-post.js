@@ -1,6 +1,5 @@
 import { idUser} from '../lib-view/controller-login.js' 
 
-
 export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, type, likes, favorites) => { 
   let posts = firebase.firestore().collection('posts');
   let data = {
@@ -17,9 +16,12 @@ export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, 
 };
 
 // llamando los datos del post al template
-export const getPost = (callback) => {  
-  return firebase.firestore().collection('posts').orderBy('date', 'desc')    //where('uid', '==', idUser())
-   .onSnapshot((querySnapshot) => {
+/* export const getPost = (callback) => {  
+
+  return firebase.firestore().collection('posts')
+    .where('privacy', '==', 'Público')
+    .orderBy('date', 'desc') // .where('userId', '==', user.uid)
+    .onSnapshot((querySnapshot) => {
       let data = [];
        querySnapshot.forEach((doc) => {
         data.push({ id: doc.id, ...doc.data()
@@ -27,7 +29,7 @@ export const getPost = (callback) => {
       });   
       callback(data);
     });
-};
+}; */
 
 // funcion para eliminar post
 export const deletePost = (idPost) => 
@@ -60,10 +62,12 @@ export const favoritesPost = (idPost, favorites) => {
 
 // Función para que un post sea privado
 export const privacyStatePost = (type, callback) => {
-  return firebase.firestore().collection('posts')
+  let collection = firebase.firestore().collection('posts')
+    // .where('userId', '==', user.uid)
     .where('privacy', '==', type)
-    .orderBy('date', 'desc')
-    .onSnapshot((querySnapshot) => {
+    .orderBy('date', 'desc');
+
+  collection.onSnapshot((querySnapshot) => {
     let data = [];
     querySnapshot.forEach((doc) => {
       data.push({ id: doc.id, ...doc.data()

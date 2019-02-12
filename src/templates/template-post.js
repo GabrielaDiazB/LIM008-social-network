@@ -7,9 +7,7 @@ import {
 } from '../lib-view/controller-post.js';
 
 import { logOutOnSubmit } from '../lib-view/controller-login.js';
-
 import { dataPostUser } from '../app.js';
-
 import { templateBarraNav } from './template-barraNav.js';
 
 export const writingPost = (objPost) => {
@@ -49,9 +47,9 @@ export const writingPost = (objPost) => {
     ul.appendChild(itemPost(post));    
   });
 
-
-
-
+  const logOutBtn = post.querySelector('#log-out-btn');
+  logOutBtn.addEventListener('click', logOutOnSubmit);
+ 
   return post;
 };
   
@@ -106,7 +104,7 @@ export const itemPost = (dataPost) => {
     deletePostOnSubmit(dataPost);
   });
 
-  const likesBtn = liElement.querySelector(`#like-btn-${dataPost.id}`)
+  const likesBtn = liElement.querySelector(`#like-btn-${dataPost.id}`);
   likesBtn.addEventListener('click', () => {
     updateLikesOnSubmit(dataPost, dataPost.like += 1);  
   });
@@ -117,5 +115,10 @@ export const itemPost = (dataPost) => {
   });
 
 
+  // const ul = liElement.querySelector('.post-container');
+  // dataPost.forEach(liElement => {
+  //   ul.appendChild(itemPost(liElement));    
+  // });
+  
   return liElement;
 };
