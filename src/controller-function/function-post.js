@@ -65,6 +65,7 @@ export const favoritesPost = (idPost, favorites) => {
 
 export const privacyStatePost = (type, callback) => {
   let collection = firebase.firestore().collection('posts')
+    // .where('userId', '==', user.uid)
     .where('privacy', '==', type)
     .orderBy('date', 'desc');
 

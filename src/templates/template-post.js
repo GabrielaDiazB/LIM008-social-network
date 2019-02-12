@@ -110,6 +110,11 @@ export const itemPost = (dataPost) => {
   favoriteBtn.addEventListener('click', () => {
     updateFavoritesOnSubmit(dataPost, dataPost.favorite += 1);
   });
+
+  // const ul = liElement.querySelector('.post-container');
+  // dataPost.forEach(liElement => {
+  //   ul.appendChild(itemPost(liElement));    
+  // });
   
   return liElement;
 };

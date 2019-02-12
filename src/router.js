@@ -29,12 +29,12 @@ const viewTmp = (routers) => {
       postSection.appendChild(writingPost(dataPost));
     });
     break;
-  /* case 'wall':
-  privacyStatePost('Público', (dataPost) => {
-    postSection.innerHTML = '';
-    postSection.appendChild(writingPost(dataPost));
-  });
-    break;*/ 
+  case 'writingPost':
+    privacyStatePost('Público', (dataPost) => {
+      postSection.innerHTML = '';
+      postSection.appendChild(writingPost(dataPost));
+    });
+    break;
 
   case 'profile':
     callDoc((data) => {
