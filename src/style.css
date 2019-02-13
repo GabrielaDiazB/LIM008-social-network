@@ -90,6 +90,7 @@ body{
     .log-container {
         height: 400px;
         margin-top: 30px;
+        text-align: center;
         /* background-color: rgba(222, 246, 246, 0.6);
         padding: 10px;
         border-radius: 5px;

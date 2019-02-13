@@ -16,7 +16,7 @@ export const signIn = () => {
   const templateSignIn = `
   <img src="../imagen/logo/Nombre.png" alt="logo" class="logoname-img">
   <div id="signin-container" class="signin-container">
-    <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
+    <p class="logotipo">"Reviews en actividades, hobbies, series, películas"</p>
     <div id="sign-in-box" class="container-login">
       <form>
         <input id="email-si" class="email" type="email" placeholder="Correo">
