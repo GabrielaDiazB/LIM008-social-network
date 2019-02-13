@@ -1,4 +1,4 @@
-import { idUser} from '../lib-view/controller-login.js' 
+import { idUser} from '../lib-view/controller-login.js'; 
 
 export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, type, likes, favorites) => { 
   let posts = firebase.firestore().collection('posts');
@@ -60,18 +60,18 @@ export const favoritesPost = (idPost, favorites) => {
 
 
 // Función para que un post sea privado
-export const privacyStatePost = (type, callback) => {
+export const privacyStatePost = (callback, type, idUser) => {
   let collection = firebase.firestore().collection('posts')
-    // .where('userId', '==', user.uid)
+    // .where('userId', '==', idUser)
     .where('privacy', '==', type)
     .orderBy('date', 'desc');
-
+    
   collection.onSnapshot((querySnapshot) => {
     let data = [];
     querySnapshot.forEach((doc) => {
       data.push({ id: doc.id, ...doc.data()
       });
-      callback(data);
     });
+    callback(data);
   });
 };

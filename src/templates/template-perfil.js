@@ -34,8 +34,8 @@ export const profile = (data) => {
   divElem.setAttribute('class', 'perfil-container');
   divElem.innerHTML = templatePerfil;
   
-  const logOutBtn = document.querySelector('#log-out-btn');
-  logOutBtn.addEventListener('click', logOutOnSubmit);
+  // const logOutBtn = document.querySelector('#log-out-btn');
+  // logOutBtn.addEventListener('click', logOutOnSubmit);
   
   return divElem;
 };
