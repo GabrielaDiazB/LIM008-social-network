@@ -1,9 +1,9 @@
 import { logOutOnSubmit} from '../lib-view/controller-login.js';
 import { templateBarraNav } from './template-barraNav.js';
 
-export const perfil = (data) => {
+export const profile = (data) => {
   const templatePerfil = `
-    ${templateBarraNav}
+  ${templateBarraNav}
         <div class="container">
           <div class="container-profile">
             <div class="ft-perfil">
@@ -34,7 +34,8 @@ export const perfil = (data) => {
   divElem.setAttribute('class', 'perfil-container');
   divElem.innerHTML = templatePerfil;
   
-  const logOutBtn = divElem.querySelector('#log-out-btn');
+  const logOutBtn = document.querySelector('#log-out-btn');
   logOutBtn.addEventListener('click', logOutOnSubmit);
+  
   return divElem;
 };

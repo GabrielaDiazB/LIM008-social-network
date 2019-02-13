@@ -40,7 +40,7 @@ export const signInOnSubmit = () => {
   singInFunction(userEmail, userPassword)
     .then((user) => { 
       userLogged(user);
-      window.location.hash = '#/perfil';
+      changeHash('/profile');
     })
     .catch((error) => {
       alert(error + 'llena los campos vacios');

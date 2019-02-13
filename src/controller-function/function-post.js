@@ -1,4 +1,6 @@
-export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, type, likes) => { 
+import { idUser} from '../lib-view/controller-login.js'; 
+
+export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, type, likes, favorites) => { 
   let posts = firebase.firestore().collection('posts');
   let data = {
     content: contentPost,
@@ -7,14 +9,16 @@ export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, 
     userPhoto: getPhotoUser,
     date: firebase.firestore.FieldValue.serverTimestamp(),
     like: likes,
-    privacity: type
+    favorite: favorites,
+    privacy: type
   };
   return posts.add(data);
 };
 
 // llamando los datos del post al template
-export const getPost = (callback) => {  
-  return firebase.firestore().collection('posts').orderBy('date', 'desc') // where('uid', '==', idUser())
+export const getPost = (callback) => {
+  return firebase.firestore().collection('posts')
+    .orderBy('date', 'desc') // .where('userId', '==', user.uid)
     .onSnapshot((querySnapshot) => {
       let data = [];
       querySnapshot.forEach((doc) => {
@@ -31,8 +35,8 @@ export const deletePost = (idPost) =>
 
 // funcion para editar post
 export const updatePost = (idPost, content) => { 
-  const ref = firebase.firestore().collection('posts').doc(idPost);
-  return ref.update({
+  let refPost = firebase.firestore().collection('posts').doc(idPost);
+  return refPost.update({
     content: content,
   });
 };
@@ -45,12 +49,28 @@ export const likesPost = (idPost, likes) => {
   });
 };
 
-/* export const privatePost = () => {
-firebase.firestore().collection('posts')
-    .where('privacity', '==', 'privado')
-    .where('userId', '==', `${.}`)
-    .orderBy('date', 'desc')
-    .onSnapshot((content) => {
-  getPost(content);
-  })
-} */
+// Función para dar Favorito
+export const favoritesPost = (idPost, favorites) => {
+  let ref = firebase.firestore().collection('posts').doc(idPost);
+  return ref.update({
+    favorite: favorites
+  });
+};
+
+
+// Función para que un post sea privado
+export const privacyStatePost = (type, callback) => {
+  let collection = firebase.firestore().collection('posts')
+    // .where('userId', '==', user.uid)
+    .where('privacy', '==', type)
+    .orderBy('date', 'desc');
+
+  collection.onSnapshot((querySnapshot) => {
+    let data = [];
+    querySnapshot.forEach((doc) => {
+      data.push({ id: doc.id, ...doc.data()
+      });
+      callback(data);
+    });
+  });
+};

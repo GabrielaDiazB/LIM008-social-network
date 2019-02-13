@@ -16,7 +16,7 @@ export const signIn = () => {
   const templateSignIn = `
   <img src="../imagen/logo/Nombre.png" alt="logo" class="logoname-img">
   <div id="signin-container" class="signin-container">
-    <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
+    <p class="logotipo">"Reviews en actividades, hobbies, series, películas"</p>
     <div id="sign-in-box" class="container-login">
       <form>
         <input id="email-si" class="email" type="email" placeholder="Correo">
@@ -70,7 +70,7 @@ export const register = () => {
           <input id="information" class="information" type="text" placeholder="Cuéntanos tus Hobbies">
           <input id="email" class="email" type="email" placeholder="E-mail">
           <input id="password" class="password" type="password" placeholder="Contraseña">
-          <button id="sign-up" type="button" class="sign-up-btn">Crear Cuenta</button>
+          <button id="sign-up" class="sign-up-btn" type="button">Crear Cuenta</button>
         </form>
      </div>`;
   const divElem = document.createElement('div');
