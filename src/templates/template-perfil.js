@@ -1,4 +1,4 @@
-/*import { logOutOnClick} from '../lib-view/controller-login.js';
+import { logOutOnClick} from '../lib-view/controller-login.js';
 import { templateBarraNav } from './template-barraNav.js';
 
 export const profile = (data) => {
@@ -38,4 +38,4 @@ export const profile = (data) => {
   logOutBtn.addEventListener('click', logOutOnClick);
   
   return divElem;
-};*/
+};

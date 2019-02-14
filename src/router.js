@@ -1,9 +1,8 @@
 import { signIn, register} from './templates/template-login.js';
-//import { profile } from './templates/template-perfil.js'; 
+import { profile } from './templates/template-perfil.js'; 
 import { writingPost } from './templates/template-post.js';
-//import { callDoc } from './controller-function/function-perfil.js';
-import {idUser} from './lib-view/controller-login.js';
-import { privacyStatePost, getPost } from './controller-function/function-post.js';
+import { callDoc } from './controller-function/function-perfil.js';
+import { postPrivacyState} from './lib-view/controller-post.js';
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
@@ -23,27 +22,32 @@ const viewTmp = (routers) => {
   section.innerHTML = '';
   switch (router) {
   case 'wall':
-    privacyStatePost('Público', (dataPost) => {
+    postPrivacyState((objPost) => {
       postSection.innerHTML = '';
-      postSection.appendChild(writingPost(dataPost));
+      postSection.appendChild(writingPost(objPost));
     });
     break;
   case 'writingPost':
-      getPost((objPost) => {
+    postPrivacyState((objPost) => {
       postSection.innerHTML = '';
-      const userId = idUser()
-      postSection.appendChild(writingPost(objPost, userId));
+      console.log(objPost);
+      postSection.appendChild(writingPost(objPost));
     });
     break;   
   case 'profile':
-
+    callDoc((data) => {
+      section.innerHTML = '';
+      section.appendChild(profile(data));
+    });
     break;
   case 'register':
     section.appendChild(register());
     break;
       
   case 'signIn':
+    
     section.appendChild(signIn());
+    
     break;
       
   default:

@@ -28,3 +28,6 @@ export const registerTwitterLogIn = () => {
 export const logOut = () => {
   return firebase.auth().signOut();
 };
+
+export const idUser = () => 
+  firebase.auth().currentUser;

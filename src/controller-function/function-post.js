@@ -14,19 +14,34 @@ export const addUserPostData = (contentPost, idUser, getNameUser, getPhotoUser, 
   return posts.add(data);
 };
 
-// llamando los datos del post al template
-export const getPost = (callback) => {  
-  return firebase.firestore().collection('posts')
-    .orderBy('date', 'desc') 
-    .onSnapshot((querySnapshot) => {
-      let data = [];
-      querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data()
+// llamando los datos del post al template         
+export const getPost = (callback, idUser) => {  
+  if (idUser !== null) {
+    return firebase.firestore().collection('posts')
+      .orderBy('date', 'desc') 
+      .onSnapshot((querySnapshot) => {
+        let data = [];
+        querySnapshot.forEach((doc) => {
+          data.push({ id: doc.id, ...doc.data()
+          });
+        });   
+        callback(data);
+      });
+  } else if (idUser === null) {
+    return firebase.firestore().collection('posts')
+      .where('privacy', '==', 'publico')
+      .orderBy('date', 'desc')  
+      .onSnapshot((querySnapshot) => {
+        let data = [];
+        querySnapshot.forEach((doc) => {
+          data.push({ id: doc.id, ...doc.data()
+          });
         });
-      });   
-      callback(data);
-    });
+        callback(data); 
+      });
+  }
 };
+  
 
 // funcion para eliminar post
 export const deletePost = (idPost) => 
@@ -54,20 +69,4 @@ export const favoritesPost = (idPost, favorites) => {
   return ref.update({
     favorite: favorites
   });
-};
-
-
-// Función para que un post sea privado
-export const privacyStatePost = (callback, type) => {
-  return firebase.firestore().collection('posts')
-    //.where('userId', '==', idUser)
-    .where('privacy', '==', type)
-    .onSnapshot((querySnapshot) => {
-      const data = [];
-      querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data()
-        });
-      });
-      callback(data);
-    });
 };

@@ -7,7 +7,6 @@ import {
   registerTwitterLogIn
 } from '../controller-function/function-login.js';
 
-
 const changeHash = (hash) => {
   location.hash = hash;
 };
@@ -37,7 +36,7 @@ export const checkInOnClick = () => {
       changeHash('/sigIn');
     })
     .catch((error) => {
-      alert(error + 'llena los campos vacios');
+      alert(error);
     });
 };
 // controler de iniciar sesion
@@ -86,14 +85,12 @@ export const twitterOnClick = () => {
 
 export const logOutOnClick= () => { 
   logOut()
-    .then((result) => {
+    .then(() => {
       changeHash('/signIn');
     })
     .catch(() => {});
 }
 
-export const idUser = () => 
-  firebase.auth().currentUser.uid;
 
 export const getNameUser = () => 
   firebase.auth().currentUser.displayName;

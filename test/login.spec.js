@@ -17,8 +17,10 @@ import {
   registerFacebookLogIn,
   registerGoogleLogIn,
   registerTwitterLogIn,
-  logOut
+  logOut,
+  idUser
 } from '../src/controller-function/function-login.js';
+
 
 describe('Create an account with email and password', () => {
   it('debería poder crear un usuario', () => {
@@ -62,7 +64,7 @@ describe('twitter authentication', () => {
     const userId = idUser();
     return registerTwitterLogIn()
     .then((user) => {
-      expect(userId).not.toBe(null)
+      expect(userId).not.toBe(null);
     })
   });
 });

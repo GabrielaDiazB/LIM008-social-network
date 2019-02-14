@@ -61,7 +61,7 @@ describe('crear post', () => {
           expect(results.content).toEqual('Hola mundo');
           done();
         };
-        getPost(callback);
+        getPost(callback, 'mali@gmail.com');
       });
   });
 });
@@ -77,7 +77,7 @@ describe('updatePost', () => {
           expect(results.content).toBe('Hola mundo 12356');
           done();
         };
-        getPost(callback);
+        getPost(callback, 'mali@gmail.com');
       });
   }); 
 });
@@ -93,12 +93,12 @@ describe('likePost', () => {
           expect(results.like).toBe(2);
           done();
         };
-        getPost(callback);
+        getPost(callback, 'mali@gmail.com');
       });
   }); 
 });
 
-describe('likePost', () => {
+describe('favoritePost', () => {
   it('debería poder dar likes al post indicado', (done) => {
     favoritesPost('abc128', 0)
       .then(() => {
@@ -109,7 +109,7 @@ describe('likePost', () => {
           expect(results.favorite).toBe(0);
           done();
         };
-        getPost(callback);
+        getPost(callback, 'mali@gmail.com');
       });
   }); 
 });
@@ -125,22 +125,10 @@ describe('deletePost', () => {
           expect(results).toBe(undefined);
           done();
         };
-        getPost(callback, null)
+        getPost(callback, null);
       });
   });
 });
-
-describe('deletePost', () => {
-  it('debería ser una funcion', () => {
-    expect(typeof googleOnClick).toBe('function')
-  })
-})
-
-describe('deletePost', () => {
-  it('debería ser una funcion', () => {
-    expect(typeof getNameUser).toBe('function')
-  })
-})
 
 
 

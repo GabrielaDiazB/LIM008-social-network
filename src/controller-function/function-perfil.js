@@ -1,6 +1,6 @@
 
 // llamando a datos para crear un perfil
-/*export const callDoc = (callback) => {
+export const callDoc = (callback) => {
   return firebase.firestore().collection('users')
     .get()
     .then((querySnapshot) => {
@@ -13,5 +13,5 @@
       });
       callback(userInfo);
     });
-}; */
+}; 
 

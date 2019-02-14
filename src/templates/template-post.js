@@ -14,6 +14,7 @@ export const writingPost = (objPost) => {
   const templateWritingPost = `
       ${templateBarraNav}
         <div class="post-container">
+          <div id="box-writing-post">
           <i class="fa fa-arrow-left"></i>
           <h1 class="text-align">¿Qué Recomiendas?</h1>
           <form>
@@ -25,11 +26,12 @@ export const writingPost = (objPost) => {
             </div>
             <textarea id="text-area" class="text-area" cols="25" rows="5" autofocus placeholder="Escribe aquí..." required></textarea>
             <select class="privacy-filter" id="privacy-filter">
-                <option value = "Público">Público</option>
+                <option value = "publico">Público</option>
                 <option value = "Privado" id="privateOption">Privado</option>
             </select>
             <button type="button" class="post" id="post">Publicar</button>
-          </form>      
+          </form> 
+          </div>     
         </div>`;
   const post = document.createElement('div');
   post.innerHTML = templateWritingPost;
