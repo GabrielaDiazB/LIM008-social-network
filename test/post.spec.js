@@ -52,7 +52,7 @@ import {
 
 describe('crear post', () => {
   it('debería agregar un post', (done) => {
-    return addUserPostData('Hola mundo', 'abc', 'sofi', 'sofi.png', '11/02/19', 2, 'type')
+    return addUserPostData('Hola mundo', 'abc1234', 'sofi', 'sofi.png', '11/02/19', 2, '´Privado')
       .then(() => { 
         const callback = (posts) => {   
           const results = posts.find(post => { 

@@ -83,7 +83,7 @@ export const twitterOnClick = () => {
 };
     
 
-export const logOutOnClick= () => { 
+export const logOutOnClick = () => { 
   logOut()
     .then(() => {
       changeHash('/signIn');

@@ -19,7 +19,7 @@ export const profile = (data) => {
               <table>
                 <tr>
                   <th>${data.like}</th>
-                  <th>${data.favorito}</th>
+                  <th>${data.favorite}</th>
                 </tr>
                 <tr>
                   <td>Me encanta</td>
@@ -34,7 +34,7 @@ export const profile = (data) => {
   divElem.setAttribute('class', 'perfil-container');
   divElem.innerHTML = templatePerfil;
   
-  const logOutBtn = document.querySelector('#log-out-btn');
+  const logOutBtn = divElem.querySelector('#log-out-btn');
   logOutBtn.addEventListener('click', logOutOnClick);
   
   return divElem;

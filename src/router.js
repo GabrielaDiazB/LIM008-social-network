@@ -21,6 +21,7 @@ const viewTmp = (routers) => {
   postSection.innerHTML = '';
   section.innerHTML = '';
   switch (router) {
+    
   case 'wall':
     postPrivacyState((objPost) => {
       postSection.innerHTML = '';

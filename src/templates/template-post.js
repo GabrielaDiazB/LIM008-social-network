@@ -37,9 +37,8 @@ export const writingPost = (objPost) => {
   post.innerHTML = templateWritingPost;
   
   const postingPost = post.querySelector('#post');
-  postingPost.addEventListener('click', () => {
-    addPostOnClick();
-  });
+  postingPost.addEventListener('click', () =>  { 
+    addPostOnClick() });
 
   const logOutBtn = post.querySelector('#log-out-btn');
   logOutBtn.addEventListener('click', logOutOnClick);

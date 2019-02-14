@@ -8,14 +8,14 @@ export const addPostOnClick = () => {
   const contentPost = document.querySelector('#text-area').value;
   let countLike = 0;
   let countFavorite = 0;
-  const uid = idUser();
+  const uidUser = idUser();
   const name = getNameUser();
   const photo = getPhotoUser();
-  addUserPostData(contentPost, uid, name, photo, filterPrivatePrivacy, countLike, countFavorite);
+  addUserPostData(contentPost, uidUser, name, photo, filterPrivatePrivacy, countLike, countFavorite);
 };
 
 export const postPrivacyState = (callback) => {
-  getPost(callback, idUser());
+  return getPost(callback, idUser());
 };
 
 export const deletePostOnClick = (objPost) => { 

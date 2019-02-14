@@ -3,7 +3,7 @@ export const addUserPostData = (contentPost, idUser, getNameUser, getPhotoUser, 
   let posts = firebase.firestore().collection('posts');
   let data = {
     content: contentPost,
-    userId: idUser,
+    uid: idUser,
     name: getNameUser,
     userPhoto: getPhotoUser,
     date: firebase.firestore.FieldValue.serverTimestamp(),
@@ -27,9 +27,9 @@ export const getPost = (callback, idUser) => {
         });   
         callback(data);
       });
-  } else if (idUser === null) {
+    } else if (idUser === null) {
     return firebase.firestore().collection('posts')
-      .where('privacy', '==', 'publico')
+      .where('privacy', '==', 'Público')
       .orderBy('date', 'desc')  
       .onSnapshot((querySnapshot) => {
         let data = [];
