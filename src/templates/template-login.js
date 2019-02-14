@@ -1,12 +1,9 @@
 import {
-  checkInOnSubmit,
-  signInOnSubmit} from '../lib-view/controller-login.js';
-  
-import {
-  registerFacebookLogIn,
-  registerGoogleLogIn,
-  registerTwitterLogIn
-} from '../controller-function/function-login.js';
+  checkInOnClick,
+  signInOnClick,
+  googleOnClick,
+  facebookOnClick,
+  twitterOnClick} from '../lib-view/controller-login.js';
 
 const changeHash = (hash) => {
   location.hash = hash;
@@ -16,7 +13,7 @@ export const signIn = () => {
   const templateSignIn = `
   <img src="../imagen/logo/Nombre.png" alt="logo" class="logoname-img">
   <div id="signin-container" class="signin-container">
-    <p class="logotipo">"Bla bla bla bla bla bla bla"</p>
+    <p class="logotipo">"Reviews en actividades, hobbies, series, películas"</p>
     <div id="sign-in-box" class="container-login">
       <form>
         <input id="email-si" class="email" type="email" placeholder="Correo">
@@ -34,25 +31,19 @@ export const signIn = () => {
   </div>`;
   const divElem = document.createElement('div');
   divElem.innerHTML = templateSignIn;
-  const btnSignIn = divElem.querySelector('#sign-in')
+  const btnSignIn = divElem.querySelector('#sign-in');
   btnSignIn.addEventListener('click', () => {
-    signInOnSubmit();
+    signInOnClick();
   });
 
-  const btnFacebook = divElem.querySelector('#facebook-login')
-  btnFacebook.addEventListener('click', () => {
-    registerFacebookLogIn();
-  });
+  const btnFacebook = divElem.querySelector('#facebook-login');
+  btnFacebook.addEventListener('click', facebookOnClick);
 
   const btnGoogle = divElem.querySelector('#google-login');
-  btnGoogle.addEventListener('click', () => { 
-    registerGoogleLogIn();
-  });
+  btnGoogle.addEventListener('click', googleOnClick);
 
   const btnTwitter = divElem.querySelector('#twitter-login')
-  btnTwitter.addEventListener('click', () => { 
-    registerTwitterLogIn();
-  });
+  btnTwitter.addEventListener('click', twitterOnClick);
 
   const btnQuestion = divElem.querySelector('#signup-question')
   btnQuestion.addEventListener('click', () => {
@@ -70,7 +61,7 @@ export const register = () => {
           <input id="information" class="information" type="text" placeholder="Cuéntanos tus Hobbies">
           <input id="email" class="email" type="email" placeholder="E-mail">
           <input id="password" class="password" type="password" placeholder="Contraseña">
-          <button id="sign-up" type="button" class="sign-up-btn">Crear Cuenta</button>
+          <button id="sign-up" class="sign-up-btn" type="button">Crear Cuenta</button>
         </form>
      </div>`;
   const divElem = document.createElement('div');
@@ -78,7 +69,7 @@ export const register = () => {
 
   const btnRegister = divElem.querySelector('#sign-up');
   btnRegister.addEventListener('click', () => { 
-    checkInOnSubmit();
+    checkInOnClick();
   });
   return divElem;
 };

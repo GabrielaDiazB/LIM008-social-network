@@ -37,26 +37,6 @@ body{
     background: rgb(240, 240, 247);
 }
 
-footer{
-    text-align: center;
-    padding: 20px;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    width: 50%;
-    margin: 0;
-}
-
-
-.icon-footer{
-    width: 40px;
-    height: 40px;
-    padding: 0 30px;
-}
-.icon-footer:hover{
-    opacity: 0.8;
-}
 
 @media screen and (max-width: 500px) { 
     .footer{
@@ -76,6 +56,27 @@ footer{
 }
 
 @media screen and (min-width: 300px) { 
+    footer{
+        text-align: center;
+        padding: 20px;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        display: fixed;
+        width: 50%;
+        margin: 0;
+    }
+    
+    
+    .icon-footer{
+        width: 40px;
+        height: 40px;
+        padding: 0 30px;
+    }
+    .icon-footer:hover{
+        opacity: 0.8;
+    }
+    
     body{
         display: flex;
         justify-content: center;
@@ -87,6 +88,9 @@ footer{
     }
 
     .log-container {
+        height: 400px;
+        margin-top: 30px;
+        text-align: center;
         /* background-color: rgba(222, 246, 246, 0.6);
         padding: 10px;
         border-radius: 5px;
@@ -240,13 +244,14 @@ hr{
     }
     .privacy-filter{
         margin: 5px;
+        height: 25px;
     }
 
     .post-container{
         background-color: rgba(182, 239, 239, 0.3);
         width: 800px;
-        height: 235px;
-        margin: 110px 0 20px;
+        height: 260px;
+        margin: 120px  20px;
         border-radius: 8px;
         padding: 10px 0;
         font-family: 'Roboto', sans-serif;

@@ -4,14 +4,15 @@ const fixtureData = {
   __collection__: {
     posts: {
       __doc__: {
-        abc123: {
+        abc1234: {
           content: 'Hola mundo',
-          userId: 'abc',
+          userId: 'abc1234',
           name: 'sofi',
           userPhoto: 'sofi.png',
           date: '11/02/19',
           like: 2,
-          type: 'type'
+          favorite: 2,
+          privacy: 'Privado'
         },
         abc128: {
           content: 'Hola mundo 123',
@@ -20,7 +21,8 @@ const fixtureData = {
           userPhoto: 'gaby.png',
           date: '25/10/12',
           like: 1,
-          type: 'privado'
+          favorite: 0,
+          type: 'publico'
         },
         abc129: {
           content: 'Hola mundo mali',
@@ -29,6 +31,7 @@ const fixtureData = {
           userPhoto: 'mali.png',
           date: '20/10/12',
           like: 5,
+          favorite: 0,
           type: 'publico'
         }
       },
@@ -44,14 +47,13 @@ import {
   updatePost,
   deletePost,
   likesPost,
-  privacyStatePost
+  favoritesPost } from '../src/controller-function/function-post.js';
 
-} from '../src/controller-function/function-post.js';
 
 describe('crear post', () => {
   it('debería agregar un post', (done) => {
     return addUserPostData('Hola mundo', 'abc', 'sofi', 'sofi.png', '11/02/19', 2, 'type')
-      .then((data) => { 
+      .then(() => { 
         const callback = (posts) => {   
           const results = posts.find(post => { 
             return post.content === 'Hola mundo';
@@ -96,6 +98,22 @@ describe('likePost', () => {
   }); 
 });
 
+describe('likePost', () => {
+  it('debería poder dar likes al post indicado', (done) => {
+    favoritesPost('abc128', 0)
+      .then(() => {
+        const callback = (posts) => {
+          const results = posts.find((post) => {
+            return post.id === 'abc128';
+          });
+          expect(results.favorite).toBe(0);
+          done();
+        };
+        getPost(callback);
+      });
+  }); 
+});
+
 describe('deletePost', () => {
   it('debería poder eliminar el post indicado', (done) => {
     deletePost('abc123')
@@ -107,25 +125,24 @@ describe('deletePost', () => {
           expect(results).toBe(undefined);
           done();
         };
-        getPost(callback)
+        getPost(callback, null)
       });
   });
 });
 
-describe('privacyStatePost', () => {
-  it('debería poder poner en privado o público el post indicado', (done) => {
-    privacyStatePost('Público')
-    .then(() => {
-        const callback = (posts) => {
-          const results = posts.find((post) => {
-            return post.type === 'Público';
-          });
-          expect(results.type).toBe('Público');
-          done();
-        };
-        privacyStatePost(type, callback);
-      });
-  });
-});
+describe('deletePost', () => {
+  it('debería ser una funcion', () => {
+    expect(typeof googleOnClick).toBe('function')
+  })
+})
+
+describe('deletePost', () => {
+  it('debería ser una funcion', () => {
+    expect(typeof getNameUser).toBe('function')
+  })
+})
+
+
+
 
 

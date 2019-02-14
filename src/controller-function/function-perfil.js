@@ -1,7 +1,7 @@
-import { idUser } from '../lib-view/controller-login.js';
+
 // llamando a datos para crear un perfil
-export const callDoc = (callback) => {
-  return firebase.firestore().collection('users').where('userId', '==', idUser)
+/*export const callDoc = (callback) => {
+  return firebase.firestore().collection('users')
     .get()
     .then((querySnapshot) => {
       let userInfo = {};
@@ -10,8 +10,8 @@ export const callDoc = (callback) => {
           id: doc.id,
           ...doc.data()
         };
-        console.log(userInfo);
       });
       callback(userInfo);
     });
-};
+}; */
+

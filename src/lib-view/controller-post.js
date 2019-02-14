@@ -3,31 +3,30 @@ import { addUserPostData, deletePost, updatePost, likesPost, favoritesPost} from
 import { idUser } from './controller-login.js';
 
 // controler para guardar el post en  firebase cloud
-export const addPostOnSubmit = () => {
+export const addPostOnClick = () => {
   const filterPrivatePrivacy = document.querySelector('#privacy-filter').value;
   const contentPost = document.querySelector('#text-area').value;
   let countLike = 0;
   let countFavorite = 0;
-  const uidUser = idUser();
+  const uid = idUser();
   const name = getNameUser();
   const photo = getPhotoUser();
-  addUserPostData(contentPost, uidUser, name, photo, filterPrivatePrivacy, countLike, countFavorite);
-  
+  addUserPostData(contentPost, uid, name, photo, filterPrivatePrivacy, countLike, countFavorite);
 };
   
-export const deletePostOnSubmit = (objPost) => { 
-  if (confirm('esta seguro de eliminar!!!'))
+export const deletePostOnClick = (objPost) => { 
+  if (confirm('¿¡Estás seguro de eliminar el post!?'))
     return deletePost(objPost.id);
 };
   
-export const updatePostSubmit = (objPost, content) => {
+export const updatePostOnClick = (objPost, content) => {
   return updatePost(objPost, content);
 };
 
-export const updateLikesOnSubmit = (objPost, like) => {
+export const updateLikesOnClick = (objPost, like) => {
   return likesPost(objPost.id, like);
 };
-  
-export const updateFavoritesOnSubmit = (objPost, favorite) => {
+
+export const updateFavoritesOnClick = (objPost, favorite) => {
   return favoritesPost(objPost.id, favorite);
-};  
+};

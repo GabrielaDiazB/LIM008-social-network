@@ -1,15 +1,13 @@
 import { 
-  addPostOnSubmit,
-  deletePostOnSubmit,
-  updatePostSubmit,
-  updateLikesOnSubmit,
-  updateFavoritesOnSubmit
+  addPostOnClick,
+  deletePostOnClick,
+  updatePostOnClick,
+  updateLikesOnClick,
+  updateFavoritesOnClick
 } from '../lib-view/controller-post.js';
 
-import { logOutOnSubmit } from '../lib-view/controller-login.js';
-
+import { logOutOnClick } from '../lib-view/controller-login.js';
 import { dataPostUser } from '../app.js';
-
 import { templateBarraNav } from './template-barraNav.js';
 
 export const writingPost = (objPost) => {
@@ -38,24 +36,20 @@ export const writingPost = (objPost) => {
   
   const postingPost = post.querySelector('#post');
   postingPost.addEventListener('click', () => {
-    addPostOnSubmit();
+    addPostOnClick();
   });
 
   const logOutBtn = post.querySelector('#log-out-btn');
-  logOutBtn.addEventListener('click', logOutOnSubmit);
+  logOutBtn.addEventListener('click', logOutOnClick);
   
   const ul = post.querySelector('.post-container');
   objPost.forEach((post) => {
     ul.appendChild(itemPost(post));    
   });
-
-
-
-
   return post;
 };
   
-export const itemPost = (dataPost) => {
+const itemPost = (dataPost) => {
   const datePost = dataPostUser(dataPost.date.toDate());
   const liElement = document.createElement('li');
   liElement.classList.add('mdl-list__item');
@@ -97,27 +91,26 @@ export const itemPost = (dataPost) => {
   const saveEdit = liElement.querySelector('#save-post-edit');
   saveEdit.addEventListener('click', () => {
     textArea.disabled = true;
-    updatePostSubmit(dataPost.id, textArea.value);
+    updatePostOnClick(dataPost.id, textArea.value);
     liElement.querySelector('#save-post-edit').style.display = 'none';
   });
   
   const deleted = liElement.querySelector(`#btn-delete-${dataPost.id}`);
   deleted.addEventListener('click', () => {
-    deletePostOnSubmit(dataPost);
+    deletePostOnClick(dataPost);
   });
 
-  const likesBtn = liElement.querySelector(`#like-btn-${dataPost.id}`)
+  const likesBtn = liElement.querySelector(`#like-btn-${dataPost.id}`);
   likesBtn.addEventListener('click', () => {
-    updateLikesOnSubmit(dataPost, dataPost.like += 1);  
+    updateLikesOnClick(dataPost, dataPost.like += 1);  
   });
 
   const favoriteBtn = liElement.querySelector(`#favorite-btn-${dataPost.id}`);
   favoriteBtn.addEventListener('click', () => {
-    updateFavoritesOnSubmit(dataPost, dataPost.favorite += 1);
+    updateFavoritesOnClick(dataPost, dataPost.favorite += 1);
   });
-  
   const logOutBtn = liElement.querySelector('#log-out-btn');
-  logOutBtn.addEventListener('click', logOutOnSubmit);
+  logOutBtn.addEventListener('click', logOutOnClick);
 
   return liElement;
 };

@@ -1,7 +1,7 @@
-export const templateBarraNav = 
-  `<header id="header-container">
+export const templateBarraNav = `
+  <header id="header-container">
         <img src="../imagen/logo/Logo2.png" alt="logowhite" class="logo-img">
-        <button id="log-out-btn" class="log-out-btn"><img src="../imagen/aicon/exit-1.png" id="sign-out" class ="icon-header" alt=""></button>
+        <button id="log-out-btn" type=button class="log-out-btn"><img src="../imagen/aicon/exit-1.png" id="sign-out" class ="icon-header" alt=""></button>
   </header>
   <footer id="footer-container">
     <nav>
@@ -13,4 +13,3 @@ export const templateBarraNav =
       </div>
      </nav>
   </footer>`;
-

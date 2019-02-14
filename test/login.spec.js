@@ -39,22 +39,33 @@ describe('LogIn with email and password', () => {
 
 describe('Facebook authentication', () => {
   it('debería ser una función', () => {
-    expect(typeof registerFacebookLogIn).toBe('function');
+    const userId = idUser();
+    return registerFacebookLogIn()
+    .then((user) => {
+      expect(userId).not.toBe(null)
+    })
   });
 });
 
-describe('Google authentication', () => {
+describe('google authentication', () => {
   it('debería ser una función', () => {
-    expect(typeof registerGoogleLogIn).toBe('function');
+    const userId = idUser();
+    return registerGoogleLogIn()
+    .then((user) => {
+      expect(userId).not.toBe(null)
+    })
   });
 });
 
-describe('Twitter authentication', () => {
+describe('twitter authentication', () => {
   it('debería ser una función', () => {
-    expect(typeof registerTwitterLogIn).toBe('function');
+    const userId = idUser();
+    return registerTwitterLogIn()
+    .then((user) => {
+      expect(userId).not.toBe(null)
+    })
   });
 });
-
 
 describe('cerrar sesion', () => {
   it('deberia cerrar sesion', () => {
