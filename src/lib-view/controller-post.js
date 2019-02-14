@@ -1,5 +1,5 @@
 import { getNameUser, getPhotoUser } from '../lib-view/controller-login.js';
-import { addUserPostData, deletePost, updatePost, likesPost, favoritesPost} from '../controller-function/function-post.js';
+import { addUserPostData, deletePost, updatePost, likesPost, favoritesPost, getPost} from '../controller-function/function-post.js';
 import { idUser } from './controller-login.js';
 
 // controler para guardar el post en  firebase cloud
@@ -13,7 +13,11 @@ export const addPostOnSubmit = () => {
   const photo = getPhotoUser();
   addUserPostData(contentPost, uidUser, name, photo, filterPrivatePrivacy, countLike, countFavorite);
 };
-  
+
+export const postPrivacyState = (callback) => {
+  getPost(callback, idUser());
+};
+
 export const deletePostOnSubmit = (objPost) => { 
   if (confirm('¿¡Estás seguro de eliminar el post!?'))
     return deletePost(objPost.id);

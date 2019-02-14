@@ -1,5 +1,3 @@
-import { idUser} from '../lib-view/controller-login.js'; 
-
 export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, type, likes, favorites) => { 
   let posts = firebase.firestore().collection('posts');
   let data = {
@@ -16,19 +14,33 @@ export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, 
 };
 
 // llamando los datos del post al template
-export const getPost = (callback) => {  
-
-  return firebase.firestore().collection('posts')
-    .orderBy('date', 'desc') // .where('userId', '==', user.uid)
-    .onSnapshot((querySnapshot) => {
-      let data = [];
-      querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data()
+export const getPost = (callback, idUser) => {  
+  if (idUser !== null) {
+    return firebase.firestore().collection('posts')
+      .orderBy('date', 'desc') 
+      .onSnapshot((querySnapshot) => {
+        let data = [];
+        querySnapshot.forEach((doc) => {
+          data.push({ id: doc.id, ...doc.data()
+          });
+        });   
+        callback(data);
+      });
+  } else if (idUser === null) {
+    return firebase.firestore().collection('posts')
+      .where('privacy', '==', 'publico')
+      .orderBy('date', 'desc')  
+      .onSnapshot((querySnapshot) => {
+        let data = [];
+        querySnapshot.forEach((doc) => {
+          data.push({ id: doc.id, ...doc.data()
+          });
         });
-      });   
-      callback(data);
-    });
+        callback(data); 
+      });
+  }
 };
+  
 
 // funcion para eliminar post
 export const deletePost = (idPost) => 
@@ -55,23 +67,5 @@ export const favoritesPost = (idPost, favorites) => {
   let ref = firebase.firestore().collection('posts').doc(idPost);
   return ref.update({
     favorite: favorites
-  });
-};
-
-
-// Función para que un post sea privado
-export const privacyStatePost = (callback, type, idUser) => {
-  let collection = firebase.firestore().collection('posts')
-    // .where('userId', '==', idUser)
-    .where('privacy', '==', type)
-    .orderBy('date', 'desc');
-    
-  collection.onSnapshot((querySnapshot) => {
-    let data = [];
-    querySnapshot.forEach((doc) => {
-      data.push({ id: doc.id, ...doc.data()
-      });
-    });
-    callback(data);
   });
 };

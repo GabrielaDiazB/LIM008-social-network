@@ -3,7 +3,7 @@ import { profile } from './templates/template-perfil.js';
 import { writingPost} from './templates/template-post.js';
 import { callDoc } from './controller-function/function-perfil.js';
 import {idUser} from './lib-view/controller-login.js';
-import { /* getPost,*/ privacyStatePost } from './controller-function/function-post.js';
+import { postPrivacyState} from './lib-view/controller-post.js';
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
@@ -23,15 +23,22 @@ const viewTmp = (routers) => {
   section.innerHTML = '';
   switch (router) {
   case 'wall':
-    privacyStatePost('Público', (dataPost) => {
+    postPrivacyState((objPost) => {
       postSection.innerHTML = '';
-      postSection.appendChild(writingPost(dataPost));
+      console.log(objPost);
+      postSection.appendChild(writingPost(objPost));
     });
+    // privacyStatePost('publico', (dataPost) => {
+    //   postSection.innerHTML = '';
+    //   postSection.appendChild(writingPost(dataPost));
+    // });
+    // postSection.style.display = 'block'; // DISPLAY
+
     break;
   case 'writingPost':
-    privacyStatePost('Público', (dataPost) => {
+    postPrivacyState((objPost) => {
       postSection.innerHTML = '';
-      console.log(objPost)
+      console.log(objPost);
       postSection.appendChild(writingPost(objPost));
     });
     break;
@@ -41,10 +48,11 @@ const viewTmp = (routers) => {
       section.innerHTML = '';
       section.appendChild(profile(data));
     });
-    privacyStatePost('Privado', (dataPost) => {
-      postSection.innerHTML = '';
-      postSection.appendChild(writingPost(dataPost));
-    });
+    // privacyStatePost('Privado', (dataPost) => {
+    //   postSection.innerHTML = '';
+    //   postSection.appendChild(writingPost(dataPost));
+    // });
+    // postSection.style.display = 'none'; // DISPLAY
 
     break;
   case 'register':
@@ -52,7 +60,9 @@ const viewTmp = (routers) => {
     break;
       
   case 'signIn':
+    
     section.appendChild(signIn());
+    
     break;
       
   default:

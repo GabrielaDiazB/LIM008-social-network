@@ -4,6 +4,9 @@ import {
   logOut, 
   userLogged} from '../controller-function/function-login.js';
 
+const changeHash = (hash) => {
+  location.hash = hash;
+};
 
 // controler de crear una cuenta nueva
 export const checkInOnSubmit = () => {
@@ -29,7 +32,7 @@ export const checkInOnSubmit = () => {
       window.location.hash = '#/signIn';
     })
     .catch((error) => {
-      alert(error + 'llena los campos vacios');
+      alert(error);
     });
 };
 
@@ -38,12 +41,12 @@ export const signInOnSubmit = () => {
   const userEmail = document.querySelector('#email-si').value;
   const userPassword = document.querySelector('#password-si').value;
   singInFunction(userEmail, userPassword)
-    .then((user) => { 
-      userLogged(user);
-      changeHash('/profile');
+    .then(() => { 
+      // userLogged(user);
+      changeHash('/wrintingPost');
     })
     .catch((error) => {
-      alert(error + 'llena los campos vacios');
+      alert(error);
       window.location.hash = '#/signIn';
     });
 };
@@ -57,7 +60,7 @@ export const logOutOnSubmit = () => {
 };
 
 export const idUser = () => 
-  firebase.auth().currentUser.uid;
+  firebase.auth().currentUser;
 
 export const getNameUser = () => 
   firebase.auth().currentUser.displayName;
