@@ -22,7 +22,7 @@ const fixtureData = {
           date: '25/10/12',
           like: 1,
           favorite: 0,
-          type: 'publico'
+          privacy: 'publico'
         },
         abc129: {
           content: 'Hola mundo mali',
@@ -32,7 +32,7 @@ const fixtureData = {
           date: '20/10/12',
           like: 5,
           favorite: 0,
-          type: 'publico'
+          privacy: 'publico'
         }
       },
     },

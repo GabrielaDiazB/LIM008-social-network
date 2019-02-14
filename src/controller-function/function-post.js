@@ -3,7 +3,7 @@ export const addUserPostData = (contentPost, idUser, getNameUser, getPhotoUser, 
   let posts = firebase.firestore().collection('posts');
   let data = {
     content: contentPost,
-    uidUser: idUser.uid,
+    uidUser: idUser,
     name: getNameUser,
     userPhoto: getPhotoUser,
     date: firebase.firestore.FieldValue.serverTimestamp(),
@@ -27,7 +27,7 @@ export const getPost = (callback, idUser) => {
         });   
         callback(data);
       });
-  } else if (idUser === null) {
+  } else {
     return firebase.firestore().collection('posts')
       .where('privacy', '==', 'publico')
       .orderBy('date', 'desc')  
@@ -41,7 +41,6 @@ export const getPost = (callback, idUser) => {
       });
   }
 };
-  
 
 // funcion para eliminar post
 export const deletePost = (idPost) => 

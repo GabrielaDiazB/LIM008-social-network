@@ -8,7 +8,7 @@ export const addPostOnClick = () => {
   const contentPost = document.querySelector('#text-area').value;
   let countLike = 0;
   let countFavorite = 0;
-  const uidUser = idUser();
+  const uidUser = idUser().uid;
   const name = getNameUser();
   const photo = getPhotoUser();
   addUserPostData(contentPost, uidUser, name, photo, filterPrivatePrivacy, countLike, countFavorite);
