@@ -1,8 +1,7 @@
 import { signIn, register} from './templates/template-login.js';
 import { profile } from './templates/template-perfil.js'; 
-import { writingPost} from './templates/template-post.js';
+import { writingPost } from './templates/template-post.js';
 import { callDoc } from './controller-function/function-perfil.js';
-import {idUser} from './lib-view/controller-login.js';
 import { postPrivacyState} from './lib-view/controller-post.js';
 
 const changeTmp = (hash) => {
@@ -21,39 +20,25 @@ const viewTmp = (routers) => {
   const postSection = document.getElementById('post-container-box');
   postSection.innerHTML = '';
   section.innerHTML = '';
-  switch (router) {
+  switch (router) {  
   case 'wall':
     postPrivacyState((objPost) => {
       postSection.innerHTML = '';
-      console.log(objPost);
       postSection.appendChild(writingPost(objPost));
     });
-    // privacyStatePost('publico', (dataPost) => {
-    //   postSection.innerHTML = '';
-    //   postSection.appendChild(writingPost(dataPost));
-    // });
-    // postSection.style.display = 'block'; // DISPLAY
-
     break;
   case 'writingPost':
-    postPrivacyState((objPost) => {
+    postPrivacyState((dataPost) => {
       postSection.innerHTML = '';
-      console.log(objPost);
-      postSection.appendChild(writingPost(objPost));
+      console.log(dataPost);
+      postSection.appendChild(writingPost(dataPost));
     });
-    break;
-      
+    break;   
   case 'profile':
     callDoc((data) => {
       section.innerHTML = '';
       section.appendChild(profile(data));
     });
-    // privacyStatePost('Privado', (dataPost) => {
-    //   postSection.innerHTML = '';
-    //   postSection.appendChild(writingPost(dataPost));
-    // });
-    // postSection.style.display = 'none'; // DISPLAY
-
     break;
   case 'register':
     section.appendChild(register());

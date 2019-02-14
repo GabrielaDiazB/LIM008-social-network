@@ -1,4 +1,4 @@
-import { logOutOnSubmit} from '../lib-view/controller-login.js';
+import { logOutOnClick} from '../lib-view/controller-login.js';
 import { templateBarraNav } from './template-barraNav.js';
 
 export const profile = (data) => {
@@ -19,7 +19,7 @@ export const profile = (data) => {
               <table>
                 <tr>
                   <th>${data.like}</th>
-                  <th>${data.favorito}</th>
+                  <th>${data.favorite}</th>
                 </tr>
                 <tr>
                   <td>Me encanta</td>
@@ -34,8 +34,8 @@ export const profile = (data) => {
   divElem.setAttribute('class', 'perfil-container');
   divElem.innerHTML = templatePerfil;
   
-  // const logOutBtn = document.querySelector('#log-out-btn');
-  // logOutBtn.addEventListener('click', logOutOnSubmit);
+  const logOutBtn = divElem.querySelector('#log-out-btn');
+  logOutBtn.addEventListener('click', logOutOnClick);
   
   return divElem;
 };

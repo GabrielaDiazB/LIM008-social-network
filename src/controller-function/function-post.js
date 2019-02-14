@@ -1,8 +1,9 @@
-export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, type, likes, favorites) => { 
+
+export const addUserPostData = (contentPost, idUser, getNameUser, getPhotoUser, type, likes, favorites) => { 
   let posts = firebase.firestore().collection('posts');
   let data = {
     content: contentPost,
-    uid: userId,
+    uidUser: idUser.uid,
     name: getNameUser,
     userPhoto: getPhotoUser,
     date: firebase.firestore.FieldValue.serverTimestamp(),
@@ -13,7 +14,7 @@ export const addUserPostData = (contentPost, userId, getNameUser, getPhotoUser, 
   return posts.add(data);
 };
 
-// llamando los datos del post al template
+// llamando los datos del post al template         
 export const getPost = (callback, idUser) => {  
   if (idUser !== null) {
     return firebase.firestore().collection('posts')

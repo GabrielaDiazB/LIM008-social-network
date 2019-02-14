@@ -2,14 +2,18 @@ import {
   checkInFunction, 
   singInFunction,
   logOut, 
-  userLogged} from '../controller-function/function-login.js';
+  registerGoogleLogIn,
+  registerFacebookLogIn,
+  registerTwitterLogIn
+} from '../controller-function/function-login.js';
 
 const changeHash = (hash) => {
   location.hash = hash;
 };
+  
 
 // controler de crear una cuenta nueva
-export const checkInOnSubmit = () => {
+export const checkInOnClick = () => {
   const displayName = document.querySelector('#user-name').value;
   const information = document.querySelector('#information').value;
   const email = document.querySelector('#email').value;
@@ -27,40 +31,66 @@ export const checkInOnSubmit = () => {
   };
   checkInFunction(email, password)
     .then(() => {
-      data.uid = firebase.auth().currentUser.uid;
+      data.userId = firebase.auth().currentUser.uid;
       users.add(data);
-      window.location.hash = '#/signIn';
+      changeHash('/sigIn');
     })
     .catch((error) => {
       alert(error);
     });
 };
-
 // controler de iniciar sesion
-export const signInOnSubmit = () => {
+export const signInOnClick = () => {
   const userEmail = document.querySelector('#email-si').value;
   const userPassword = document.querySelector('#password-si').value;
   singInFunction(userEmail, userPassword)
-    .then(() => { 
-      // userLogged(user);
-      changeHash('/wrintingPost');
+    .then((user) => { 
+      changeHash('/profile');
     })
     .catch((error) => {
+      alert(error + 'llena los campos vacios');
+      changeHash('/signIn');
+    });
+};
+export const facebookOnClick = () => {
+  registerFacebookLogIn()
+    .then((result) => {
+      changeHash('/wall');
+    })
+    .catch((error) => { 
       alert(error);
-      window.location.hash = '#/signIn';
     });
 };
 
-export const logOutOnSubmit = () => {
+export const googleOnClick = () => {
+  registerGoogleLogIn()
+    .then((result) => {
+      changeHash('/wall');
+    })
+    .catch((error) => { 
+      alert(error);
+    });
+};
+  
+export const twitterOnClick = () => {
+  registerTwitterLogIn()
+    .then((result) => {
+      changeHash('/wall');
+    })
+    .catch((error) => { 
+      alert(error);
+    });
+};
+    
+
+export const logOutOnClick = () => { 
   logOut()
     .then(() => {
-      console.log('cerro sesion');
-      window.location.hash = '#/signIn';
-    });
+      changeHash('/signIn');
+    })
+    .catch(() => {});
 };
 
-export const idUser = () => 
-  firebase.auth().currentUser;
 
 export const getNameUser = () => 
   firebase.auth().currentUser.displayName;
