@@ -1,4 +1,4 @@
-// Función para poder Registrar una Cuenta Nueva
+// Función para poder registrar una cuenta nueva
 export const registerLogIn = () => {
   const email = document.querySelector('#email').value;
   const password = document.querySelector('#password').value;
@@ -91,7 +91,7 @@ export const registerFacebookLogIn = () => {
         const credential = error.credential;
 
         if (errorCode === 'auth/account-exists-with-different-credential') {
-          alert('Es el mismo usuario');
+          swal('Es el mismo usuario');
         }
       });
   } else {
@@ -122,7 +122,7 @@ export const registerGoogleLogIn = () => {
         const credential = error.credential;
         // ...
         if (errorCode === 'auth/account-exists-with-different-credential') {
-          alert('Es el mismo usuario');
+          swal('Es el mismo usuario');
         }
       });
   } else {

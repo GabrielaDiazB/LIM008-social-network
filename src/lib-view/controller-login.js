@@ -4,8 +4,7 @@ import {
   logOut, 
   userLogged} from '../controller-function/function-login.js';
 
-
-// controler de crear una cuenta nueva
+// controller de crear cuenta nueva
 export const checkInOnSubmit = () => {
   const displayName = document.querySelector('#user-name').value;
   const information = document.querySelector('#information').value;
@@ -29,11 +28,12 @@ export const checkInOnSubmit = () => {
       window.location.hash = '#/signIn';
     })
     .catch((error) => {
-      alert(error + 'llena los campos vacios');
+      swal(error + 'LLena los campos vacíos');
+      // swal('Atención','Por favor llena los espacios vacíos', 'error')
     });
 };
 
-// controler de iniciar sesion
+// controller de inicio de sesión
 export const signInOnSubmit = () => {
   const userEmail = document.querySelector('#email-si').value;
   const userPassword = document.querySelector('#password-si').value;
@@ -43,15 +43,17 @@ export const signInOnSubmit = () => {
       changeHash('/profile');
     })
     .catch((error) => {
-      alert(error + 'llena los campos vacios');
+      swal(error + 'LLena los campos vacíos');
+      // swal('Atención','Por favor llena los espacios vacíos', 'error')
       window.location.hash = '#/signIn';
     });
 };
 
+// controller de cierre de sesión
 export const logOutOnSubmit = () => {
   logOut()
     .then(() => {
-      console.log('cerro sesion');
+      console.log('Cierre de sesión');
       window.location.hash = '#/signIn';
     });
 };

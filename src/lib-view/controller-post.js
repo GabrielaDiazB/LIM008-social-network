@@ -2,7 +2,7 @@ import { getNameUser, getPhotoUser } from '../lib-view/controller-login.js';
 import { addUserPostData, deletePost, updatePost, likesPost, favoritesPost} from '../controller-function/function-post.js';
 import { idUser } from './controller-login.js';
 
-// controler para guardar el post en  firebase cloud
+// controller para guardar posts en firestore
 export const addPostOnSubmit = () => {
   const filterPrivatePrivacy = document.querySelector('#privacy-filter').value;
   const contentPost = document.querySelector('#text-area').value;
@@ -15,7 +15,7 @@ export const addPostOnSubmit = () => {
 };
   
 export const deletePostOnSubmit = (objPost) => { 
-  if (confirm('¿¡Estás seguro de eliminar el post!?'))
+  if (confirm('¿Estás seguro de que quieres eliminar el post?'))
     return deletePost(objPost.id);
 };
   
