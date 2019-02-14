@@ -3,7 +3,7 @@ export const addUserPostData = (contentPost, idUser, getNameUser, getPhotoUser, 
   let posts = firebase.firestore().collection('posts');
   let data = {
     content: contentPost,
-    uid: idUser,
+    uidUser: idUser,
     name: getNameUser,
     userPhoto: getPhotoUser,
     date: firebase.firestore.FieldValue.serverTimestamp(),
