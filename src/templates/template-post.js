@@ -14,7 +14,7 @@ export const writingPost = (objPost) => {
   const templateWritingPost = `
       ${templateBarraNav}
         <div class="post-container">
-          <div id="box-writing-post">
+          <div>
           <i class="fa fa-arrow-left"></i>
           <h1 class="text-align">¿Qué Recomiendas?</h1>
           <form>

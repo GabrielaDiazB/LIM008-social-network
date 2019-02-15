@@ -27,7 +27,7 @@ export const getPost = (callback, idUser) => {
         });   
         callback(data);
       });
-    } else if (idUser === null) {
+  } else if (idUser === null) {
     return firebase.firestore().collection('posts')
       .where('privacy', '==', 'Público')
       .orderBy('date', 'desc')  
